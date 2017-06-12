@@ -1,0 +1,80 @@
+
+==================== FINAL INTERFACE ====================
+2017-06-12 21:30:05.142565 UTC
+
+interface haskell-dlib-0.1.0.0-3fllyVSnE7s1R7uPGXF8Jy:Vision.DLib.Types.Array2D 8002
+  interface hash: 544ee924e1bc8c5e498fb0a588a79184
+  ABI hash: 3e35b280b188720b796cbd25d1d91ded
+  export-list hash: 2dd60798f481eec2c8db824f1537abf5
+  orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
+  flag hash: 0c27dff259dcb485104767cde3c16bf8
+  sig of: Nothing
+  used TH splices: False
+  where
+exports:
+  Vision.DLib.Types.Array2D.Image{Vision.DLib.Types.Array2D.Image}
+module dependencies: Vision.DLib.Types.RGBPixel
+package dependencies: base-4.9.1.0* ghc-prim-0.5.0.0
+                      integer-gmp-1.0.0.1
+orphans: base-4.9.1.0:GHC.Base base-4.9.1.0:GHC.Float
+family instance modules: base-4.9.1.0:Control.Applicative
+                         base-4.9.1.0:Data.Either base-4.9.1.0:Data.Functor.Const
+                         base-4.9.1.0:Data.Monoid base-4.9.1.0:Data.Type.Equality
+                         base-4.9.1.0:GHC.Generics base-4.9.1.0:GHC.IO.Exception
+                         base-4.9.1.0:GHC.TypeLits
+import  -/  base-4.9.1.0:Foreign.C.Types bf568ee9a3ec4aa42333a0da5f4345de
+import  -/  base-4.9.1.0:Foreign.Ptr 436587875917047a95f3be0fc1891fc4
+import  -/  base-4.9.1.0:Foreign.Storable 085c8d7f42ceec1dbb4e818f06339b9d
+import  -/  base-4.9.1.0:GHC.Ptr 427a6ad9312f04edb98e0f5b7c4e2596
+import  -/  base-4.9.1.0:Prelude 22dd289b8469a8fa8dc81cab7b237771
+import  -/  Vision.DLib.Types.RGBPixel bc3d04b33cc8bc94bf6a4c4dcb888527
+  exports: 71b4c123dac6b16435bb2061301e2bc8
+7f2ede61f6b67b11d435558a2c2edbae
+  $tc'Image :: GHC.Types.TyCon
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.TyCon
+                   7682633617704049699##
+                   13504995264471441488##
+                   Vision.DLib.Types.Array2D.$trModule
+                   Vision.DLib.Types.Array2D.$tc'Image1) -}
+f91ee10983f6987ab03678ad19c4baeb
+  $tc'Image1 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS "'Image"#) -}
+23f5f7a3a04b8e6a5bbfefc560207f2e
+  $tcImage :: GHC.Types.TyCon
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.TyCon
+                   9467241484287290209##
+                   5922997004470477985##
+                   Vision.DLib.Types.Array2D.$trModule
+                   Vision.DLib.Types.Array2D.$tcImage1) -}
+54fae9b62d739ba4860e93a21740be2e
+  $tcImage1 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS "Image"#) -}
+bed856cad432fd4357c0ec510406b8a5
+  $trModule :: GHC.Types.Module
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.Module
+                   Vision.DLib.Types.Array2D.$trModule2
+                   Vision.DLib.Types.Array2D.$trModule1) -}
+a3d1211e77d8fa17789133cd5311c064
+  $trModule1 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS "Vision.DLib.Types.Array2D"#) -}
+e8733cde6fae99eba8efd21c9dfc3a20
+  $trModule2 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS
+                   "haskell-dlib-0.1.0.0-3fllyVSnE7s1R7uPGXF8Jy"#) -}
+b57c6572709c4a30ba462134dffd48ba
+  newtype Image = Image (GHC.Ptr.Ptr ())
+vectorised variables:
+vectorised tycons:
+vectorised reused tycons:
+parallel variables:
+parallel tycons:
+trusted: safe
+require own pkg trusted: False
+

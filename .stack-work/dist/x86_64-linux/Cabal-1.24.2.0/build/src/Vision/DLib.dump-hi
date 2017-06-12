@@ -1,0 +1,70 @@
+
+==================== FINAL INTERFACE ====================
+2017-06-12 21:32:01.688309 UTC
+
+interface haskell-dlib-0.1.0.0-3fllyVSnE7s1R7uPGXF8Jy:Vision.DLib 8002
+  interface hash: fe4ef4f52832fe7209d7b821a892c800
+  ABI hash: c3a11409632c833b56d8a8bbfdffad4f
+  export-list hash: 9e4e99317fedd175e9949ef7c83d0445
+  orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
+  flag hash: 207ceda71121a0be8d79e472a1c0bafd
+  sig of: Nothing
+  used TH splices: False
+  where
+exports:
+  Vision.DLib.Types.Array2D.Image{Vision.DLib.Types.Array2D.Image}
+  Vision.DLib.Types.RGBPixel.RGBPixel{Vision.DLib.Types.RGBPixel.RGBPixel rgbBlue rgbGreen rgbRed}
+  Vision.DLib.Types.Rectangle.Rectangle{Vision.DLib.Types.Rectangle.Rectangle rectBottom rectLeft rectRight rectTop}
+module dependencies: Vision.DLib.Types.Array2D
+                     Vision.DLib.Types.RGBPixel Vision.DLib.Types.Rectangle
+package dependencies: base-4.9.1.0* ghc-prim-0.5.0.0
+                      integer-gmp-1.0.0.1
+orphans: base-4.9.1.0:GHC.Base base-4.9.1.0:GHC.Float
+family instance modules: base-4.9.1.0:Control.Applicative
+                         base-4.9.1.0:Data.Either base-4.9.1.0:Data.Functor.Const
+                         base-4.9.1.0:Data.Monoid base-4.9.1.0:Data.Type.Equality
+                         base-4.9.1.0:GHC.Generics base-4.9.1.0:GHC.IO.Exception
+                         base-4.9.1.0:GHC.TypeLits
+import  -/  base-4.9.1.0:Prelude 22dd289b8469a8fa8dc81cab7b237771
+import  -/  Vision.DLib.Types.Array2D 3e35b280b188720b796cbd25d1d91ded
+  exports: 2dd60798f481eec2c8db824f1537abf5
+  Image 6f8ed524db59352f24cf88af0a6cc37b
+  Image b57c6572709c4a30ba462134dffd48ba
+import  -/  Vision.DLib.Types.RGBPixel bc3d04b33cc8bc94bf6a4c4dcb888527
+  exports: 71b4c123dac6b16435bb2061301e2bc8
+  RGBPixel 2fef63d14cc1a310111057c7ecf9c27c
+  RGBPixel fa19af4dd951530d462e288714478ff7
+  rgbBlue ca2a346b28ad8c5507c396c1b9e6df89
+  rgbGreen 79adf61f54d7bca52c220713ff9390d0
+  rgbRed 4403a47b2f579f27c7627484050385d9
+import  -/  Vision.DLib.Types.Rectangle a49ce78cdd9f0cfe3dacd1713c8f643e
+  exports: 956f9e1148816dda05f4a24c5fb4a0db
+  Rectangle 3340d42a7d3628ed0c0cfa16744f2ef6
+  Rectangle d582a1c3f75b6044ab2b367fcbe4f3e2
+  rectBottom 0946c658c0182c333f0b92e1b6cd4520
+  rectLeft 34b0f2c3b778b0fa295ec580b4e918eb
+  rectRight 4014174e557c66343bb524f0d82f4770
+  rectTop ee01e84573d7299632f516f1956e1e08
+c9f833678dfd3ac4e140949179624532
+  $trModule :: GHC.Types.Module
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.Module
+                   Vision.DLib.$trModule2
+                   Vision.DLib.$trModule1) -}
+29cccf17d70b79a5ac2c3e74c2ef86b4
+  $trModule1 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS "Vision.DLib"#) -}
+19db99f5145ed36b54915db4fe0e7e07
+  $trModule2 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS
+                   "haskell-dlib-0.1.0.0-3fllyVSnE7s1R7uPGXF8Jy"#) -}
+vectorised variables:
+vectorised tycons:
+vectorised reused tycons:
+parallel variables:
+parallel tycons:
+trusted: safe
+require own pkg trusted: False
+
