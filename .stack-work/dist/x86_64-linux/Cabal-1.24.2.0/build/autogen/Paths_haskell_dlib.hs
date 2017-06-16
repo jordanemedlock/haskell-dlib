@@ -30,7 +30,7 @@ version = Version [0,1,0,0] []
 bindir, libdir, dynlibdir, datadir, libexecdir, sysconfdir :: FilePath
 
 bindir     = "/projects/haskell-dlib/.stack-work/install/x86_64-linux/lts-8.18/8.0.2/bin"
-libdir     = "/projects/haskell-dlib/.stack-work/install/x86_64-linux/lts-8.18/8.0.2/lib/x86_64-linux-ghc-8.0.2/haskell-dlib-0.1.0.0-3fllyVSnE7s1R7uPGXF8Jy"
+libdir     = "/projects/haskell-dlib/.stack-work/install/x86_64-linux/lts-8.18/8.0.2/lib/x86_64-linux-ghc-8.0.2/haskell-dlib-0.1.0.0-Khjs3VuKcC8bASh8ju2cj"
 dynlibdir  = "/projects/haskell-dlib/.stack-work/install/x86_64-linux/lts-8.18/8.0.2/lib/x86_64-linux-ghc-8.0.2"
 datadir    = "/projects/haskell-dlib/.stack-work/install/x86_64-linux/lts-8.18/8.0.2/share/x86_64-linux-ghc-8.0.2/haskell-dlib-0.1.0.0"
 libexecdir = "/projects/haskell-dlib/.stack-work/install/x86_64-linux/lts-8.18/8.0.2/libexec"

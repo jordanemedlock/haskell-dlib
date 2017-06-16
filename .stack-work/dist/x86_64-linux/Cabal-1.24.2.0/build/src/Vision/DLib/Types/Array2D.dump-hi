@@ -1,80 +1,362 @@
 
 ==================== FINAL INTERFACE ====================
-2017-06-12 21:30:05.142565 UTC
+2017-06-16 22:08:31.181446 UTC
 
-interface haskell-dlib-0.1.0.0-3fllyVSnE7s1R7uPGXF8Jy:Vision.DLib.Types.Array2D 8002
-  interface hash: 544ee924e1bc8c5e498fb0a588a79184
-  ABI hash: 3e35b280b188720b796cbd25d1d91ded
-  export-list hash: 2dd60798f481eec2c8db824f1537abf5
+interface haskell-dlib-0.1.0.0-Khjs3VuKcC8bASh8ju2cj:Vision.DLib.Types.Array2D 8002
+  interface hash: b9d288f77cb50ee2d7b2cc8b05ebbf5a
+  ABI hash: 0546527a63a68bf21074200afc4a596f
+  export-list hash: f8e74c432ecf0ed11673f459c2bb2ffe
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
-  flag hash: 0c27dff259dcb485104767cde3c16bf8
+  flag hash: 355416dac96718655650401b8c1f4956
   sig of: Nothing
-  used TH splices: False
+  used TH splices: True
   where
 exports:
+  Vision.DLib.Types.Array2D.inline_c_ffi_6989586621679043764
+  Vision.DLib.Types.Array2D.inline_c_ffi_6989586621679043798
+  Vision.DLib.Types.Array2D.inline_c_ffi_6989586621679043808
+  Vision.DLib.Types.Array2D.loadImage
+  Vision.DLib.Types.Array2D.mkImage
+  Vision.DLib.Types.Array2D.pyramidUp
   Vision.DLib.Types.Array2D.Image{Vision.DLib.Types.Array2D.Image}
 module dependencies: Vision.DLib.Types.RGBPixel
-package dependencies: base-4.9.1.0* ghc-prim-0.5.0.0
+package dependencies: QuickCheck-2.9.2@QuickCheck-2.9.2-Jyj4gc4JxkEIgGFLAsGhs9
+                      ansi-terminal-0.6.3.1@ansi-terminal-0.6.3.1-3RTqikoQf47ajVD9m8zgB
+                      ansi-wl-pprint-0.6.7.3@ansi-wl-pprint-0.6.7.3-A79v826bgPr574HtaZPPqC
+                      array-0.5.1.1@array-0.5.1.1
+                      attoparsec-0.13.1.0@attoparsec-0.13.1.0-DRMYON11vLW10yp1r3HlfE
+                      base-4.9.1.0 binary-0.8.3.0@binary-0.8.3.0
+                      byteable-0.1.1@byteable-0.1.1-2lU1pexQSLj1KbNO17UifQ
+                      bytestring-0.10.8.1@bytestring-0.10.8.1
+                      charset-0.3.7.1@charset-0.3.7.1-LhYDJhbmG13BRL55LkvrSl
+                      containers-0.5.7.1@containers-0.5.7.1
+                      cryptohash-0.11.9@cryptohash-0.11.9-2MaJSGKSHcXFeKnr9xVFvh
+                      cryptonite-0.21@cryptonite-0.21-5d9Fz1EYswtH1x1N2J0tu3
+                      deepseq-1.4.2.0@deepseq-1.4.2.0 directory-1.3.0.0@directory-1.3.0.0
+                      filepath-1.4.1.1@filepath-1.4.1.1
+                      foundation-0.0.10@foundation-0.0.10-1Usm8HGWYH8ErZCSVj3aF7
+                      ghc-boot-th-8.0.2@ghc-boot-th-8.0.2 ghc-prim-0.5.0.0
+                      hashable-1.2.6.0@hashable-1.2.6.0-3EXxoqeEgbfAKr6aGkye6x
+                      inline-c-0.5.6.1@inline-c-0.5.6.1-FrWo3mVyyBxI2eCU4vPxp6
+                      inline-c-cpp-0.1.0.0@inline-c-cpp-0.1.0.0-8BVsFgV0eHcCpD55MqgJu2
                       integer-gmp-1.0.0.1
+                      integer-logarithms-1.0.1@integer-logarithms-1.0.1-IEHCuEd5sG4JjSjlx7m5JF
+                      memory-0.14.6@memory-0.14.6-2PgFoWkzSpIBViHBBv46LX
+                      mtl-2.2.1@mtl-2.2.1-BLKBelFsPB3BoFeSWSOYj6
+                      parsec-3.1.11@parsec-3.1.11-113irVHGgd88sRnywByDNw
+                      parsers-0.12.5@parsers-0.12.5-DTEW2FKggum8isGKtF8jsl
+                      pretty-1.1.3.3@pretty-1.1.3.3
+                      primitive-0.6.1.0@primitive-0.6.1.0-6AbSTw9JXz141LE5p6LGH
+                      random-1.1@random-1.1-9tceXaeYIMZ4JrKq20Egog
+                      scientific-0.3.4.15@scientific-0.3.4.15-8KhnwsMCJdHAmYurRJsTmW
+                      template-haskell-2.11.1.0
+                      text-1.2.2.1@text-1.2.2.1-Ji7hMs2U4BkBwavd4taEVR
+                      tf-random-0.5@tf-random-0.5-BGjMgO8m67W8CHiEl15kZ7
+                      time-1.6.0.1@time-1.6.0.1 transformers-0.5.2.0@transformers-0.5.2.0
+                      unix-2.7.2.1@unix-2.7.2.1
+                      unordered-containers-0.2.8.0@unordered-containers-0.2.8.0-1XEErQCPPPc2SEtcHHNx9o
+                      vector-0.11.0.0@vector-0.11.0.0-LMwQhhnXj8U3T5Bm1JFxG
 orphans: base-4.9.1.0:GHC.Base base-4.9.1.0:GHC.Float
-family instance modules: base-4.9.1.0:Control.Applicative
-                         base-4.9.1.0:Data.Either base-4.9.1.0:Data.Functor.Const
-                         base-4.9.1.0:Data.Monoid base-4.9.1.0:Data.Type.Equality
-                         base-4.9.1.0:GHC.Generics base-4.9.1.0:GHC.IO.Exception
-                         base-4.9.1.0:GHC.TypeLits
+         binary-0.8.3.0@binary-0.8.3.0:Data.Binary.Generic
+         bytestring-0.10.8.1@bytestring-0.10.8.1:Data.ByteString.Builder
+         hashable-1.2.6.0@hashable-1.2.6.0-3EXxoqeEgbfAKr6aGkye6x:Data.Hashable.Generic
+         text-1.2.2.1@text-1.2.2.1-Ji7hMs2U4BkBwavd4taEVR:Data.Text
+         text-1.2.2.1@text-1.2.2.1-Ji7hMs2U4BkBwavd4taEVR:Data.Text.Lazy
+         text-1.2.2.1@text-1.2.2.1-Ji7hMs2U4BkBwavd4taEVR:Data.Text.Show
+         time-1.6.0.1@time-1.6.0.1:Data.Time.Calendar.Gregorian
+         time-1.6.0.1@time-1.6.0.1:Data.Time.Format.Parse
+         time-1.6.0.1@time-1.6.0.1:Data.Time.LocalTime.LocalTime
+         transformers-0.5.2.0@transformers-0.5.2.0:Control.Monad.Trans.Error
+         vector-0.11.0.0@vector-0.11.0.0-LMwQhhnXj8U3T5Bm1JFxG:Data.Vector.Fusion.Bundle
+family instance modules: attoparsec-0.13.1.0@attoparsec-0.13.1.0-DRMYON11vLW10yp1r3HlfE:Data.Attoparsec.Internal.Types
+                         base-4.9.1.0:Control.Applicative base-4.9.1.0:Data.Complex
+                         base-4.9.1.0:Data.Either base-4.9.1.0:Data.Functor.Compose
+                         base-4.9.1.0:Data.Functor.Const base-4.9.1.0:Data.Functor.Identity
+                         base-4.9.1.0:Data.Functor.Product base-4.9.1.0:Data.Functor.Sum
+                         base-4.9.1.0:Data.List.NonEmpty base-4.9.1.0:Data.Monoid
+                         base-4.9.1.0:Data.Semigroup base-4.9.1.0:Data.Type.Equality
+                         base-4.9.1.0:Data.Version base-4.9.1.0:Data.Void
+                         base-4.9.1.0:GHC.Exts base-4.9.1.0:GHC.Generics
+                         base-4.9.1.0:GHC.IO.Exception base-4.9.1.0:GHC.TypeLits
+                         containers-0.5.7.1@containers-0.5.7.1:Data.IntMap.Base
+                         containers-0.5.7.1@containers-0.5.7.1:Data.IntSet.Base
+                         containers-0.5.7.1@containers-0.5.7.1:Data.Map.Base
+                         containers-0.5.7.1@containers-0.5.7.1:Data.Sequence
+                         containers-0.5.7.1@containers-0.5.7.1:Data.Set.Base
+                         foundation-0.0.10@foundation-0.0.10-1Usm8HGWYH8ErZCSVj3aF7:Foundation.Array.Bitmap
+                         foundation-0.0.10@foundation-0.0.10-1Usm8HGWYH8ErZCSVj3aF7:Foundation.Array.Boxed
+                         foundation-0.0.10@foundation-0.0.10-1Usm8HGWYH8ErZCSVj3aF7:Foundation.Array.Chunked.Unboxed
+                         foundation-0.0.10@foundation-0.0.10-1Usm8HGWYH8ErZCSVj3aF7:Foundation.Array.Unboxed
+                         foundation-0.0.10@foundation-0.0.10-1Usm8HGWYH8ErZCSVj3aF7:Foundation.Collection.Buildable
+                         foundation-0.0.10@foundation-0.0.10-1Usm8HGWYH8ErZCSVj3aF7:Foundation.Collection.Collection
+                         foundation-0.0.10@foundation-0.0.10-1Usm8HGWYH8ErZCSVj3aF7:Foundation.Collection.Element
+                         foundation-0.0.10@foundation-0.0.10-1Usm8HGWYH8ErZCSVj3aF7:Foundation.Collection.Keyed
+                         foundation-0.0.10@foundation-0.0.10-1Usm8HGWYH8ErZCSVj3aF7:Foundation.Collection.Mutable
+                         foundation-0.0.10@foundation-0.0.10-1Usm8HGWYH8ErZCSVj3aF7:Foundation.Numerical.Subtractive
+                         foundation-0.0.10@foundation-0.0.10-1Usm8HGWYH8ErZCSVj3aF7:Foundation.Primitive.Block.Base
+                         foundation-0.0.10@foundation-0.0.10-1Usm8HGWYH8ErZCSVj3aF7:Foundation.Primitive.Monad
+                         foundation-0.0.10@foundation-0.0.10-1Usm8HGWYH8ErZCSVj3aF7:Foundation.Primitive.Types.OffsetSize
+                         foundation-0.0.10@foundation-0.0.10-1Usm8HGWYH8ErZCSVj3aF7:Foundation.Primitive.UTF8.Base
+                         foundation-0.0.10@foundation-0.0.10-1Usm8HGWYH8ErZCSVj3aF7:Foundation.String.Encoding.ASCII7
+                         foundation-0.0.10@foundation-0.0.10-1Usm8HGWYH8ErZCSVj3aF7:Foundation.String.Encoding.ISO_8859_1
+                         foundation-0.0.10@foundation-0.0.10-1Usm8HGWYH8ErZCSVj3aF7:Foundation.String.Encoding.UTF16
+                         foundation-0.0.10@foundation-0.0.10-1Usm8HGWYH8ErZCSVj3aF7:Foundation.String.Encoding.UTF32
+                         foundation-0.0.10@foundation-0.0.10-1Usm8HGWYH8ErZCSVj3aF7:Foundation.String.UTF8
+                         foundation-0.0.10@foundation-0.0.10-1Usm8HGWYH8ErZCSVj3aF7:Foundation.Tuple
+                         ghc-boot-th-8.0.2@ghc-boot-th-8.0.2:GHC.LanguageExtensions.Type
+                         inline-c-0.5.6.1@inline-c-0.5.6.1-FrWo3mVyyBxI2eCU4vPxp6:Language.C.Inline
+                         inline-c-0.5.6.1@inline-c-0.5.6.1-FrWo3mVyyBxI2eCU4vPxp6:Language.C.Inline.Context
+                         pretty-1.1.3.3@pretty-1.1.3.3:Text.PrettyPrint.Annotated.HughesPJ
+                         pretty-1.1.3.3@pretty-1.1.3.3:Text.PrettyPrint.HughesPJ
+                         primitive-0.6.1.0@primitive-0.6.1.0-6AbSTw9JXz141LE5p6LGH:Control.Monad.Primitive
+                         template-haskell-2.11.1.0:Language.Haskell.TH.Syntax
+                         text-1.2.2.1@text-1.2.2.1-Ji7hMs2U4BkBwavd4taEVR:Data.Text
+                         text-1.2.2.1@text-1.2.2.1-Ji7hMs2U4BkBwavd4taEVR:Data.Text.Lazy
+                         unordered-containers-0.2.8.0@unordered-containers-0.2.8.0-1XEErQCPPPc2SEtcHHNx9o:Data.HashMap.Base
+                         unordered-containers-0.2.8.0@unordered-containers-0.2.8.0-1XEErQCPPPc2SEtcHHNx9o:Data.HashSet
+                         vector-0.11.0.0@vector-0.11.0.0-LMwQhhnXj8U3T5Bm1JFxG:Data.Vector
+                         vector-0.11.0.0@vector-0.11.0.0-LMwQhhnXj8U3T5Bm1JFxG:Data.Vector.Storable
+import  -/  base-4.9.1.0:Data.Functor 5ab1dc703df5b482e77efb697833ca3c
+import  -/  base-4.9.1.0:Data.Monoid 51cc9cd8c130d49ba96b7c2c2406022b
 import  -/  base-4.9.1.0:Foreign.C.Types bf568ee9a3ec4aa42333a0da5f4345de
+import  -/  base-4.9.1.0:Foreign.Marshal.Array 63114b8be90ae825866d45b38d8798ce
 import  -/  base-4.9.1.0:Foreign.Ptr 436587875917047a95f3be0fc1891fc4
-import  -/  base-4.9.1.0:Foreign.Storable 085c8d7f42ceec1dbb4e818f06339b9d
+import  -/  base-4.9.1.0:GHC.Base c4231c43c07e46080a26bf94094c7aa1
 import  -/  base-4.9.1.0:GHC.Ptr 427a6ad9312f04edb98e0f5b7c4e2596
 import  -/  base-4.9.1.0:Prelude 22dd289b8469a8fa8dc81cab7b237771
-import  -/  Vision.DLib.Types.RGBPixel bc3d04b33cc8bc94bf6a4c4dcb888527
-  exports: 71b4c123dac6b16435bb2061301e2bc8
-7f2ede61f6b67b11d435558a2c2edbae
+import  -/  bytestring-0.10.8.1@bytestring-0.10.8.1:Data.ByteString.Char8 64661030f691dd1495e363eeda7a5344
+import  -/  bytestring-0.10.8.1@bytestring-0.10.8.1:Data.ByteString.Unsafe 92abac213725a8649f9818f4f4aca9b8
+import  -/  ghc-prim-0.5.0.0:GHC.Types 89f8de4f08018c9177c98d979eae0e45
+import  -/  Vision.DLib.Types.RGBPixel e36ce3d9df277857f26fbc3ce52ec6be
+  exports: b5c60eadb825f6b629ec375affccb569
+import  -/  inline-c-0.5.6.1@inline-c-0.5.6.1-FrWo3mVyyBxI2eCU4vPxp6:Language.C.Inline 0ad05518bbb26d52b2a6c1076faa7655
+import  -/  inline-c-0.5.6.1@inline-c-0.5.6.1-FrWo3mVyyBxI2eCU4vPxp6:Language.C.Inline.Context 61cc1d1a0286fbb13c4d2d26d6506b46
+import  -/  inline-c-cpp-0.1.0.0@inline-c-cpp-0.1.0.0-8BVsFgV0eHcCpD55MqgJu2:Language.C.Inline.Cpp 1f77a98d08bc86941503b86a38a67957
+addDependentFile "/home/user/.stack/programs/x86_64-linux/ghc-8.0.2/lib/ghc-8.0.2/include/ghcversion.h"
+addDependentFile ".stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/autogen/cabal_macros.h"
+addDependentFile "/usr/include/stdc-predef.h"
+daae0e799b71542a23690736f1ad1b2f
   $tc'Image :: GHC.Types.TyCon
   {- HasNoCafRefs, Strictness: m,
      Unfolding: (GHC.Types.TyCon
-                   7682633617704049699##
-                   13504995264471441488##
+                   3418964601882589935##
+                   13345247234805931757##
                    Vision.DLib.Types.Array2D.$trModule
                    Vision.DLib.Types.Array2D.$tc'Image1) -}
-f91ee10983f6987ab03678ad19c4baeb
+97461d8ef261b327b9898c69079a679a
   $tc'Image1 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS "'Image"#) -}
-23f5f7a3a04b8e6a5bbfefc560207f2e
+ff1ce6b667a17f417a944dcd1ffc65dd
   $tcImage :: GHC.Types.TyCon
   {- HasNoCafRefs, Strictness: m,
      Unfolding: (GHC.Types.TyCon
-                   9467241484287290209##
-                   5922997004470477985##
+                   7420280471376565330##
+                   2130353508912318025##
                    Vision.DLib.Types.Array2D.$trModule
                    Vision.DLib.Types.Array2D.$tcImage1) -}
-54fae9b62d739ba4860e93a21740be2e
+1a7d9e976bf3bfb63fa6735ec17570b6
   $tcImage1 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS "Image"#) -}
-bed856cad432fd4357c0ec510406b8a5
+63cced2f36a8c2a65513650efb5fde29
   $trModule :: GHC.Types.Module
   {- HasNoCafRefs, Strictness: m,
      Unfolding: (GHC.Types.Module
                    Vision.DLib.Types.Array2D.$trModule2
                    Vision.DLib.Types.Array2D.$trModule1) -}
-a3d1211e77d8fa17789133cd5311c064
+117c45c848d8929fde024b62f5e0cc4c
   $trModule1 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS "Vision.DLib.Types.Array2D"#) -}
-e8733cde6fae99eba8efd21c9dfc3a20
+4858e65284a9b4e90490f2d790b31fad
   $trModule2 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS
-                   "haskell-dlib-0.1.0.0-3fllyVSnE7s1R7uPGXF8Jy"#) -}
-b57c6572709c4a30ba462134dffd48ba
+                   "haskell-dlib-0.1.0.0-Khjs3VuKcC8bASh8ju2cj"#) -}
+20d76412a42b76e066fb933862649319
+  $wloadImage ::
+    GHC.Prim.Addr#
+    -> GHC.Base.String
+    -> GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
+  {- Arity: 3, Strictness: <S,U><S,U><S,U>, Inline: [0],
+     Unfolding: (\ (ww :: GHC.Prim.Addr#)
+                   (w :: GHC.Base.String)
+                   (w1 :: GHC.Prim.State# GHC.Prim.RealWorld)[OneShot] ->
+                 case GHC.List.$wlenAcc @ GHC.Types.Char w 0# of ww2 { DEFAULT ->
+                 case Data.ByteString.Internal.$wunsafePackLenChars
+                        ww2
+                        w of wild { Data.ByteString.Internal.PS dt dt1 dt2 dt3 ->
+                 case {__pkg_ccall_GC haskell-dlib-0.1.0.0-Khjs3VuKcC8bASh8ju2cj inline_c_Vision_DLib_Types_Array2D_1_b1770b451f1da53abdffdb114a698247d53e8c40 GHC.Prim.Addr#
+                                                                                                                                                               -> GHC.Prim.Addr#
+                                                                                                                                                               -> GHC.Prim.State#
+                                                                                                                                                                    GHC.Prim.RealWorld
+                                                                                                                                                               -> (# GHC.Prim.State#
+                                                                                                                                                                       GHC.Prim.RealWorld #)}
+                        ww
+                        (GHC.Prim.plusAddr# dt dt2)
+                        w1 of wild1 { Unit# ds ->
+                 case GHC.Prim.touch#
+                        @ 'GHC.Types.PtrRepLifted
+                        @ GHC.ForeignPtr.ForeignPtrContents
+                        dt1
+                        ds of s' { DEFAULT ->
+                 (# s', GHC.Tuple.() #) } } } }) -}
+d13983af12ad7564615eb2ae86b000b9
   newtype Image = Image (GHC.Ptr.Ptr ())
+36c45f7376cde5e1a2643b1a27e28c09
+  inline_c_ffi_6989586621679043764 :: GHC.Types.IO (GHC.Ptr.Ptr ())
+  {- Arity: 1, HasNoCafRefs, Strictness: <S,U>,
+     Unfolding: InlineRule (0, False, False)
+                (\ (ds :: GHC.Prim.State# GHC.Prim.RealWorld)[OneShot] ->
+                 case {__pkg_ccall_GC haskell-dlib-0.1.0.0-Khjs3VuKcC8bASh8ju2cj inline_c_Vision_DLib_Types_Array2D_0_bfce9d6facfd323e49e0e5bdfb602a8f5d1c78bc GHC.Prim.State#
+                                                                                                                                                                 GHC.Prim.RealWorld
+                                                                                                                                                               -> (# GHC.Prim.State#
+                                                                                                                                                                       GHC.Prim.RealWorld,
+                                                                                                                                                                     GHC.Prim.Addr# #)}
+                        ds of wild { (#,#) ds1 ds2 ->
+                 (# ds1, GHC.Ptr.Ptr @ () ds2 #) })
+                  `cast`
+                (Sym (GHC.Types.N:IO[0] <GHC.Ptr.Ptr ()>_R)) -}
+f81aeffe407c1407c8f39ae8c4884c80
+  inline_c_ffi_6989586621679043798 ::
+    GHC.Ptr.Ptr ()
+    -> GHC.Ptr.Ptr Foreign.C.Types.CChar -> GHC.Types.IO ()
+  {- Arity: 3, HasNoCafRefs,
+     Strictness: <S(S),1*U(U)><S(S),1*U(U)><S,U>,
+     Unfolding: InlineRule (2, False, False)
+                (\ (ds :: GHC.Ptr.Ptr ())
+                   (ds1 :: GHC.Ptr.Ptr Foreign.C.Types.CChar)
+                   (eta :: GHC.Prim.State# GHC.Prim.RealWorld)[OneShot] ->
+                 case ds of ds2 { GHC.Ptr.Ptr ds3 ->
+                 case ds1 of ds4 { GHC.Ptr.Ptr ds5 ->
+                 case {__pkg_ccall_GC haskell-dlib-0.1.0.0-Khjs3VuKcC8bASh8ju2cj inline_c_Vision_DLib_Types_Array2D_1_b1770b451f1da53abdffdb114a698247d53e8c40 GHC.Prim.Addr#
+                                                                                                                                                               -> GHC.Prim.Addr#
+                                                                                                                                                               -> GHC.Prim.State#
+                                                                                                                                                                    GHC.Prim.RealWorld
+                                                                                                                                                               -> (# GHC.Prim.State#
+                                                                                                                                                                       GHC.Prim.RealWorld #)}
+                        ds3
+                        ds5
+                        eta of wild { Unit# ds6 ->
+                 (# ds6, GHC.Tuple.() #) } } })
+                  `cast`
+                (<GHC.Ptr.Ptr ()>_R
+                 ->_R <GHC.Ptr.Ptr Foreign.C.Types.CChar>_R
+                 ->_R Sym (GHC.Types.N:IO[0] <()>_R)) -}
+e9da5e78d32ad1aeaa597d6bd19f42fd
+  inline_c_ffi_6989586621679043808 ::
+    GHC.Ptr.Ptr () -> GHC.Types.IO (GHC.Ptr.Ptr ())
+  {- Arity: 2, HasNoCafRefs, Strictness: <S(S),1*U(U)><S,U>,
+     Unfolding: InlineRule (1, False, False)
+                (\ (ds :: GHC.Ptr.Ptr ())
+                   (eta :: GHC.Prim.State# GHC.Prim.RealWorld)[OneShot] ->
+                 case ds of ds1 { GHC.Ptr.Ptr ds2 ->
+                 case {__pkg_ccall_GC haskell-dlib-0.1.0.0-Khjs3VuKcC8bASh8ju2cj inline_c_Vision_DLib_Types_Array2D_2_c6c787264a1da6ca89359ccbac69d53b9c4c7ec6 GHC.Prim.Addr#
+                                                                                                                                                               -> GHC.Prim.State#
+                                                                                                                                                                    GHC.Prim.RealWorld
+                                                                                                                                                               -> (# GHC.Prim.State#
+                                                                                                                                                                       GHC.Prim.RealWorld,
+                                                                                                                                                                     GHC.Prim.Addr# #)}
+                        ds2
+                        eta of wild { (#,#) ds3 ds4 ->
+                 (# ds3, GHC.Ptr.Ptr @ () ds4 #) } })
+                  `cast`
+                (<GHC.Ptr.Ptr ()>_R
+                 ->_R Sym (GHC.Types.N:IO[0] <GHC.Ptr.Ptr ()>_R)) -}
+d3cba95450d709d297b447e00983072f
+  loadImage ::
+    Vision.DLib.Types.Array2D.Image
+    -> GHC.Base.String -> GHC.Types.IO ()
+  {- Arity: 3, Strictness: <S(S),1*U(U)><S,U><S,U>,
+     Unfolding: InlineRule (0, True, True)
+                Vision.DLib.Types.Array2D.loadImage1
+                  `cast`
+                (<Vision.DLib.Types.Array2D.Image>_R
+                 ->_R <GHC.Base.String>_R
+                 ->_R Sym (GHC.Types.N:IO[0] <()>_R)) -}
+013f626d20e44791f420edd8cde9c69a
+  loadImage1 ::
+    Vision.DLib.Types.Array2D.Image
+    -> GHC.Base.String
+    -> GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
+  {- Arity: 3, Strictness: <S(S),1*U(U)><S,U><S,U>,
+     Inline: INLINE[0],
+     Unfolding: InlineRule (3, True, False)
+                (\ (w :: Vision.DLib.Types.Array2D.Image)
+                   (w1 :: GHC.Base.String)
+                   (w2 :: GHC.Prim.State# GHC.Prim.RealWorld)[OneShot] ->
+                 case w `cast`
+                      (Vision.DLib.Types.Array2D.N:Image[0]) of ww { GHC.Ptr.Ptr ww1 ->
+                 Vision.DLib.Types.Array2D.$wloadImage ww1 w1 w2 }) -}
+84221fc569fb9100e3f49782c3b8388e
+  mkImage :: GHC.Types.IO Vision.DLib.Types.Array2D.Image
+  {- Arity: 1, HasNoCafRefs, Strictness: <S,U>,
+     Unfolding: InlineRule (0, True, True)
+                Vision.DLib.Types.Array2D.mkImage1
+                  `cast`
+                (Sym (GHC.Types.N:IO[0] <Vision.DLib.Types.Array2D.Image>_R)) -}
+ed9e5a7c92e1d00899709478c3153f83
+  mkImage1 ::
+    GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld,
+          Vision.DLib.Types.Array2D.Image #)
+  {- Arity: 1, HasNoCafRefs, Strictness: <S,U>,
+     Unfolding: InlineRule (1, True, False)
+                (\ (eta :: GHC.Prim.State# GHC.Prim.RealWorld)[OneShot] ->
+                 case {__pkg_ccall_GC haskell-dlib-0.1.0.0-Khjs3VuKcC8bASh8ju2cj inline_c_Vision_DLib_Types_Array2D_0_bfce9d6facfd323e49e0e5bdfb602a8f5d1c78bc GHC.Prim.State#
+                                                                                                                                                                 GHC.Prim.RealWorld
+                                                                                                                                                               -> (# GHC.Prim.State#
+                                                                                                                                                                       GHC.Prim.RealWorld,
+                                                                                                                                                                     GHC.Prim.Addr# #)}
+                        eta of wild { (#,#) ds ds1 ->
+                 (# ds,
+                    (GHC.Ptr.Ptr @ () ds1)
+                      `cast`
+                    (Sym (Vision.DLib.Types.Array2D.N:Image[0])) #) }) -}
+3a6e90f2f8395dfc79e76d5b04b070a7
+  pyramidUp ::
+    Vision.DLib.Types.Array2D.Image
+    -> GHC.Types.IO Vision.DLib.Types.Array2D.Image
+  {- Arity: 2, HasNoCafRefs, Strictness: <S(S),1*U(U)><S,U>,
+     Unfolding: InlineRule (0, True, True)
+                Vision.DLib.Types.Array2D.pyramidUp1
+                  `cast`
+                (<Vision.DLib.Types.Array2D.Image>_R
+                 ->_R Sym (GHC.Types.N:IO[0]
+                               <Vision.DLib.Types.Array2D.Image>_R)) -}
+7f400eb24cfbd55ed0acb6aff68ed196
+  pyramidUp1 ::
+    Vision.DLib.Types.Array2D.Image
+    -> GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld,
+          Vision.DLib.Types.Array2D.Image #)
+  {- Arity: 2, HasNoCafRefs, Strictness: <S(S),1*U(U)><S,U>,
+     Unfolding: InlineRule (2, True, False)
+                (\ (ds :: Vision.DLib.Types.Array2D.Image)
+                   (eta :: GHC.Prim.State# GHC.Prim.RealWorld)[OneShot] ->
+                 case ds
+                        `cast`
+                      (Vision.DLib.Types.Array2D.N:Image[0]) of ds1 { GHC.Ptr.Ptr ds2 ->
+                 case {__pkg_ccall_GC haskell-dlib-0.1.0.0-Khjs3VuKcC8bASh8ju2cj inline_c_Vision_DLib_Types_Array2D_2_c6c787264a1da6ca89359ccbac69d53b9c4c7ec6 GHC.Prim.Addr#
+                                                                                                                                                               -> GHC.Prim.State#
+                                                                                                                                                                    GHC.Prim.RealWorld
+                                                                                                                                                               -> (# GHC.Prim.State#
+                                                                                                                                                                       GHC.Prim.RealWorld,
+                                                                                                                                                                     GHC.Prim.Addr# #)}
+                        ds2
+                        eta of wild { (#,#) ds3 ds4 ->
+                 (# ds3,
+                    (GHC.Ptr.Ptr @ () ds4)
+                      `cast`
+                    (Sym (Vision.DLib.Types.Array2D.N:Image[0])) #) } }) -}
 vectorised variables:
 vectorised tycons:
 vectorised reused tycons:
 parallel variables:
 parallel tycons:
-trusted: safe
+trusted: none
 require own pkg trusted: False
 

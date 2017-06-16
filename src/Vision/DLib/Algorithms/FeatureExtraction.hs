@@ -8,25 +8,37 @@ import qualified Language.C.Inline as C
 import qualified Language.C.Inline.Cpp as C
 
 import           Foreign.Ptr
+import           Foreign.Storable
 import           Foreign.Marshal.Array
+import           Foreign.Marshal.Alloc
+import qualified Data.ByteString.Char8 as BS
 
 import           Vision.DLib.Types.Array2D
+import           Vision.DLib.Types.Rectangle
+import           Data.Monoid
 
-C.context C.cppCtx
+C.context (C.cppCtx <> C.bsCtx)
 
 C.include "<dlib/image_processing.h>"
 
 C.using "namespace dlib"
 
 newtype ShapePredictor = ShapePredictor (Ptr ())
+newtype Shape = Shape (Ptr ())
 
 mkShapePredictor = ShapePredictor <$> [C.exp| void * { new shape_predictor() }|]
 
-deserializeShapePredictor str (ShapePredictor sp) = do
+deserializeShapePredictor (ShapePredictor sp) value = do
   let bs = BS.pack value
-  [C.block| void {
-    deserialize($bs-ptr:bs) >> $((shape_predictor)$(void * sp));    
-  }]
-  return sp
- 
-loadShapePredictor str = mkShapePredictor >>= deserializeShapePredictor str
+  [C.block| void { deserialize($bs-ptr:bs) >> *((shape_predictor *)$(void * sp)); } |]
+  
+runShapePredictor :: ShapePredictor -> Image -> Rectangle -> IO Shape
+runShapePredictor (ShapePredictor sp) (Image img) rect = do
+  alloca $ \rectPtr -> do
+    poke rectPtr rect
+    let voidPtr = castPtr rectPtr
+    Shape <$> [C.block| void * {
+      full_object_detection * det = new full_object_detection();
+      *det = (*(shape_predictor *)$(void * sp))(*(array2d<rgb_pixel> *)$(void * img), *(rectangle *)$(void * voidPtr));
+      return det;
+    }|]

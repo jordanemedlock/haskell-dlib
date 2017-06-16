@@ -20,12 +20,17 @@ library
                      , Vision.DLib.Types.Array2D
                      , Vision.DLib.Types.RGBPixel
                      , Vision.DLib.Algorithms.ObjectDetection
+                     , Vision.DLib.Algorithms.FeatureExtraction
   c-sources:           src/Vision/DLib/Algorithms/ObjectDetection.cpp
-  extra-libraries:     stdc++, dlib
+                     , src/Vision/DLib/Algorithms/FeatureExtraction.cpp
+                     , src/Vision/DLib/Types/Array2D.cpp
+  extra-libraries:     stdc++, dlib, lapack, blas
+  CC-options:          -std=c++11
   build-depends:       base >= 4.7 && < 5
                      , inline-c
                      , inline-c-cpp
                      , vector
+                     , bytestring
   default-language:    Haskell2010
 
 executable haskell-dlib-exe

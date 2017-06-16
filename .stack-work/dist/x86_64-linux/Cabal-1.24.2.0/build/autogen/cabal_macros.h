@@ -14,6 +14,13 @@
   (major1) == 4 && (major2) <  9 || \
   (major1) == 4 && (major2) == 9 && (minor) <= 1)
 
+/* package bytestring-0.10.8.1 */
+#define VERSION_bytestring "0.10.8.1"
+#define MIN_VERSION_bytestring(major1,major2,minor) (\
+  (major1) <  0 || \
+  (major1) == 0 && (major2) <  10 || \
+  (major1) == 0 && (major2) == 10 && (minor) <= 8)
+
 /* package inline-c-0.5.6.1 */
 #define VERSION_inline_c "0.5.6.1"
 #define MIN_VERSION_inline_c(major1,major2,minor) (\
@@ -84,7 +91,7 @@
   (major1) == 2 && (major2) <  26 || \
   (major1) == 2 && (major2) == 26 && (minor) <= 0)
 
-#define CURRENT_COMPONENT_ID "haskell-dlib-0.1.0.0-3fllyVSnE7s1R7uPGXF8Jy"
+#define CURRENT_COMPONENT_ID "haskell-dlib-0.1.0.0-Khjs3VuKcC8bASh8ju2cj"
 
-#define CURRENT_PACKAGE_KEY "haskell-dlib-0.1.0.0-3fllyVSnE7s1R7uPGXF8Jy"
+#define CURRENT_PACKAGE_KEY "haskell-dlib-0.1.0.0-Khjs3VuKcC8bASh8ju2cj"
 

@@ -1,11 +1,11 @@
 
 ==================== FINAL INTERFACE ====================
-2017-06-12 20:36:12.598156 UTC
+2017-06-13 21:09:28.404827 UTC
 
-interface haskell-dlib-0.1.0.0-3fllyVSnE7s1R7uPGXF8Jy:Vision.DLib.Types.RGBPixel 8002
-  interface hash: 68fcf4f659813c34039ac173854a8418
-  ABI hash: bc3d04b33cc8bc94bf6a4c4dcb888527
-  export-list hash: 71b4c123dac6b16435bb2061301e2bc8
+interface haskell-dlib-0.1.0.0-Khjs3VuKcC8bASh8ju2cj:Vision.DLib.Types.RGBPixel 8002
+  interface hash: 1b3ed4d2dfcb5a54d9b3b2e9be31d524
+  ABI hash: e36ce3d9df277857f26fbc3ce52ec6be
+  export-list hash: b5c60eadb825f6b629ec375affccb569
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: 0c27dff259dcb485104767cde3c16bf8
   sig of: Nothing
@@ -30,7 +30,7 @@ import  -/  base-4.9.1.0:GHC.Ptr 427a6ad9312f04edb98e0f5b7c4e2596
 import  -/  base-4.9.1.0:GHC.Show a027f5ac24879eaba752f44aa90fe511
 import  -/  base-4.9.1.0:Prelude 22dd289b8469a8fa8dc81cab7b237771
 import  -/  ghc-prim-0.5.0.0:GHC.Classes 0bdf3d057a415ec1b84a7b1994efbe47
-fa19af4dd951530d462e288714478ff7
+3ab05ea73090a4f5f5b420bfa1e833f8
   $fShowRGBPixel :: GHC.Show.Show Vision.DLib.Types.RGBPixel.RGBPixel
   DFunId
   {- Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -39,7 +39,7 @@ fa19af4dd951530d462e288714478ff7
                   Vision.DLib.Types.RGBPixel.$fShowRGBPixel_$cshowsPrec
                   Vision.DLib.Types.RGBPixel.$fShowRGBPixel_$cshow
                   Vision.DLib.Types.RGBPixel.$fShowRGBPixel_$cshowList -}
-fa19af4dd951530d462e288714478ff7
+3ab05ea73090a4f5f5b420bfa1e833f8
   $fShowRGBPixel1 ::
     Vision.DLib.Types.RGBPixel.RGBPixel -> GHC.Show.ShowS
   {- Arity: 2,
@@ -47,25 +47,25 @@ fa19af4dd951530d462e288714478ff7
                    (w1 :: GHC.Base.String) ->
                  case w of ww { Vision.DLib.Types.RGBPixel.RGBPixel ww1 ww2 ww3 ->
                  Vision.DLib.Types.RGBPixel.$w$cshowsPrec 0# ww1 ww2 ww3 w1 }) -}
-779b0cc808e54d3dea3f59a2b3214777
+e63df710fc5534e4ea947aea779cb86d
   $fShowRGBPixel2 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "}"#) -}
-7bd90c81b4592dba164968ac766f926d
+6cf808db6a5fbe8143782343b7f99fda
   $fShowRGBPixel3 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "rgbBlue = "#) -}
-e3470c6344ac46886fa627c00e71b228
+6eefd3eee4e0336c30f6f6001313e225
   $fShowRGBPixel4 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "rgbGreen = "#) -}
-91599ae2c5b798f5f0692436d25ec404
+bcd4b8742190ade4ac816b3437f1056f
   $fShowRGBPixel5 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# ", "#) -}
-cbbda02ac1d184c62394bdf1a14ff73c
+609fc13565eafff9425fd888c3258122
   $fShowRGBPixel6 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "rgbRed = "#) -}
-7a1bbb2f110f163976bfa1c9add4ca1f
+0d7f4af3a69fb0a682ff9120f7d4de0d
   $fShowRGBPixel7 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "RGBPixel {"#) -}
-fa19af4dd951530d462e288714478ff7
+3ab05ea73090a4f5f5b420bfa1e833f8
   $fShowRGBPixel_$cshow ::
     Vision.DLib.Types.RGBPixel.RGBPixel -> GHC.Base.String
   {- Arity: 1, Strictness: <S,1*U(1*U(U),1*U(U),1*U(U))>,
@@ -75,14 +75,14 @@ fa19af4dd951530d462e288714478ff7
                    GHC.Show.shows22
                    x
                    (GHC.Types.[] @ GHC.Types.Char)) -}
-fa19af4dd951530d462e288714478ff7
+3ab05ea73090a4f5f5b420bfa1e833f8
   $fShowRGBPixel_$cshowList ::
     [Vision.DLib.Types.RGBPixel.RGBPixel] -> GHC.Show.ShowS
   {- Arity: 2,
      Unfolding: (GHC.Show.showList__
                    @ Vision.DLib.Types.RGBPixel.RGBPixel
                    Vision.DLib.Types.RGBPixel.$fShowRGBPixel1) -}
-fa19af4dd951530d462e288714478ff7
+3ab05ea73090a4f5f5b420bfa1e833f8
   $fShowRGBPixel_$cshowsPrec ::
     GHC.Types.Int
     -> Vision.DLib.Types.RGBPixel.RGBPixel -> GHC.Show.ShowS
@@ -96,7 +96,7 @@ fa19af4dd951530d462e288714478ff7
                  case w of ww { GHC.Types.I# ww1 ->
                  case w1 of ww2 { Vision.DLib.Types.RGBPixel.RGBPixel ww3 ww4 ww5 ->
                  Vision.DLib.Types.RGBPixel.$w$cshowsPrec ww1 ww3 ww4 ww5 w2 } }) -}
-fa19af4dd951530d462e288714478ff7
+3ab05ea73090a4f5f5b420bfa1e833f8
   $fStorableRGBPixel ::
     Foreign.Storable.Storable Vision.DLib.Types.RGBPixel.RGBPixel
   DFunId
@@ -111,7 +111,7 @@ fa19af4dd951530d462e288714478ff7
                   Vision.DLib.Types.RGBPixel.$fStorableRGBPixel_$cpokeByteOff
                   Vision.DLib.Types.RGBPixel.$fStorableRGBPixel_$cpeek
                   Vision.DLib.Types.RGBPixel.$fStorableRGBPixel_$cpoke -}
-fa19af4dd951530d462e288714478ff7
+3ab05ea73090a4f5f5b420bfa1e833f8
   $fStorableRGBPixel1 ::
     GHC.Ptr.Ptr Vision.DLib.Types.RGBPixel.RGBPixel
     -> Vision.DLib.Types.RGBPixel.RGBPixel
@@ -153,7 +153,7 @@ fa19af4dd951530d462e288714478ff7
                         x2
                         s1 of s3 { DEFAULT ->
                  (# s3, GHC.Tuple.() #) } } } } } } } }) -}
-fa19af4dd951530d462e288714478ff7
+3ab05ea73090a4f5f5b420bfa1e833f8
   $fStorableRGBPixel2 ::
     GHC.Ptr.Ptr Vision.DLib.Types.RGBPixel.RGBPixel
     -> GHC.Prim.State# GHC.Prim.RealWorld
@@ -189,7 +189,7 @@ fa19af4dd951530d462e288714478ff7
                       (GHC.Int.I8# ipv5)
                         `cast`
                       (Sym (Foreign.C.Types.N:CChar[0])) #) } } } }) -}
-fa19af4dd951530d462e288714478ff7
+3ab05ea73090a4f5f5b420bfa1e833f8
   $fStorableRGBPixel3 ::
     GHC.Ptr.Ptr b
     -> GHC.Types.Int
@@ -236,7 +236,7 @@ fa19af4dd951530d462e288714478ff7
                         x2
                         s1 of s3 { DEFAULT ->
                  (# s3, GHC.Tuple.() #) } } } } } } } } }) -}
-fa19af4dd951530d462e288714478ff7
+3ab05ea73090a4f5f5b420bfa1e833f8
   $fStorableRGBPixel4 ::
     GHC.Ptr.Ptr b
     -> GHC.Types.Int
@@ -277,7 +277,7 @@ fa19af4dd951530d462e288714478ff7
                       (GHC.Int.I8# ipv5)
                         `cast`
                       (Sym (Foreign.C.Types.N:CChar[0])) #) } } } } }) -}
-fa19af4dd951530d462e288714478ff7
+3ab05ea73090a4f5f5b420bfa1e833f8
   $fStorableRGBPixel5 ::
     GHC.Ptr.Ptr Vision.DLib.Types.RGBPixel.RGBPixel
     -> GHC.Types.Int
@@ -322,7 +322,7 @@ fa19af4dd951530d462e288714478ff7
                         x3
                         s1 of s3 { DEFAULT ->
                  (# s3, GHC.Tuple.() #) } } } } } } } } }) -}
-fa19af4dd951530d462e288714478ff7
+3ab05ea73090a4f5f5b420bfa1e833f8
   $fStorableRGBPixel6 ::
     GHC.Ptr.Ptr Vision.DLib.Types.RGBPixel.RGBPixel
     -> GHC.Types.Int
@@ -362,16 +362,16 @@ fa19af4dd951530d462e288714478ff7
                       (GHC.Int.I8# ipv5)
                         `cast`
                       (Sym (Foreign.C.Types.N:CChar[0])) #) } } } } }) -}
-1b6202783a98922e78273f3f2427cc50
+bc052e61fd8cbb92bb6867b35de62c7b
   $fStorableRGBPixel7 :: GHC.Types.Int
   {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 3#) -}
-fa19af4dd951530d462e288714478ff7
+3ab05ea73090a4f5f5b420bfa1e833f8
   $fStorableRGBPixel_$calignment ::
     Vision.DLib.Types.RGBPixel.RGBPixel -> GHC.Types.Int
   {- Arity: 1, HasNoCafRefs, Strictness: <L,A>m,
      Unfolding: InlineRule (0, True, True)
                 Vision.DLib.Types.RGBPixel.$fStorableRGBPixel_$csizeOf -}
-fa19af4dd951530d462e288714478ff7
+3ab05ea73090a4f5f5b420bfa1e833f8
   $fStorableRGBPixel_$cpeek ::
     GHC.Ptr.Ptr Vision.DLib.Types.RGBPixel.RGBPixel
     -> GHC.Types.IO Vision.DLib.Types.RGBPixel.RGBPixel
@@ -382,7 +382,7 @@ fa19af4dd951530d462e288714478ff7
                 (<GHC.Ptr.Ptr Vision.DLib.Types.RGBPixel.RGBPixel>_R
                  ->_R Sym (GHC.Types.N:IO[0]
                                <Vision.DLib.Types.RGBPixel.RGBPixel>_R)) -}
-fa19af4dd951530d462e288714478ff7
+3ab05ea73090a4f5f5b420bfa1e833f8
   $fStorableRGBPixel_$cpeekByteOff ::
     GHC.Ptr.Ptr b
     -> GHC.Types.Int
@@ -397,7 +397,7 @@ fa19af4dd951530d462e288714478ff7
                  ->_R <GHC.Types.Int>_R
                  ->_R Sym (GHC.Types.N:IO[0]
                                <Vision.DLib.Types.RGBPixel.RGBPixel>_R)) -}
-fa19af4dd951530d462e288714478ff7
+3ab05ea73090a4f5f5b420bfa1e833f8
   $fStorableRGBPixel_$cpeekElemOff ::
     GHC.Ptr.Ptr Vision.DLib.Types.RGBPixel.RGBPixel
     -> GHC.Types.Int
@@ -411,7 +411,7 @@ fa19af4dd951530d462e288714478ff7
                  ->_R <GHC.Types.Int>_R
                  ->_R Sym (GHC.Types.N:IO[0]
                                <Vision.DLib.Types.RGBPixel.RGBPixel>_R)) -}
-fa19af4dd951530d462e288714478ff7
+3ab05ea73090a4f5f5b420bfa1e833f8
   $fStorableRGBPixel_$cpoke ::
     GHC.Ptr.Ptr Vision.DLib.Types.RGBPixel.RGBPixel
     -> Vision.DLib.Types.RGBPixel.RGBPixel -> GHC.Types.IO ()
@@ -423,7 +423,7 @@ fa19af4dd951530d462e288714478ff7
                 (<GHC.Ptr.Ptr Vision.DLib.Types.RGBPixel.RGBPixel>_R
                  ->_R <Vision.DLib.Types.RGBPixel.RGBPixel>_R
                  ->_R Sym (GHC.Types.N:IO[0] <()>_R)) -}
-fa19af4dd951530d462e288714478ff7
+3ab05ea73090a4f5f5b420bfa1e833f8
   $fStorableRGBPixel_$cpokeByteOff ::
     GHC.Ptr.Ptr b
     -> GHC.Types.Int
@@ -439,7 +439,7 @@ fa19af4dd951530d462e288714478ff7
                  ->_R <GHC.Types.Int>_R
                  ->_R <Vision.DLib.Types.RGBPixel.RGBPixel>_R
                  ->_R Sym (GHC.Types.N:IO[0] <()>_R)) -}
-fa19af4dd951530d462e288714478ff7
+3ab05ea73090a4f5f5b420bfa1e833f8
   $fStorableRGBPixel_$cpokeElemOff ::
     GHC.Ptr.Ptr Vision.DLib.Types.RGBPixel.RGBPixel
     -> GHC.Types.Int
@@ -454,53 +454,53 @@ fa19af4dd951530d462e288714478ff7
                  ->_R <GHC.Types.Int>_R
                  ->_R <Vision.DLib.Types.RGBPixel.RGBPixel>_R
                  ->_R Sym (GHC.Types.N:IO[0] <()>_R)) -}
-fa19af4dd951530d462e288714478ff7
+3ab05ea73090a4f5f5b420bfa1e833f8
   $fStorableRGBPixel_$csizeOf ::
     Vision.DLib.Types.RGBPixel.RGBPixel -> GHC.Types.Int
   {- Arity: 1, HasNoCafRefs, Strictness: <L,A>m,
      Unfolding: InlineRule (1, True, True)
                 (\ (ds :: Vision.DLib.Types.RGBPixel.RGBPixel) ->
                  Vision.DLib.Types.RGBPixel.$fStorableRGBPixel7) -}
-4a4376c8039c3b75e93099401ac94a82
+573cff4f463ad293918661438edb6483
   $tc'RGBPixel :: GHC.Types.TyCon
   {- HasNoCafRefs, Strictness: m,
      Unfolding: (GHC.Types.TyCon
-                   16286196499283151401##
-                   13325657901142210168##
+                   13241032929174415523##
+                   3854511331770554948##
                    Vision.DLib.Types.RGBPixel.$trModule
                    Vision.DLib.Types.RGBPixel.$tc'RGBPixel1) -}
-3aa8f2fb5dc59a5c941820a0d1ef4de9
+c3930921d825589e7a30a37dca99fa3b
   $tc'RGBPixel1 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS "'RGBPixel"#) -}
-acecf79882eabd7ff254124fc1dc15d8
+223b8f249c6334ddb8534ce68de9bd52
   $tcRGBPixel :: GHC.Types.TyCon
   {- HasNoCafRefs, Strictness: m,
      Unfolding: (GHC.Types.TyCon
-                   1563084833169540812##
-                   6277881760303805129##
+                   11050131909905112535##
+                   5901091525407730043##
                    Vision.DLib.Types.RGBPixel.$trModule
                    Vision.DLib.Types.RGBPixel.$tcRGBPixel1) -}
-1864f506f40ece9e3ec8ffb426666c95
+91c2d84d577a12fee9314fec067f5a77
   $tcRGBPixel1 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS "RGBPixel"#) -}
-d348e8d5cec8c67ed04cb25c32adb933
+11c4a5e7b5c6ac93cc11a90dc4d97c39
   $trModule :: GHC.Types.Module
   {- HasNoCafRefs, Strictness: m,
      Unfolding: (GHC.Types.Module
                    Vision.DLib.Types.RGBPixel.$trModule2
                    Vision.DLib.Types.RGBPixel.$trModule1) -}
-b826e9f7bb674242f6567e6a2fabac98
+583ff8fd74df948fe9d3692d4862e51d
   $trModule1 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS "Vision.DLib.Types.RGBPixel"#) -}
-2496d5f941aa9c6f61bfd945316292cf
+45b91f19a91c2cb8debd6cdf0d1b2f1d
   $trModule2 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS
-                   "haskell-dlib-0.1.0.0-3fllyVSnE7s1R7uPGXF8Jy"#) -}
-64cadd5bdb0ddfc2b6da30ed338fd32b
+                   "haskell-dlib-0.1.0.0-Khjs3VuKcC8bASh8ju2cj"#) -}
+52ef29641ae0ed1c459a6a9ef5b1456c
   $w$cshowsPrec ::
     GHC.Prim.Int#
     -> Foreign.C.Types.CChar
@@ -577,12 +577,12 @@ b826e9f7bb674242f6567e6a2fabac98
                         @ GHC.Types.Char
                         GHC.Show.shows7
                         (p (GHC.Types.: @ GHC.Types.Char GHC.Show.shows4 w)) }) -}
-fa19af4dd951530d462e288714478ff7
+3ab05ea73090a4f5f5b420bfa1e833f8
   data RGBPixel
     = RGBPixel {rgbRed :: Foreign.C.Types.CChar,
                 rgbGreen :: Foreign.C.Types.CChar,
                 rgbBlue :: Foreign.C.Types.CChar}
-ca2a346b28ad8c5507c396c1b9e6df89
+da87e5c94ca981997ba2dea1b7a65e04
   rgbBlue ::
     Vision.DLib.Types.RGBPixel.RGBPixel -> Foreign.C.Types.CChar
   RecSel Left Vision.DLib.Types.RGBPixel.RGBPixel
@@ -591,7 +591,7 @@ ca2a346b28ad8c5507c396c1b9e6df89
                 (\ (ds :: Vision.DLib.Types.RGBPixel.RGBPixel) ->
                  case ds of wild { Vision.DLib.Types.RGBPixel.RGBPixel ds1 ds2 ds3 ->
                  ds3 }) -}
-79adf61f54d7bca52c220713ff9390d0
+aaee6a4572d91e3f7b80140e54ce0c7f
   rgbGreen ::
     Vision.DLib.Types.RGBPixel.RGBPixel -> Foreign.C.Types.CChar
   RecSel Left Vision.DLib.Types.RGBPixel.RGBPixel
@@ -600,7 +600,7 @@ ca2a346b28ad8c5507c396c1b9e6df89
                 (\ (ds :: Vision.DLib.Types.RGBPixel.RGBPixel) ->
                  case ds of wild { Vision.DLib.Types.RGBPixel.RGBPixel ds1 ds2 ds3 ->
                  ds2 }) -}
-4403a47b2f579f27c7627484050385d9
+ad053b87a09bece2d1b68eff07cb971f
   rgbRed ::
     Vision.DLib.Types.RGBPixel.RGBPixel -> Foreign.C.Types.CChar
   RecSel Left Vision.DLib.Types.RGBPixel.RGBPixel

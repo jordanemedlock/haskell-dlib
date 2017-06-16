@@ -1,24 +1,24 @@
 
 ==================== FINAL INTERFACE ====================
-2017-06-12 21:48:18.974073 UTC
+2017-06-16 22:12:08.447361 UTC
 
-interface haskell-dlib-0.1.0.0-3fllyVSnE7s1R7uPGXF8Jy:Vision.DLib.Algorithms.ObjectDetection 8002
-  interface hash: 271a8b8431c0ff380e06e7d5aaffef88
-  ABI hash: fcbc343eafd30e06f6a8aa7319bee182
-  export-list hash: df9ff5d0b05538d67fce7943bb9743a2
+interface haskell-dlib-0.1.0.0-Khjs3VuKcC8bASh8ju2cj:Vision.DLib.Algorithms.ObjectDetection 8002
+  interface hash: 14fcdac348bc59e0d475332b2f91c92b
+  ABI hash: 62776997e1aff40ed5b8fabc46ecb10c
+  export-list hash: 5a3e4ea6a5ec7f0732f6d9e369309843
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: ddbc01060dbf0cd343e1af0edfb4c962
   sig of: Nothing
   used TH splices: True
   where
 exports:
-  Vision.DLib.Algorithms.ObjectDetection.inline_c_ffi_6989586621679042167
-  Vision.DLib.Algorithms.ObjectDetection.inline_c_ffi_6989586621679042205
+  Vision.DLib.Algorithms.ObjectDetection.inline_c_ffi_6989586621679043846
+  Vision.DLib.Algorithms.ObjectDetection.inline_c_ffi_6989586621679043873
   Vision.DLib.Algorithms.ObjectDetection.mkFrontalFaceDetector
-  Vision.DLib.Algorithms.ObjectDetection.runFaceDetector
+  Vision.DLib.Algorithms.ObjectDetection.runFrontalFaceDetector
   Vision.DLib.Algorithms.ObjectDetection.FrontalFaceDetector{Vision.DLib.Algorithms.ObjectDetection.FrontalFaceDetector}
 module dependencies: Vision.DLib.Types.Array2D
-                     Vision.DLib.Types.RGBPixel
+                     Vision.DLib.Types.RGBPixel Vision.DLib.Types.Rectangle
 package dependencies: QuickCheck-2.9.2@QuickCheck-2.9.2-Jyj4gc4JxkEIgGFLAsGhs9
                       ansi-terminal-0.6.3.1@ansi-terminal-0.6.3.1-3RTqikoQf47ajVD9m8zgB
                       ansi-wl-pprint-0.6.7.3@ansi-wl-pprint-0.6.7.3-A79v826bgPr574HtaZPPqC
@@ -119,78 +119,183 @@ import  -/  base-4.9.1.0:Data.Functor 5ab1dc703df5b482e77efb697833ca3c
 import  -/  base-4.9.1.0:Foreign.C.Types bf568ee9a3ec4aa42333a0da5f4345de
 import  -/  base-4.9.1.0:Foreign.Marshal.Array 63114b8be90ae825866d45b38d8798ce
 import  -/  base-4.9.1.0:Foreign.Ptr 436587875917047a95f3be0fc1891fc4
+import  -/  base-4.9.1.0:GHC.Base c4231c43c07e46080a26bf94094c7aa1
 import  -/  base-4.9.1.0:GHC.Ptr 427a6ad9312f04edb98e0f5b7c4e2596
 import  -/  base-4.9.1.0:GHC.Real 82e4e59051a13dba1da63e1e970a69e6
+import  -/  base-4.9.1.0:GHC.Show a027f5ac24879eaba752f44aa90fe511
 import  -/  base-4.9.1.0:Prelude 22dd289b8469a8fa8dc81cab7b237771
+import  -/  ghc-prim-0.5.0.0:GHC.Classes 0bdf3d057a415ec1b84a7b1994efbe47
 import  -/  ghc-prim-0.5.0.0:GHC.Types 89f8de4f08018c9177c98d979eae0e45
-import  -/  Vision.DLib.Types.Array2D 3e35b280b188720b796cbd25d1d91ded
-  exports: 2dd60798f481eec2c8db824f1537abf5
-  Image 6f8ed524db59352f24cf88af0a6cc37b
+import  -/  Vision.DLib.Types.Array2D 0546527a63a68bf21074200afc4a596f
+  exports: f8e74c432ecf0ed11673f459c2bb2ffe
+  Image a00e2cabdc73a217ce81725ad8a82c83
+  Image d13983af12ad7564615eb2ae86b000b9
+import  -/  Vision.DLib.Types.Rectangle c20701781b3b9b34457e2d47c2e1fc98
+  exports: c734a8a1050082be6f43c262f837db12
+  Rectangle 1af9bd8b8e31cb3f5da8180f08b42915
 import  -/  inline-c-0.5.6.1@inline-c-0.5.6.1-FrWo3mVyyBxI2eCU4vPxp6:Language.C.Inline 0ad05518bbb26d52b2a6c1076faa7655
 import  -/  inline-c-cpp-0.1.0.0@inline-c-cpp-0.1.0.0-8BVsFgV0eHcCpD55MqgJu2:Language.C.Inline.Cpp 1f77a98d08bc86941503b86a38a67957
 addDependentFile "/home/user/.stack/programs/x86_64-linux/ghc-8.0.2/lib/ghc-8.0.2/include/ghcversion.h"
 addDependentFile ".stack-work/dist/x86_64-linux/Cabal-1.24.2.0/build/autogen/cabal_macros.h"
 addDependentFile "/usr/include/stdc-predef.h"
-bea31f86acac39b582b6f40cd4a5b047
+b677b89ad006a1bdb51f2bc2cf1563e6
+  $fShowFrontalFaceDetector ::
+    GHC.Show.Show
+      Vision.DLib.Algorithms.ObjectDetection.FrontalFaceDetector
+  DFunId
+  {- Strictness: m, Inline: [ALWAYS] CONLIKE,
+     Unfolding: DFun:.
+                  @ Vision.DLib.Algorithms.ObjectDetection.FrontalFaceDetector
+                  Vision.DLib.Algorithms.ObjectDetection.$fShowFrontalFaceDetector_$cshowsPrec
+                  Vision.DLib.Algorithms.ObjectDetection.$fShowFrontalFaceDetector_$cshow
+                  Vision.DLib.Algorithms.ObjectDetection.$fShowFrontalFaceDetector_$cshowList -}
+b677b89ad006a1bdb51f2bc2cf1563e6
+  $fShowFrontalFaceDetector1 ::
+    Vision.DLib.Algorithms.ObjectDetection.FrontalFaceDetector
+    -> GHC.Show.ShowS
+  {- Arity: 2,
+     Unfolding: (\ (w :: Vision.DLib.Algorithms.ObjectDetection.FrontalFaceDetector)
+                   (w1 :: GHC.Base.String) ->
+                 Vision.DLib.Algorithms.ObjectDetection.$w$cshowsPrec 0# w w1) -}
+f820c984501247c0b929b2ac7cbc5592
+  $fShowFrontalFaceDetector2 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString#
+                   "FrontalFaceDetector "#) -}
+b677b89ad006a1bdb51f2bc2cf1563e6
+  $fShowFrontalFaceDetector_$cshow ::
+    Vision.DLib.Algorithms.ObjectDetection.FrontalFaceDetector
+    -> GHC.Base.String
+  {- Arity: 1, Strictness: <L,1*U(U)>,
+     Unfolding: (\ (x :: Vision.DLib.Algorithms.ObjectDetection.FrontalFaceDetector) ->
+                 GHC.Base.++
+                   @ GHC.Types.Char
+                   Vision.DLib.Algorithms.ObjectDetection.$fShowFrontalFaceDetector2
+                   (case x `cast`
+                         (Vision.DLib.Algorithms.ObjectDetection.N:FrontalFaceDetector[0]) of ww { GHC.Ptr.Ptr ww1 ->
+                    case GHC.Ptr.$w$cshowsPrec
+                           @ ()
+                           ww1
+                           (GHC.Types.[] @ GHC.Types.Char) of ww2 { (#,#) ww3 ww4 ->
+                    GHC.Types.: @ GHC.Types.Char ww3 ww4 } })) -}
+b677b89ad006a1bdb51f2bc2cf1563e6
+  $fShowFrontalFaceDetector_$cshowList ::
+    [Vision.DLib.Algorithms.ObjectDetection.FrontalFaceDetector]
+    -> GHC.Show.ShowS
+  {- Arity: 2,
+     Unfolding: (GHC.Show.showList__
+                   @ Vision.DLib.Algorithms.ObjectDetection.FrontalFaceDetector
+                   Vision.DLib.Algorithms.ObjectDetection.$fShowFrontalFaceDetector1) -}
+b677b89ad006a1bdb51f2bc2cf1563e6
+  $fShowFrontalFaceDetector_$cshowsPrec ::
+    GHC.Types.Int
+    -> Vision.DLib.Algorithms.ObjectDetection.FrontalFaceDetector
+    -> GHC.Show.ShowS
+  {- Arity: 3, Strictness: <S(S),1*U(U)><L,1*U(U)><L,U>,
+     Inline: INLINE[0],
+     Unfolding: InlineRule (3, True, False)
+                (\ (w :: GHC.Types.Int)
+                   (w1 :: Vision.DLib.Algorithms.ObjectDetection.FrontalFaceDetector)
+                   (w2 :: GHC.Base.String) ->
+                 case w of ww { GHC.Types.I# ww1 ->
+                 Vision.DLib.Algorithms.ObjectDetection.$w$cshowsPrec
+                   ww1
+                   w1
+                   w2 }) -}
+b0cf8b7432bc2d02f2729a79f65ee6c5
   $tc'FrontalFaceDetector :: GHC.Types.TyCon
   {- HasNoCafRefs, Strictness: m,
      Unfolding: (GHC.Types.TyCon
-                   14973380027859251553##
-                   7755564112134171564##
+                   16061391504232218247##
+                   9335923259080672819##
                    Vision.DLib.Algorithms.ObjectDetection.$trModule
                    Vision.DLib.Algorithms.ObjectDetection.$tc'FrontalFaceDetector1) -}
-faf8dbc33d2fd2f1750840a791f90f90
+fccb28067ad526af5c9b3e9f7354e92e
   $tc'FrontalFaceDetector1 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS "'FrontalFaceDetector"#) -}
-f610bc30dbe6ae7e556a1bc20e3e0ab2
+64e946aabf733517365525f87fb5f38e
   $tcFrontalFaceDetector :: GHC.Types.TyCon
   {- HasNoCafRefs, Strictness: m,
      Unfolding: (GHC.Types.TyCon
-                   11153007164780123236##
-                   6393211097823616984##
+                   17752318155815320424##
+                   16239204417932773751##
                    Vision.DLib.Algorithms.ObjectDetection.$trModule
                    Vision.DLib.Algorithms.ObjectDetection.$tcFrontalFaceDetector1) -}
-88015d2df6d378f391b11a2fe1121ec3
+c5fefa7021ca6d69247f59d959d35cfa
   $tcFrontalFaceDetector1 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS "FrontalFaceDetector"#) -}
-32ce48d6662227042ef0933dbe2593fa
+129842e550b4ff14f946dfabc9a7d2a1
   $trModule :: GHC.Types.Module
   {- HasNoCafRefs, Strictness: m,
      Unfolding: (GHC.Types.Module
                    Vision.DLib.Algorithms.ObjectDetection.$trModule2
                    Vision.DLib.Algorithms.ObjectDetection.$trModule1) -}
-cba51ca4c860f031cec5b81d668642d6
+e338ad5beee140bcedcc66980b659b3e
   $trModule1 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS
                    "Vision.DLib.Algorithms.ObjectDetection"#) -}
-1747ca25ca31682e22a6d625eedec0b0
+f21f078ba521a8d5a92b09a8fa73b1a8
   $trModule2 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS
-                   "haskell-dlib-0.1.0.0-3fllyVSnE7s1R7uPGXF8Jy"#) -}
-634fcc80a7d8ee00de92d39b3da40211
-  $wrunFaceDetector ::
-    Foreign.Storable.Storable a =>
+                   "haskell-dlib-0.1.0.0-Khjs3VuKcC8bASh8ju2cj"#) -}
+b677b89ad006a1bdb51f2bc2cf1563e6
+  $w$cshowsPrec ::
+    GHC.Prim.Int#
+    -> Vision.DLib.Algorithms.ObjectDetection.FrontalFaceDetector
+    -> GHC.Base.String
+    -> GHC.Base.String
+  {- Arity: 3, Strictness: <S,U><L,1*U(U)><L,U>, Inline: [0],
+     Unfolding: (\ (ww :: GHC.Prim.Int#)
+                   (w :: Vision.DLib.Algorithms.ObjectDetection.FrontalFaceDetector)
+                   (w1 :: GHC.Base.String) ->
+                 case GHC.Prim.tagToEnum#
+                        @ GHC.Types.Bool
+                        (GHC.Prim.>=# ww 11#) of wild {
+                   GHC.Types.False
+                   -> GHC.Base.++
+                        @ GHC.Types.Char
+                        Vision.DLib.Algorithms.ObjectDetection.$fShowFrontalFaceDetector2
+                        (case w `cast`
+                              (Vision.DLib.Algorithms.ObjectDetection.N:FrontalFaceDetector[0]) of ww1 { GHC.Ptr.Ptr ww2 ->
+                         case GHC.Ptr.$w$cshowsPrec @ () ww2 w1 of ww3 { (#,#) ww4 ww5 ->
+                         GHC.Types.: @ GHC.Types.Char ww4 ww5 } })
+                   GHC.Types.True
+                   -> GHC.Types.:
+                        @ GHC.Types.Char
+                        GHC.Show.shows7
+                        (GHC.Base.++
+                           @ GHC.Types.Char
+                           Vision.DLib.Algorithms.ObjectDetection.$fShowFrontalFaceDetector2
+                           (case w `cast`
+                                 (Vision.DLib.Algorithms.ObjectDetection.N:FrontalFaceDetector[0]) of ww1 { GHC.Ptr.Ptr ww2 ->
+                            case GHC.Ptr.$w$cshowsPrec
+                                   @ ()
+                                   ww2
+                                   (GHC.Types.:
+                                      @ GHC.Types.Char
+                                      GHC.Show.shows4
+                                      w1) of ww3 { (#,#) ww4 ww5 ->
+                            GHC.Types.: @ GHC.Types.Char ww4 ww5 } })) }) -}
+4476e551df773ec13813f324e59d1887
+  $wrunFrontalFaceDetector ::
     GHC.Prim.Addr#
     -> GHC.Prim.Addr#
     -> GHC.Prim.State# GHC.Prim.RealWorld
-    -> (# GHC.Prim.State# GHC.Prim.RealWorld, [a] #)
-  {- Arity: 4, HasNoCafRefs,
-     Strictness: <L,U(A,A,C(C1(C1(U(U,U)))),A,A,A,A,A)><S,U><S,U><S,U>,
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld,
+          [Vision.DLib.Types.Rectangle.Rectangle] #)
+  {- Arity: 3, HasNoCafRefs, Strictness: <S,U><S,U><S,U>,
      Inline: [0],
-     Unfolding: (\ @ a
-                   (w :: Foreign.Storable.Storable a)
-                   (ww :: GHC.Prim.Addr#)
+     Unfolding: (\ (ww :: GHC.Prim.Addr#)
                    (ww1 :: GHC.Prim.Addr#)
-                   (w1 :: GHC.Prim.State# GHC.Prim.RealWorld)[OneShot] ->
+                   (w :: GHC.Prim.State# GHC.Prim.RealWorld)[OneShot] ->
                  case GHC.Prim.newAlignedPinnedByteArray#
                         @ GHC.Prim.RealWorld
                         4#
                         4#
-                        w1 of ds2 { (#,#) ipv ipv1 ->
+                        w of ds2 { (#,#) ipv ipv1 ->
                  case GHC.Prim.unsafeFreezeByteArray#
                         @ GHC.Prim.RealWorld
                         ipv1
@@ -210,14 +315,14 @@ cba51ca4c860f031cec5b81d668642d6
                  let {
                    ptr2 :: GHC.Prim.Addr# = GHC.Prim.byteArrayContents# ipv7
                  } in
-                 case {__pkg_ccall_GC haskell-dlib-0.1.0.0-3fllyVSnE7s1R7uPGXF8Jy inline_c_Vision_DLib_Algorithms_ObjectDetection_1_36b42ded9d76114d8661491c8e468a3566432c17 GHC.Prim.Addr#
-                                                                                                                                                                             -> GHC.Prim.Addr#
-                                                                                                                                                                             -> GHC.Prim.Addr#
-                                                                                                                                                                             -> GHC.Prim.Addr#
-                                                                                                                                                                             -> GHC.Prim.State#
-                                                                                                                                                                                  GHC.Prim.RealWorld
-                                                                                                                                                                             -> (# GHC.Prim.State#
-                                                                                                                                                                                     GHC.Prim.RealWorld #)}
+                 case {__pkg_ccall_GC haskell-dlib-0.1.0.0-Khjs3VuKcC8bASh8ju2cj inline_c_Vision_DLib_Algorithms_ObjectDetection_1_36b42ded9d76114d8661491c8e468a3566432c17 GHC.Prim.Addr#
+                                                                                                                                                                            -> GHC.Prim.Addr#
+                                                                                                                                                                            -> GHC.Prim.Addr#
+                                                                                                                                                                            -> GHC.Prim.Addr#
+                                                                                                                                                                            -> GHC.Prim.State#
+                                                                                                                                                                                 GHC.Prim.RealWorld
+                                                                                                                                                                            -> (# GHC.Prim.State#
+                                                                                                                                                                                    GHC.Prim.RealWorld #)}
                         ww
                         ww1
                         ptr
@@ -244,29 +349,31 @@ cba51ca4c860f031cec5b81d668642d6
                         ipv3
                         ipv13 of s1 { DEFAULT ->
                  Foreign.Marshal.Array.$wpeekArray
-                   @ a
-                   w
+                   @ Vision.DLib.Types.Rectangle.Rectangle
+                   Vision.DLib.Types.Rectangle.$fStorableRectangle
                    ipv14
-                   (GHC.Ptr.Ptr @ () ipv12) `cast` (GHC.Ptr.Ptr <(), a>)_R
+                   (GHC.Ptr.Ptr @ () ipv12)
+                     `cast`
+                   (GHC.Ptr.Ptr <(), Vision.DLib.Types.Rectangle.Rectangle>)_R
                    s1 } } } } } } } } }) -}
-2d42914a6f1c0ccdd1f5d2f775d60e74
+b677b89ad006a1bdb51f2bc2cf1563e6
   newtype FrontalFaceDetector = FrontalFaceDetector (GHC.Ptr.Ptr ())
-b629db7b3b5d196e39080fbd6f8c0586
-  inline_c_ffi_6989586621679042167 :: GHC.Types.IO (GHC.Ptr.Ptr ())
+4443c975802915f3a4f0e8c86c1958e6
+  inline_c_ffi_6989586621679043846 :: GHC.Types.IO (GHC.Ptr.Ptr ())
   {- Arity: 1, HasNoCafRefs, Strictness: <S,U>,
      Unfolding: InlineRule (0, False, False)
                 (\ (ds :: GHC.Prim.State# GHC.Prim.RealWorld)[OneShot] ->
-                 case {__pkg_ccall_GC haskell-dlib-0.1.0.0-3fllyVSnE7s1R7uPGXF8Jy inline_c_Vision_DLib_Algorithms_ObjectDetection_0_eda033fa90b23e4b9d93f298f438800a0ecd93c8 GHC.Prim.State#
-                                                                                                                                                                               GHC.Prim.RealWorld
-                                                                                                                                                                             -> (# GHC.Prim.State#
-                                                                                                                                                                                     GHC.Prim.RealWorld,
-                                                                                                                                                                                   GHC.Prim.Addr# #)}
+                 case {__pkg_ccall_GC haskell-dlib-0.1.0.0-Khjs3VuKcC8bASh8ju2cj inline_c_Vision_DLib_Algorithms_ObjectDetection_0_eda033fa90b23e4b9d93f298f438800a0ecd93c8 GHC.Prim.State#
+                                                                                                                                                                              GHC.Prim.RealWorld
+                                                                                                                                                                            -> (# GHC.Prim.State#
+                                                                                                                                                                                    GHC.Prim.RealWorld,
+                                                                                                                                                                                  GHC.Prim.Addr# #)}
                         ds of wild { (#,#) ds1 ds2 ->
                  (# ds1, GHC.Ptr.Ptr @ () ds2 #) })
                   `cast`
                 (Sym (GHC.Types.N:IO[0] <GHC.Ptr.Ptr ()>_R)) -}
-0941a6cfa017ebe373fa4e1036f540f0
-  inline_c_ffi_6989586621679042205 ::
+0520dcd47ca0ec4ceeaea632318f52a2
+  inline_c_ffi_6989586621679043873 ::
     GHC.Ptr.Ptr ()
     -> GHC.Ptr.Ptr ()
     -> GHC.Ptr.Ptr Foreign.C.Types.CInt
@@ -284,14 +391,14 @@ b629db7b3b5d196e39080fbd6f8c0586
                  case ds1 of ds6 { GHC.Ptr.Ptr ds7 ->
                  case ds2 of ds8 { GHC.Ptr.Ptr ds9 ->
                  case ds3 of ds10 { GHC.Ptr.Ptr ds11 ->
-                 case {__pkg_ccall_GC haskell-dlib-0.1.0.0-3fllyVSnE7s1R7uPGXF8Jy inline_c_Vision_DLib_Algorithms_ObjectDetection_1_36b42ded9d76114d8661491c8e468a3566432c17 GHC.Prim.Addr#
-                                                                                                                                                                             -> GHC.Prim.Addr#
-                                                                                                                                                                             -> GHC.Prim.Addr#
-                                                                                                                                                                             -> GHC.Prim.Addr#
-                                                                                                                                                                             -> GHC.Prim.State#
-                                                                                                                                                                                  GHC.Prim.RealWorld
-                                                                                                                                                                             -> (# GHC.Prim.State#
-                                                                                                                                                                                     GHC.Prim.RealWorld #)}
+                 case {__pkg_ccall_GC haskell-dlib-0.1.0.0-Khjs3VuKcC8bASh8ju2cj inline_c_Vision_DLib_Algorithms_ObjectDetection_1_36b42ded9d76114d8661491c8e468a3566432c17 GHC.Prim.Addr#
+                                                                                                                                                                            -> GHC.Prim.Addr#
+                                                                                                                                                                            -> GHC.Prim.Addr#
+                                                                                                                                                                            -> GHC.Prim.Addr#
+                                                                                                                                                                            -> GHC.Prim.State#
+                                                                                                                                                                                 GHC.Prim.RealWorld
+                                                                                                                                                                            -> (# GHC.Prim.State#
+                                                                                                                                                                                    GHC.Prim.RealWorld #)}
                         ds5
                         ds7
                         ds9
@@ -304,7 +411,7 @@ b629db7b3b5d196e39080fbd6f8c0586
                  ->_R <GHC.Ptr.Ptr Foreign.C.Types.CInt>_R
                  ->_R <GHC.Ptr.Ptr (GHC.Ptr.Ptr ())>_R
                  ->_R Sym (GHC.Types.N:IO[0] <()>_R)) -}
-a1fa4c1b5ee52f32800f84074d5ab67f
+f12242aade720e451a713569339130bb
   mkFrontalFaceDetector ::
     GHC.Types.IO
       Vision.DLib.Algorithms.ObjectDetection.FrontalFaceDetector
@@ -314,7 +421,7 @@ a1fa4c1b5ee52f32800f84074d5ab67f
                   `cast`
                 (Sym (GHC.Types.N:IO[0]
                           <Vision.DLib.Algorithms.ObjectDetection.FrontalFaceDetector>_R)) -}
-189b02644f3bbf4859dc88275fe25ca0
+8b0290502fa168c7fe7263a67a997eca
   mkFrontalFaceDetector1 ::
     GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld,
@@ -322,59 +429,54 @@ a1fa4c1b5ee52f32800f84074d5ab67f
   {- Arity: 1, HasNoCafRefs, Strictness: <S,U>,
      Unfolding: InlineRule (1, True, False)
                 (\ (eta :: GHC.Prim.State# GHC.Prim.RealWorld)[OneShot] ->
-                 case {__pkg_ccall_GC haskell-dlib-0.1.0.0-3fllyVSnE7s1R7uPGXF8Jy inline_c_Vision_DLib_Algorithms_ObjectDetection_0_eda033fa90b23e4b9d93f298f438800a0ecd93c8 GHC.Prim.State#
-                                                                                                                                                                               GHC.Prim.RealWorld
-                                                                                                                                                                             -> (# GHC.Prim.State#
-                                                                                                                                                                                     GHC.Prim.RealWorld,
-                                                                                                                                                                                   GHC.Prim.Addr# #)}
+                 case {__pkg_ccall_GC haskell-dlib-0.1.0.0-Khjs3VuKcC8bASh8ju2cj inline_c_Vision_DLib_Algorithms_ObjectDetection_0_eda033fa90b23e4b9d93f298f438800a0ecd93c8 GHC.Prim.State#
+                                                                                                                                                                              GHC.Prim.RealWorld
+                                                                                                                                                                            -> (# GHC.Prim.State#
+                                                                                                                                                                                    GHC.Prim.RealWorld,
+                                                                                                                                                                                  GHC.Prim.Addr# #)}
                         eta of wild { (#,#) ds ds1 ->
                  (# ds,
                     (GHC.Ptr.Ptr @ () ds1)
                       `cast`
                     (Sym (Vision.DLib.Algorithms.ObjectDetection.N:FrontalFaceDetector[0])) #) }) -}
-cde13c016d4b36b05f3bb2e88eb5a72c
-  runFaceDetector ::
-    Foreign.Storable.Storable a =>
+b3964741b53d8d418566a9ac1ab3548f
+  runFrontalFaceDetector ::
     Vision.DLib.Algorithms.ObjectDetection.FrontalFaceDetector
-    -> Vision.DLib.Types.Array2D.Image -> GHC.Types.IO [a]
-  {- Arity: 4, HasNoCafRefs,
-     Strictness: <L,U(A,A,C(C1(C1(U(U,U)))),A,A,A,A,A)><S(S),1*U(U)><S(S),1*U(U)><S,U>,
+    -> Vision.DLib.Types.Array2D.Image
+    -> GHC.Types.IO [Vision.DLib.Types.Rectangle.Rectangle]
+  {- Arity: 3, HasNoCafRefs,
+     Strictness: <S(S),1*U(U)><S(S),1*U(U)><S,U>,
      Unfolding: InlineRule (0, True, True)
-                Vision.DLib.Algorithms.ObjectDetection.runFaceDetector1
+                Vision.DLib.Algorithms.ObjectDetection.runFrontalFaceDetector1
                   `cast`
-                (forall (a :: <*>_N).
-                 <Foreign.Storable.Storable a>_R
-                 ->_R <Vision.DLib.Algorithms.ObjectDetection.FrontalFaceDetector>_R
+                (<Vision.DLib.Algorithms.ObjectDetection.FrontalFaceDetector>_R
                  ->_R <Vision.DLib.Types.Array2D.Image>_R
-                 ->_R Sym (GHC.Types.N:IO[0] <[a]>_R)) -}
-46c106ae57b3731ac56b13b9474a5b27
-  runFaceDetector1 ::
-    Foreign.Storable.Storable a =>
+                 ->_R Sym (GHC.Types.N:IO[0]
+                               <[Vision.DLib.Types.Rectangle.Rectangle]>_R)) -}
+183b63d4545f6ad8e3e299e0c7c5657e
+  runFrontalFaceDetector1 ::
     Vision.DLib.Algorithms.ObjectDetection.FrontalFaceDetector
     -> Vision.DLib.Types.Array2D.Image
     -> GHC.Prim.State# GHC.Prim.RealWorld
-    -> (# GHC.Prim.State# GHC.Prim.RealWorld, [a] #)
-  {- Arity: 4, HasNoCafRefs,
-     Strictness: <L,U(A,A,C(C1(C1(U(U,U)))),A,A,A,A,A)><S(S),1*U(U)><S(S),1*U(U)><S,U>,
-     Inline: INLINE[0],
-     Unfolding: InlineRule (4, True, False)
-                (\ @ a
-                   (w :: Foreign.Storable.Storable a)
-                   (w1 :: Vision.DLib.Algorithms.ObjectDetection.FrontalFaceDetector)
-                   (w2 :: Vision.DLib.Types.Array2D.Image)
-                   (w3 :: GHC.Prim.State# GHC.Prim.RealWorld)[OneShot] ->
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld,
+          [Vision.DLib.Types.Rectangle.Rectangle] #)
+  {- Arity: 3, HasNoCafRefs,
+     Strictness: <S(S),1*U(U)><S(S),1*U(U)><S,U>, Inline: INLINE[0],
+     Unfolding: InlineRule (3, True, False)
+                (\ (w :: Vision.DLib.Algorithms.ObjectDetection.FrontalFaceDetector)
+                   (w1 :: Vision.DLib.Types.Array2D.Image)
+                   (w2 :: GHC.Prim.State# GHC.Prim.RealWorld)[OneShot] ->
+                 case w `cast`
+                      (Vision.DLib.Algorithms.ObjectDetection.N:FrontalFaceDetector[0]) of ww { GHC.Ptr.Ptr ww1 ->
                  case w1
                         `cast`
-                      (Vision.DLib.Algorithms.ObjectDetection.N:FrontalFaceDetector[0]) of ww { GHC.Ptr.Ptr ww1 ->
-                 case w2
-                        `cast`
                       (Vision.DLib.Types.Array2D.N:Image[0]) of ww2 { GHC.Ptr.Ptr ww3 ->
-                 Vision.DLib.Algorithms.ObjectDetection.$wrunFaceDetector
-                   @ a
-                   w
+                 Vision.DLib.Algorithms.ObjectDetection.$wrunFrontalFaceDetector
                    ww1
                    ww3
-                   w3 } }) -}
+                   w2 } }) -}
+instance GHC.Show.Show [Vision.DLib.Algorithms.ObjectDetection.FrontalFaceDetector]
+  = Vision.DLib.Algorithms.ObjectDetection.$fShowFrontalFaceDetector
 vectorised variables:
 vectorised tycons:
 vectorised reused tycons:

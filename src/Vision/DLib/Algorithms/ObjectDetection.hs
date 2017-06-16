@@ -11,6 +11,7 @@ import           Foreign.Ptr
 import           Foreign.Marshal.Array
 
 import           Vision.DLib.Types.Array2D
+import           Vision.DLib.Types.Rectangle
 
 C.context C.cppCtx
 
@@ -18,11 +19,13 @@ C.include "<dlib/image_processing/frontal_face_detector.h>"
 
 C.using "namespace dlib"
 
-newtype FrontalFaceDetector = FrontalFaceDetector (Ptr ())
+newtype FrontalFaceDetector = FrontalFaceDetector (Ptr ()) deriving Show
 
+mkFrontalFaceDetector :: IO FrontalFaceDetector
 mkFrontalFaceDetector = FrontalFaceDetector <$> [C.exp| void * { new frontal_face_detector(get_frontal_face_detector()) }|]
 
-runFaceDetector (FrontalFaceDetector det) (Image img) = do
+runFrontalFaceDetector :: FrontalFaceDetector -> Image -> IO [Rectangle]
+runFrontalFaceDetector (FrontalFaceDetector det) (Image img) = do
   (n, voidPtr) <- C.withPtrs_ $ \(intPtr, dblPtr) -> [C.block| void {
     frontal_face_detector * det = (frontal_face_detector *)$(void * det);
     array2d<rgb_pixel> * img = (array2d<rgb_pixel> *)$(void * img);

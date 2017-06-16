@@ -1,12 +1,55 @@
+{-# LANGUAGE QuasiQuotes #-}
+{-# LANGUAGE TemplateHaskell #-}
+{-# LANGUAGE CPP #-}
+
 module Vision.DLib.Types.Array2D where
 
 
-import Foreign.C.Types
-import Foreign.Storable
-import Foreign.Ptr
-import Vision.DLib.Types.RGBPixel
+import qualified Language.C.Inline as C
+import qualified Language.C.Inline.Cpp as C
+import qualified Data.ByteString.Char8 as BS
+import           Foreign.Ptr
+import           Foreign.Marshal.Array
+import           Data.Monoid
+
+import           Vision.DLib.Types.RGBPixel
+
+
+C.context (C.cppCtx <> C.bsCtx)
+
+
+C.include "<string>"
+
+C.include "<dlib/image_processing/frontal_face_detector.h>"
+C.include "<dlib/image_processing.h>"
+C.include "<dlib/image_io.h>"
+C.include "<iostream>"
+
+
+C.using "namespace dlib"
+C.using "namespace std"
+
+
 
 newtype Image = Image (Ptr ())
+
+mkImage = Image <$> [C.exp| void * { new array2d<rgb_pixel>() }|]
+
+
+loadImage :: Image -> String -> IO ()
+loadImage (Image img) fname = do
+  let bs = BS.pack fname
+  [C.block| void {
+    load_image(*(array2d<rgb_pixel> *)$(void * img), $bs-ptr:bs);
+  }|]
+
+pyramidUp :: Image -> IO Image
+pyramidUp (Image img) = Image <$> [C.block| void * {
+    array2d<rgb_pixel> * img = (array2d<rgb_pixel> *)$(void * img);
+    pyramid_up(*img);
+    return img;
+}|]
+
 
 {-
 data Array2D a = Array2D

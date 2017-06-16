@@ -1,11 +1,11 @@
 
 ==================== FINAL INTERFACE ====================
-2017-06-12 20:35:46.106517 UTC
+2017-06-13 21:09:28.043623 UTC
 
-interface haskell-dlib-0.1.0.0-3fllyVSnE7s1R7uPGXF8Jy:Vision.DLib.Types.Rectangle 8002
-  interface hash: 0fcea100b62ed26a3fd5b004ee4109f2
-  ABI hash: a49ce78cdd9f0cfe3dacd1713c8f643e
-  export-list hash: 956f9e1148816dda05f4a24c5fb4a0db
+interface haskell-dlib-0.1.0.0-Khjs3VuKcC8bASh8ju2cj:Vision.DLib.Types.Rectangle 8002
+  interface hash: b3ab5a262989e201d67a4736afa24e62
+  ABI hash: c20701781b3b9b34457e2d47c2e1fc98
+  export-list hash: c734a8a1050082be6f43c262f837db12
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: 0c27dff259dcb485104767cde3c16bf8
   sig of: Nothing
@@ -31,7 +31,7 @@ import  -/  base-4.9.1.0:GHC.Ptr 427a6ad9312f04edb98e0f5b7c4e2596
 import  -/  base-4.9.1.0:GHC.Show a027f5ac24879eaba752f44aa90fe511
 import  -/  base-4.9.1.0:Prelude 22dd289b8469a8fa8dc81cab7b237771
 import  -/  ghc-prim-0.5.0.0:GHC.Classes 0bdf3d057a415ec1b84a7b1994efbe47
-d582a1c3f75b6044ab2b367fcbe4f3e2
+1af9bd8b8e31cb3f5da8180f08b42915
   $fShowRectangle ::
     GHC.Show.Show Vision.DLib.Types.Rectangle.Rectangle
   DFunId
@@ -41,7 +41,7 @@ d582a1c3f75b6044ab2b367fcbe4f3e2
                   Vision.DLib.Types.Rectangle.$fShowRectangle_$cshowsPrec
                   Vision.DLib.Types.Rectangle.$fShowRectangle_$cshow
                   Vision.DLib.Types.Rectangle.$fShowRectangle_$cshowList -}
-d582a1c3f75b6044ab2b367fcbe4f3e2
+1af9bd8b8e31cb3f5da8180f08b42915
   $fShowRectangle1 ::
     Vision.DLib.Types.Rectangle.Rectangle -> GHC.Show.ShowS
   {- Arity: 2,
@@ -55,28 +55,28 @@ d582a1c3f75b6044ab2b367fcbe4f3e2
                    ww3
                    ww4
                    w1 }) -}
-ed5de5ba94000f161e0a44f1dc29569e
+7ff78bfa451e028d5249d3241c5a0adb
   $fShowRectangle2 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "Rectangle {"#) -}
-ef4621693a3572b02074cdf29ccba7a8
+1e17aa53705ce81ffd84744ece70c6bc
   $fShowRectangle3 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "}"#) -}
-1adbcc155499487a68c1e61ec945babf
+5160dfcda7c276585bfb7d9096603e94
   $fShowRectangle4 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "rectBottom = "#) -}
-850a1692602b995140c81d4a4cbcf75b
+8fee8fa1f4320d25d718f573dc7639ef
   $fShowRectangle5 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "rectRight = "#) -}
-aee8ae159c1fa4c66e1f3b73baf56d08
+106323bb211fecae532879f30b852965
   $fShowRectangle6 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "rectTop = "#) -}
-689e3b4398e661e3e18ca421ce03c8aa
+39a556cc472f89655f679b6306301223
   $fShowRectangle7 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# ", "#) -}
-3b14074e0fd7decf8e8584ada7a9e3ba
+86cc78c73b9c40be27c621f88407147f
   $fShowRectangle8 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "rectLeft = "#) -}
-d582a1c3f75b6044ab2b367fcbe4f3e2
+1af9bd8b8e31cb3f5da8180f08b42915
   $fShowRectangle_$cshow ::
     Vision.DLib.Types.Rectangle.Rectangle -> GHC.Base.String
   {- Arity: 1, Strictness: <S,1*U(1*U(U),1*U(U),1*U(U),1*U(U))>,
@@ -86,14 +86,14 @@ d582a1c3f75b6044ab2b367fcbe4f3e2
                    GHC.Show.shows22
                    x
                    (GHC.Types.[] @ GHC.Types.Char)) -}
-d582a1c3f75b6044ab2b367fcbe4f3e2
+1af9bd8b8e31cb3f5da8180f08b42915
   $fShowRectangle_$cshowList ::
     [Vision.DLib.Types.Rectangle.Rectangle] -> GHC.Show.ShowS
   {- Arity: 2,
      Unfolding: (GHC.Show.showList__
                    @ Vision.DLib.Types.Rectangle.Rectangle
                    Vision.DLib.Types.Rectangle.$fShowRectangle1) -}
-d582a1c3f75b6044ab2b367fcbe4f3e2
+1af9bd8b8e31cb3f5da8180f08b42915
   $fShowRectangle_$cshowsPrec ::
     GHC.Types.Int
     -> Vision.DLib.Types.Rectangle.Rectangle -> GHC.Show.ShowS
@@ -113,7 +113,7 @@ d582a1c3f75b6044ab2b367fcbe4f3e2
                    ww5
                    ww6
                    w2 } }) -}
-d582a1c3f75b6044ab2b367fcbe4f3e2
+1af9bd8b8e31cb3f5da8180f08b42915
   $fStorableRectangle ::
     Foreign.Storable.Storable Vision.DLib.Types.Rectangle.Rectangle
   DFunId
@@ -128,7 +128,7 @@ d582a1c3f75b6044ab2b367fcbe4f3e2
                   Vision.DLib.Types.Rectangle.$fStorableRectangle_$cpokeByteOff
                   Vision.DLib.Types.Rectangle.$fStorableRectangle_$cpeek
                   Vision.DLib.Types.Rectangle.$fStorableRectangle_$cpoke -}
-d582a1c3f75b6044ab2b367fcbe4f3e2
+1af9bd8b8e31cb3f5da8180f08b42915
   $fStorableRectangle1 ::
     GHC.Ptr.Ptr Vision.DLib.Types.Rectangle.Rectangle
     -> Vision.DLib.Types.Rectangle.Rectangle
@@ -178,7 +178,7 @@ d582a1c3f75b6044ab2b367fcbe4f3e2
                         x3
                         s3 of s4 { DEFAULT ->
                  (# s4, GHC.Tuple.() #) } } } } } } } } } }) -}
-d582a1c3f75b6044ab2b367fcbe4f3e2
+1af9bd8b8e31cb3f5da8180f08b42915
   $fStorableRectangle2 ::
     GHC.Ptr.Ptr Vision.DLib.Types.Rectangle.Rectangle
     -> GHC.Prim.State# GHC.Prim.RealWorld
@@ -220,7 +220,7 @@ d582a1c3f75b6044ab2b367fcbe4f3e2
                       (GHC.Int.I64# ipv7)
                         `cast`
                       (Sym (Foreign.C.Types.N:CLong[0])) #) } } } } }) -}
-d582a1c3f75b6044ab2b367fcbe4f3e2
+1af9bd8b8e31cb3f5da8180f08b42915
   $fStorableRectangle3 ::
     GHC.Ptr.Ptr b
     -> GHC.Types.Int
@@ -275,7 +275,7 @@ d582a1c3f75b6044ab2b367fcbe4f3e2
                         x3
                         s3 of s4 { DEFAULT ->
                  (# s4, GHC.Tuple.() #) } } } } } } } } } } }) -}
-d582a1c3f75b6044ab2b367fcbe4f3e2
+1af9bd8b8e31cb3f5da8180f08b42915
   $fStorableRectangle4 ::
     GHC.Ptr.Ptr b
     -> GHC.Types.Int
@@ -322,7 +322,7 @@ d582a1c3f75b6044ab2b367fcbe4f3e2
                       (GHC.Int.I64# ipv7)
                         `cast`
                       (Sym (Foreign.C.Types.N:CLong[0])) #) } } } } } }) -}
-d582a1c3f75b6044ab2b367fcbe4f3e2
+1af9bd8b8e31cb3f5da8180f08b42915
   $fStorableRectangle5 ::
     GHC.Ptr.Ptr Vision.DLib.Types.Rectangle.Rectangle
     -> GHC.Types.Int
@@ -375,7 +375,7 @@ d582a1c3f75b6044ab2b367fcbe4f3e2
                         x4
                         s3 of s4 { DEFAULT ->
                  (# s4, GHC.Tuple.() #) } } } } } } } } } } }) -}
-d582a1c3f75b6044ab2b367fcbe4f3e2
+1af9bd8b8e31cb3f5da8180f08b42915
   $fStorableRectangle6 ::
     GHC.Ptr.Ptr Vision.DLib.Types.Rectangle.Rectangle
     -> GHC.Types.Int
@@ -421,20 +421,20 @@ d582a1c3f75b6044ab2b367fcbe4f3e2
                       (GHC.Int.I64# ipv7)
                         `cast`
                       (Sym (Foreign.C.Types.N:CLong[0])) #) } } } } } }) -}
-cd36097823304cb002f77c3e93b747b7
+8729fce2fad4a0508e75afc7b72b012f
   $fStorableRectangle7 :: GHC.Types.Int
   {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 1#) -}
-934e5f644b5ac0e2dbbabbd57079bec7
+b791c39f5daa555606e039171e531aba
   $fStorableRectangle8 :: GHC.Types.Int
   {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 32#) -}
-d582a1c3f75b6044ab2b367fcbe4f3e2
+1af9bd8b8e31cb3f5da8180f08b42915
   $fStorableRectangle_$calignment ::
     Vision.DLib.Types.Rectangle.Rectangle -> GHC.Types.Int
   {- Arity: 1, HasNoCafRefs, Strictness: <L,A>m,
      Unfolding: InlineRule (1, True, True)
                 (\ (ds :: Vision.DLib.Types.Rectangle.Rectangle) ->
                  Vision.DLib.Types.Rectangle.$fStorableRectangle7) -}
-d582a1c3f75b6044ab2b367fcbe4f3e2
+1af9bd8b8e31cb3f5da8180f08b42915
   $fStorableRectangle_$cpeek ::
     GHC.Ptr.Ptr Vision.DLib.Types.Rectangle.Rectangle
     -> GHC.Types.IO Vision.DLib.Types.Rectangle.Rectangle
@@ -445,7 +445,7 @@ d582a1c3f75b6044ab2b367fcbe4f3e2
                 (<GHC.Ptr.Ptr Vision.DLib.Types.Rectangle.Rectangle>_R
                  ->_R Sym (GHC.Types.N:IO[0]
                                <Vision.DLib.Types.Rectangle.Rectangle>_R)) -}
-d582a1c3f75b6044ab2b367fcbe4f3e2
+1af9bd8b8e31cb3f5da8180f08b42915
   $fStorableRectangle_$cpeekByteOff ::
     GHC.Ptr.Ptr b
     -> GHC.Types.Int
@@ -460,7 +460,7 @@ d582a1c3f75b6044ab2b367fcbe4f3e2
                  ->_R <GHC.Types.Int>_R
                  ->_R Sym (GHC.Types.N:IO[0]
                                <Vision.DLib.Types.Rectangle.Rectangle>_R)) -}
-d582a1c3f75b6044ab2b367fcbe4f3e2
+1af9bd8b8e31cb3f5da8180f08b42915
   $fStorableRectangle_$cpeekElemOff ::
     GHC.Ptr.Ptr Vision.DLib.Types.Rectangle.Rectangle
     -> GHC.Types.Int
@@ -474,7 +474,7 @@ d582a1c3f75b6044ab2b367fcbe4f3e2
                  ->_R <GHC.Types.Int>_R
                  ->_R Sym (GHC.Types.N:IO[0]
                                <Vision.DLib.Types.Rectangle.Rectangle>_R)) -}
-d582a1c3f75b6044ab2b367fcbe4f3e2
+1af9bd8b8e31cb3f5da8180f08b42915
   $fStorableRectangle_$cpoke ::
     GHC.Ptr.Ptr Vision.DLib.Types.Rectangle.Rectangle
     -> Vision.DLib.Types.Rectangle.Rectangle -> GHC.Types.IO ()
@@ -486,7 +486,7 @@ d582a1c3f75b6044ab2b367fcbe4f3e2
                 (<GHC.Ptr.Ptr Vision.DLib.Types.Rectangle.Rectangle>_R
                  ->_R <Vision.DLib.Types.Rectangle.Rectangle>_R
                  ->_R Sym (GHC.Types.N:IO[0] <()>_R)) -}
-d582a1c3f75b6044ab2b367fcbe4f3e2
+1af9bd8b8e31cb3f5da8180f08b42915
   $fStorableRectangle_$cpokeByteOff ::
     GHC.Ptr.Ptr b
     -> GHC.Types.Int
@@ -502,7 +502,7 @@ d582a1c3f75b6044ab2b367fcbe4f3e2
                  ->_R <GHC.Types.Int>_R
                  ->_R <Vision.DLib.Types.Rectangle.Rectangle>_R
                  ->_R Sym (GHC.Types.N:IO[0] <()>_R)) -}
-d582a1c3f75b6044ab2b367fcbe4f3e2
+1af9bd8b8e31cb3f5da8180f08b42915
   $fStorableRectangle_$cpokeElemOff ::
     GHC.Ptr.Ptr Vision.DLib.Types.Rectangle.Rectangle
     -> GHC.Types.Int
@@ -517,53 +517,53 @@ d582a1c3f75b6044ab2b367fcbe4f3e2
                  ->_R <GHC.Types.Int>_R
                  ->_R <Vision.DLib.Types.Rectangle.Rectangle>_R
                  ->_R Sym (GHC.Types.N:IO[0] <()>_R)) -}
-d582a1c3f75b6044ab2b367fcbe4f3e2
+1af9bd8b8e31cb3f5da8180f08b42915
   $fStorableRectangle_$csizeOf ::
     Vision.DLib.Types.Rectangle.Rectangle -> GHC.Types.Int
   {- Arity: 1, HasNoCafRefs, Strictness: <L,A>m,
      Unfolding: InlineRule (1, True, True)
                 (\ (ds :: Vision.DLib.Types.Rectangle.Rectangle) ->
                  Vision.DLib.Types.Rectangle.$fStorableRectangle8) -}
-f982d1604d40052d35430468fd4c8848
+cc07d0358ec63aae6c28c94f050e0cb1
   $tc'Rectangle :: GHC.Types.TyCon
   {- HasNoCafRefs, Strictness: m,
      Unfolding: (GHC.Types.TyCon
-                   7099176520399878912##
-                   2043097901155588194##
+                   2020666256626231304##
+                   17257586488645861696##
                    Vision.DLib.Types.Rectangle.$trModule
                    Vision.DLib.Types.Rectangle.$tc'Rectangle1) -}
-e67f913ac164e56e09281114fc191a74
+7730da2063958b41fae92e629571f6b9
   $tc'Rectangle1 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS "'Rectangle"#) -}
-950f547d82b67652e0e23a5e097e0329
+df1add100a89b80f789e72fcea6b96fe
   $tcRectangle :: GHC.Types.TyCon
   {- HasNoCafRefs, Strictness: m,
      Unfolding: (GHC.Types.TyCon
-                   5695108647699509739##
-                   17258895550579891140##
+                   2865028607465252557##
+                   5134642601471221767##
                    Vision.DLib.Types.Rectangle.$trModule
                    Vision.DLib.Types.Rectangle.$tcRectangle1) -}
-77f12a9964e33412d63aafa44d7bb756
+61a07c523d7f9bd01511dd31991c11d4
   $tcRectangle1 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS "Rectangle"#) -}
-535df51b1908778396bda35e64798cdf
+8e57783c1bc6b928c902541e90920a9a
   $trModule :: GHC.Types.Module
   {- HasNoCafRefs, Strictness: m,
      Unfolding: (GHC.Types.Module
                    Vision.DLib.Types.Rectangle.$trModule2
                    Vision.DLib.Types.Rectangle.$trModule1) -}
-1a427491bfbc90c71768d6f9f35675be
+7d87d233f5824edef1eaa879afb3e013
   $trModule1 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS "Vision.DLib.Types.Rectangle"#) -}
-6c8f951b376819b9f6e0f4b387886cdf
+a54b0b042702b145cfaef72ca4d2a097
   $trModule2 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS
-                   "haskell-dlib-0.1.0.0-3fllyVSnE7s1R7uPGXF8Jy"#) -}
-da634274346f0e45080674e0d97cb4d8
+                   "haskell-dlib-0.1.0.0-Khjs3VuKcC8bASh8ju2cj"#) -}
+a29879f677be30512b1af8708cefa471
   $w$cshowsPrec ::
     GHC.Prim.Int#
     -> Foreign.C.Types.CLong
@@ -664,13 +664,13 @@ da634274346f0e45080674e0d97cb4d8
                            @ GHC.Types.Char
                            Vision.DLib.Types.Rectangle.$fShowRectangle2
                            (g (GHC.Types.: @ GHC.Types.Char GHC.Show.shows4 w))) }) -}
-d582a1c3f75b6044ab2b367fcbe4f3e2
+1af9bd8b8e31cb3f5da8180f08b42915
   data Rectangle
     = Rectangle {rectLeft :: Foreign.C.Types.CLong,
                  rectTop :: Foreign.C.Types.CLong,
                  rectRight :: Foreign.C.Types.CLong,
                  rectBottom :: Foreign.C.Types.CLong}
-0946c658c0182c333f0b92e1b6cd4520
+2b8fb02423c3b9b0dacdf7456f7e416a
   rectBottom ::
     Vision.DLib.Types.Rectangle.Rectangle -> Foreign.C.Types.CLong
   RecSel Left Vision.DLib.Types.Rectangle.Rectangle
@@ -680,7 +680,7 @@ d582a1c3f75b6044ab2b367fcbe4f3e2
                 (\ (ds :: Vision.DLib.Types.Rectangle.Rectangle) ->
                  case ds of wild { Vision.DLib.Types.Rectangle.Rectangle ds1 ds2 ds3 ds4 ->
                  ds4 }) -}
-34b0f2c3b778b0fa295ec580b4e918eb
+a14302827e76522f6b40034a4a011ce2
   rectLeft ::
     Vision.DLib.Types.Rectangle.Rectangle -> Foreign.C.Types.CLong
   RecSel Left Vision.DLib.Types.Rectangle.Rectangle
@@ -690,7 +690,7 @@ d582a1c3f75b6044ab2b367fcbe4f3e2
                 (\ (ds :: Vision.DLib.Types.Rectangle.Rectangle) ->
                  case ds of wild { Vision.DLib.Types.Rectangle.Rectangle ds1 ds2 ds3 ds4 ->
                  ds1 }) -}
-4014174e557c66343bb524f0d82f4770
+4c2e90621db8f7a04ac2b1d01b4fba5d
   rectRight ::
     Vision.DLib.Types.Rectangle.Rectangle -> Foreign.C.Types.CLong
   RecSel Left Vision.DLib.Types.Rectangle.Rectangle
@@ -700,7 +700,7 @@ d582a1c3f75b6044ab2b367fcbe4f3e2
                 (\ (ds :: Vision.DLib.Types.Rectangle.Rectangle) ->
                  case ds of wild { Vision.DLib.Types.Rectangle.Rectangle ds1 ds2 ds3 ds4 ->
                  ds3 }) -}
-ee01e84573d7299632f516f1956e1e08
+e2ef880a13a3863c88f08595af870cbd
   rectTop ::
     Vision.DLib.Types.Rectangle.Rectangle -> Foreign.C.Types.CLong
   RecSel Left Vision.DLib.Types.Rectangle.Rectangle
