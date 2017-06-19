@@ -24,7 +24,16 @@ C.include "<dlib/image_processing.h>"
 C.using "namespace dlib"
 
 newtype ShapePredictor = ShapePredictor (Ptr ())
-newtype Shape = Shape (Ptr ())
+newtype Shape = Shape (Ptr ()) deriving Show
+
+shGetRect :: Shape -> IO (Ptr Rectangle)
+shGetRect (Shape ptr) = castPtr <$> [C.exp| void * { &((full_object_detection *)$(void * ptr))->get_rect() }|]
+
+shNumParts :: Shape -> IO C.CLong
+shNumParts (Shape ptr) = [C.exp| long { ((full_object_detection *)$(void * ptr))->num_parts() }|]
+
+shGetPart :: Shape -> C.CLong -> IO (Ptr Point)
+shGetPart (Shape ptr) idx = castPtr <$> [C.exp| void * { ((full_object_detection *)$(void * ptr))->part($(long idx)) }|]
 
 mkShapePredictor = ShapePredictor <$> [C.exp| void * { new shape_predictor() }|]
 

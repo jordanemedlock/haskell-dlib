@@ -3,6 +3,7 @@ module Vision.DLib.Types.Rectangle where
 import Foreign.C.Types
 import Foreign.Storable
 import Foreign.Ptr
+import Vision.DLib.Types.C
 
 data Rectangle = Rectangle 
   { rectLeft :: CLong
@@ -10,7 +11,8 @@ data Rectangle = Rectangle
   , rectRight :: CLong
   , rectBottom :: CLong
   } deriving (Show)
-                           
+                    
+type instance C Rectangle = C'Rectangle
                            
 instance Storable Rectangle where
   sizeOf _ = (sizeOf (0 :: CLong)) * 4

@@ -22,4 +22,6 @@ main = do
   shapePredictor <- mkShapePredictor 
   deserializeShapePredictor shapePredictor spFile
   
-  mapM_ (detectFaces detector shapePredictor) images
+  shapes <- mapM (detectFaces detector shapePredictor) images
+  print $ length shapes
+  print shapes

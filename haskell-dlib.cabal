@@ -32,6 +32,17 @@ library
                      , vector
                      , bytestring
   default-language:    Haskell2010
+  default-extensions:  BangPatterns
+                     , DataKinds
+                     , FlexibleContexts
+                     , FlexibleInstances
+                     , LambdaCase
+                     , OverloadedStrings
+                     , PolyKinds
+                     , ScopedTypeVariables
+                     , TupleSections
+                     , TypeFamilies
+TypeOperators
 
 executable haskell-dlib-exe
   hs-source-dirs:      app
