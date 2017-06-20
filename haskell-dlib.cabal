@@ -21,6 +21,9 @@ library
                      , Vision.DLib.Types.RGBPixel
                      , Vision.DLib.Algorithms.ObjectDetection
                      , Vision.DLib.Algorithms.FeatureExtraction
+                     , Vision.DLib.Types.C
+                     , Vision.DLib.Types.InlineC
+                     , Vision.DLib.Types.Vector
   c-sources:           src/Vision/DLib/Algorithms/ObjectDetection.cpp
                      , src/Vision/DLib/Algorithms/FeatureExtraction.cpp
                      , src/Vision/DLib/Types/Array2D.cpp
@@ -31,6 +34,7 @@ library
                      , inline-c-cpp
                      , vector
                      , bytestring
+                     , containers
   default-language:    Haskell2010
   default-extensions:  BangPatterns
                      , DataKinds

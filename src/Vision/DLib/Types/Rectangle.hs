@@ -3,6 +3,7 @@ module Vision.DLib.Types.Rectangle where
 import Foreign.C.Types
 import Foreign.Storable
 import Foreign.Ptr
+import Foreign.Marshal.Alloc
 import Vision.DLib.Types.C
 
 data Rectangle = Rectangle 
@@ -31,3 +32,15 @@ instance Storable Rectangle where
     pokeElemOff longPtr 1 t
     pokeElemOff longPtr 2 r
     pokeElemOff longPtr 3 b
+
+instance WithPtr Rectangle where
+  withPtr rect func = do
+    alloca $ \rectPtr -> do
+      poke rectPtr rect
+      let cPtr = castPtr rectPtr
+      func cPtr
+
+instance FromPtr Rectangle where 
+  fromPtr ptr = do
+    let rectPtr = castPtr ptr
+    peek rectPtr

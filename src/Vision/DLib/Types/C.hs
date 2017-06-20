@@ -2,6 +2,7 @@ module Vision.DLib.Types.C where
 
 import Foreign.C.Types
 import Foreign.Ptr ( Ptr, nullPtr )
+import Foreign.ForeignPtr ( ForeignPtr )
 import Data.Int ( Int32 )
 import GHC.TypeLits
 
@@ -27,12 +28,12 @@ class WithPtr a where
 --
 -- Used to wrap values created in C.
 class FromPtr a where
-  fromPtr :: IO (Ptr (C a)) -> IO a
+  fromPtr :: Ptr (C a) -> IO a
 
-objFromPtr :: (ForeignPtr c -> hask) -> (Ptr c -> IO ()) -> IO (Ptr c) -> IO hask
-objFromPtr haskCons finalizer mkObjPtr = mask_ $ do
-  objPtr <- mkObjPtr
-  haskCons <$> newForeignPtr objPtr (finalizer objPtr)
+--objFromPtr :: (ForeignPtr c -> hask) -> (Ptr c -> IO ()) -> IO (Ptr c) -> IO hask
+--objFromPtr haskCons finalizer mkObjPtr = mask_ $ do
+--  objPtr <- mkObjPtr
+--  haskCons <$> newForeignPtr objPtr (finalizer objPtr)
 
 
 data C'Vector (depth :: *) (numR :: Nat)
@@ -41,3 +42,5 @@ type C'Point = C'Vector CLong 2
 type C'DPoint = C'Vector CDouble 2
 
 data C'Rectangle
+
+data C'Shape

@@ -15,25 +15,43 @@ import qualified Data.ByteString.Char8 as BS
 
 import           Vision.DLib.Types.Array2D
 import           Vision.DLib.Types.Rectangle
+import           Vision.DLib.Types.Vector
+import           Vision.DLib.Types.InlineC
 import           Data.Monoid
 
-C.context (C.cppCtx <> C.bsCtx)
+C.context dlibCtx
 
 C.include "<dlib/image_processing.h>"
 
 C.using "namespace dlib"
 
 newtype ShapePredictor = ShapePredictor (Ptr ())
-newtype Shape = Shape (Ptr ()) deriving Show
 
-shGetRect :: Shape -> IO (Ptr Rectangle)
-shGetRect (Shape ptr) = castPtr <$> [C.exp| void * { &((full_object_detection *)$(void * ptr))->get_rect() }|]
+type instance C Shape = C'Shape
 
-shNumParts :: Shape -> IO C.CLong
-shNumParts (Shape ptr) = [C.exp| long { ((full_object_detection *)$(void * ptr))->num_parts() }|]
+data Shape = Shape 
+  { shParts :: [Point]
+  , shRect :: Rectangle
+  } deriving Show
 
-shGetPart :: Shape -> C.CLong -> IO (Ptr Point)
-shGetPart (Shape ptr) idx = castPtr <$> [C.exp| void * { ((full_object_detection *)$(void * ptr))->part($(long idx)) }|]
+instance WithPtr Shape where
+  withPtr (Shape ps r) func = do
+    let vec = _ ps
+    withPtr r $ \rectPtr -> do
+      ptr <- [C.block| full_object_detection * {
+        full_object_detecion * det = new full_object_detection(
+          $(rectangle * rectPtr), $(vector * vec)
+        );
+        return det;
+      }|]
+      
+      ret <- func ptr
+      
+      [C.block| void { delete $( full_object_detection * ptr);}]
+      
+      return ret
+    
+    
 
 mkShapePredictor = ShapePredictor <$> [C.exp| void * { new shape_predictor() }|]
 
