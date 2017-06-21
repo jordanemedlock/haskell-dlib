@@ -17,6 +17,7 @@ import           Vision.DLib.Types.Array2D
 import           Vision.DLib.Types.Rectangle
 import           Vision.DLib.Types.Vector
 import           Vision.DLib.Types.InlineC
+import           Vision.DLib.Types.C
 import           Data.Monoid
 
 C.context dlibCtx
@@ -36,18 +37,12 @@ data Shape = Shape
 
 instance WithPtr Shape where
   withPtr (Shape ps r) func = do
-    let vec = _ ps
     withPtr r $ \rectPtr -> do
-      ptr <- [C.block| full_object_detection * {
-        full_object_detecion * det = new full_object_detection(
-          $(rectangle * rectPtr), $(vector * vec)
-        );
-        return det;
-      }|]
+      ptr <- [C.exp| full_object_detection * { new full_object_detection() }|]
       
       ret <- func ptr
       
-      [C.block| void { delete $( full_object_detection * ptr);}]
+      [C.block| void { delete $( full_object_detection * ptr); }|]
       
       return ret
     
@@ -59,13 +54,14 @@ deserializeShapePredictor (ShapePredictor sp) value = do
   let bs = BS.pack value
   [C.block| void { deserialize($bs-ptr:bs) >> *((shape_predictor *)$(void * sp)); } |]
   
-runShapePredictor :: ShapePredictor -> Image -> Rectangle -> IO Shape
+runShapePredictor :: ShapePredictor -> Image -> Rectangle -> IO ()
 runShapePredictor (ShapePredictor sp) (Image img) rect = do
   alloca $ \rectPtr -> do
     poke rectPtr rect
     let voidPtr = castPtr rectPtr
-    Shape <$> [C.block| void * {
+    -- TODO: fix this 
+    [C.block| void {
       full_object_detection * det = new full_object_detection();
       *det = (*(shape_predictor *)$(void * sp))(*(array2d<rgb_pixel> *)$(void * img), *(rectangle *)$(void * voidPtr));
-      return det;
+
     }|]

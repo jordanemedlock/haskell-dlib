@@ -14,15 +14,15 @@ void inline_c_Vision_DLib_Types_Vector_1_eea5d7e4f2f5c2c367614eb6f1abcd792600df1
 }
 
 extern "C" {
-long inline_c_Vision_DLib_Types_Vector_2_cb3a6e2b5d71800f845c4c4e74fa4f40d431fd35(point * cPtr_inline_c_0) {
-return ( cPtr_inline_c_0->x );
+long inline_c_Vision_DLib_Types_Vector_2_c01cbd20bb25c42f3c7f565100286bcdf90ca954(point * ptr_inline_c_0) {
+return ( ptr_inline_c_0->x );
 }
 
 }
 
 extern "C" {
-long inline_c_Vision_DLib_Types_Vector_3_3665edeb2736f585f395e6329f2fb9b3587f5caa(point * cPtr_inline_c_0) {
-return ( cPtr_inline_c_0->y );
+long inline_c_Vision_DLib_Types_Vector_3_f4aedf869d482c55b376a6789c7ca72a149cd748(point * ptr_inline_c_0) {
+return ( ptr_inline_c_0->y );
 }
 
 }

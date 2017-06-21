@@ -3,7 +3,7 @@ module Main where
 import Vision.DLib
 import System.Environment
 
-detectFaces :: FrontalFaceDetector -> ShapePredictor -> String -> IO [Shape]
+detectFaces :: FrontalFaceDetector -> ShapePredictor -> String -> IO [()]
 detectFaces detector shapePredictor image = do
   img <- mkImage
   loadImage img image
