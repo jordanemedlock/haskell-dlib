@@ -24,9 +24,11 @@ library
                      , Vision.DLib.Types.C
                      , Vision.DLib.Types.InlineC
                      , Vision.DLib.Types.Vector
+                     , Vision.DLib.Types.Constants
   c-sources:           src/Vision/DLib/Algorithms/ObjectDetection.cpp
                      , src/Vision/DLib/Algorithms/FeatureExtraction.cpp
                      , src/Vision/DLib/Types/Array2D.cpp
+                     , src/Vision/DLib/Types/Constants.cpp
   extra-libraries:     stdc++, dlib, lapack, blas
   CC-options:          -std=c++11
   build-depends:       base >= 4.7 && < 5

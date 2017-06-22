@@ -13,6 +13,7 @@ import Foreign.Ptr
 import GHC.TypeLits
 import Vision.DLib.Types.C
 import Vision.DLib.Types.InlineC
+import Vision.DLib.Types.Constants
 
 C.context dlibCtx
 
@@ -32,12 +33,25 @@ alloca_point f = do
   
   return ret
 
+instance Storable Point where
+  sizeOf _ = fromIntegral sizeofPoint
+  alignment _ = fromIntegral alignofPoint
+  peek ptr = do
+    let longPtr = castPtr ptr :: Ptr CLong
+    x <- peekElemOff longPtr 0
+    y <- peekElemOff longPtr 1
+    return $ Point x y
+  poke ptr (Point x y) = do
+    let longPtr = castPtr ptr :: Ptr CLong
+    pokeElemOff longPtr 0 x
+    pokeElemOff longPtr 1 y
+
 instance WithPtr Point where
   withPtr (Point x y) func = do
     alloca_point $ \ptr -> do
       [C.block| void {
         $(point * ptr)->x = $(long x);         
-        $(point * ptr)->y = $(long y); 
+        $(point * ptr)->y = $(long y);
       }|]
       func ptr
 

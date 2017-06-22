@@ -18,19 +18,26 @@ void inline_c_Vision_DLib_Algorithms_FeatureExtraction_1_a2ee231108ce9bec1075c93
 }
 
 extern "C" {
-void inline_c_Vision_DLib_Algorithms_FeatureExtraction_2_53c53980b5b41dfd483717aab29ae0009d370796(void * sp_inline_c_0, void * img_inline_c_1, void * voidPtr_inline_c_2) {
+full_object_detection * inline_c_Vision_DLib_Algorithms_FeatureExtraction_2_5b8b322825ff9ff6841925b3012a82c6cfb4a1c6(void * sp_inline_c_0, void * img_inline_c_1, void * voidPtr_inline_c_2) {
 
       full_object_detection * det = new full_object_detection();
       *det = (*(shape_predictor *)sp_inline_c_0)(*(array2d<rgb_pixel> *)img_inline_c_1, *(rectangle *)voidPtr_inline_c_2);
-
+      return det;
     
 }
 
 }
 
 extern "C" {
-full_object_detection * inline_c_Vision_DLib_Algorithms_FeatureExtraction_3_a8dc9565f664e3cc09717b3fa802eb8e7df4b3f1() {
-return ( new full_object_detection() );
+full_object_detection * inline_c_Vision_DLib_Algorithms_FeatureExtraction_3_7fa042e91f5cb89b6bc99729e41c64049776caec(point * arrPtr_inline_c_0, point * arrPtr_inline_c_1, long arrLen_inline_c_2, rectangle * rectPtr_inline_c_3) {
+
+          rectangle rect();
+          std::vector<point> points(arrPtr_inline_c_0, arrPtr_inline_c_1 + arrLen_inline_c_2);
+          return new full_object_detection(
+            *rectPtr_inline_c_3,
+            points
+          ); // TODO: implement
+        
 }
 
 }

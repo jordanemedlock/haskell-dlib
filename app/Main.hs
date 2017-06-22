@@ -15,7 +15,9 @@ detectFaces detector shapePredictor image = do
 
 main :: IO ()
 main = do
+  print alignofPoint 
 
+{-
   (spFile:images) <- getArgs
 
   detector <- mkFrontalFaceDetector
@@ -25,3 +27,5 @@ main = do
   shapes <- mapM (detectFaces detector shapePredictor) images
   print $ length shapes
   print shapes
+  
+  -}

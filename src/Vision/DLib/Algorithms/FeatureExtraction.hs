@@ -35,17 +35,31 @@ data Shape = Shape
   , shRect :: Rectangle
   } deriving Show
 
+
 instance WithPtr Shape where
   withPtr (Shape ps r) func = do
     withPtr r $ \rectPtr -> do
-      ptr <- [C.exp| full_object_detection * { new full_object_detection() }|]
-      
-      ret <- func ptr
-      
-      [C.block| void { delete $( full_object_detection * ptr); }|]
-      
-      return ret
+      withArray ps $ \arr -> do
+        let arrLen = fromIntegral $ length ps
+        let arrPtr = castPtr arr
+        ptr <- [C.block| full_object_detection * {
+          rectangle rect();
+          std::vector<point> points($(point * arrPtr), $(point * arrPtr) + $(long arrLen));
+          return new full_object_detection(
+            *$(rectangle * rectPtr),
+            points
+          ); 
+        }|]
     
+        ret <- func ptr
+      
+        [C.block| void { delete $( full_object_detection * ptr); }|]
+     
+        return ret
+
+instance FromPtr Shape where 
+  fromPtr ptr = do
+    -- TODO: implement
     
 
 mkShapePredictor = ShapePredictor <$> [C.exp| void * { new shape_predictor() }|]
@@ -54,14 +68,14 @@ deserializeShapePredictor (ShapePredictor sp) value = do
   let bs = BS.pack value
   [C.block| void { deserialize($bs-ptr:bs) >> *((shape_predictor *)$(void * sp)); } |]
   
-runShapePredictor :: ShapePredictor -> Image -> Rectangle -> IO ()
+runShapePredictor :: ShapePredictor -> Image -> Rectangle -> IO Shape
 runShapePredictor (ShapePredictor sp) (Image img) rect = do
   alloca $ \rectPtr -> do
     poke rectPtr rect
     let voidPtr = castPtr rectPtr
     -- TODO: fix this 
-    [C.block| void {
+    fromPtr =<< [C.block| full_object_detection * {
       full_object_detection * det = new full_object_detection();
       *det = (*(shape_predictor *)$(void * sp))(*(array2d<rgb_pixel> *)$(void * img), *(rectangle *)$(void * voidPtr));
-
+      return det;
     }|]
