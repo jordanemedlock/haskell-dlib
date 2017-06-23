@@ -3,7 +3,7 @@ module Main where
 import Vision.DLib
 import System.Environment
 
-detectFaces :: FrontalFaceDetector -> ShapePredictor -> String -> IO [()]
+detectFaces :: FrontalFaceDetector -> ShapePredictor -> String -> IO [Shape]
 detectFaces detector shapePredictor image = do
   img <- mkImage
   loadImage img image
@@ -15,9 +15,7 @@ detectFaces detector shapePredictor image = do
 
 main :: IO ()
 main = do
-  print alignofPoint 
-
-{-
+  
   (spFile:images) <- getArgs
 
   detector <- mkFrontalFaceDetector
@@ -28,4 +26,3 @@ main = do
   print $ length shapes
   print shapes
   
-  -}

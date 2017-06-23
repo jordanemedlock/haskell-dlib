@@ -19,6 +19,7 @@ import           Vision.DLib.Types.Vector
 import           Vision.DLib.Types.InlineC
 import           Vision.DLib.Types.C
 import           Data.Monoid
+import           Control.Monad
 
 C.context dlibCtx
 
@@ -39,8 +40,8 @@ data Shape = Shape
 instance WithPtr Shape where
   withPtr (Shape ps r) func = do
     withPtr r $ \rectPtr -> do
-      withArray ps $ \arr -> do
-        let arrLen = fromIntegral $ length ps
+      withArrayLen ps $ \len arr -> do
+        let arrLen = fromIntegral len
         let arrPtr = castPtr arr
         ptr <- [C.block| full_object_detection * {
           rectangle rect();
@@ -59,14 +60,26 @@ instance WithPtr Shape where
 
 instance FromPtr Shape where 
   fromPtr ptr = do
-    -- TODO: implement
+    rect <- fromPtr =<< [C.exp| rectangle * { &$(full_object_detection * ptr)->get_rect() }|]
+    numParts <- [C.exp| long { $(full_object_detection * ptr)->num_parts() }|]
+    
+    parts <- withPtr (Point 0 0) $ \elemPtr -> do
+      forM [0..(numParts-1)] $ \i -> do
+        [C.block| void {
+          *$(point * elemPtr) = $(full_object_detection * ptr)->part($(long i));
+        }|]
+        fromPtr $ castPtr elemPtr
+    return $ Shape parts rect
+    
+    
+    
     
 
 mkShapePredictor = ShapePredictor <$> [C.exp| void * { new shape_predictor() }|]
 
 deserializeShapePredictor (ShapePredictor sp) value = do
   let bs = BS.pack value
-  [C.block| void { deserialize($bs-ptr:bs) >> *((shape_predictor *)$(void * sp)); } |]
+  [C.block| void { deserialize($bs-ptr:bs) >> *((shape_predictor *)$(void * sp)); } |] 
   
 runShapePredictor :: ShapePredictor -> Image -> Rectangle -> IO Shape
 runShapePredictor (ShapePredictor sp) (Image img) rect = do

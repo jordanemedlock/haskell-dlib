@@ -17,6 +17,10 @@ import Vision.DLib.Types.Constants
 
 C.context dlibCtx
 
+C.include "<dlib/geometry.h>"
+
+C.using "namespace dlib"
+
 data Point = Point 
   { ptX :: CLong
   , ptY :: CLong
@@ -50,14 +54,14 @@ instance WithPtr Point where
   withPtr (Point x y) func = do
     alloca_point $ \ptr -> do
       [C.block| void {
-        $(point * ptr)->x = $(long x);         
-        $(point * ptr)->y = $(long y);
+        $(point * ptr)->x() = $(long x);         
+        $(point * ptr)->y() = $(long y);
       }|]
       func ptr
 
 instance FromPtr Point where 
   fromPtr ptr = do
-    x <- [C.exp| long { $(point * ptr)->x }|]
-    y <- [C.exp| long { $(point * ptr)->y }|]
+    x <- [C.exp| long { $(point * ptr)->x() }|]
+    y <- [C.exp| long { $(point * ptr)->y() }|]
     return $ Point x y
 
