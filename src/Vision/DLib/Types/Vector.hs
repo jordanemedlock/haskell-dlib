@@ -2,7 +2,9 @@
 {-# LANGUAGE TemplateHaskell #-}
 {-# LANGUAGE CPP #-}
 
-module Vision.DLib.Types.Vector where
+module Vision.DLib.Types.Vector 
+( Point(..)
+) where
 
 
 import qualified Language.C.Inline as C
@@ -14,6 +16,8 @@ import GHC.TypeLits
 import Vision.DLib.Types.C
 import Vision.DLib.Types.InlineC
 import Vision.DLib.Types.Constants
+import Data.Aeson
+import Data.Monoid
 
 C.context dlibCtx
 
@@ -65,3 +69,15 @@ instance FromPtr Point where
     y <- [C.exp| long { $(point * ptr)->y() }|]
     return $ Point x y
 
+instance ToJSON Point where
+  toJSON (Point x y) = object ["x" .= (fromIntegral x :: Int), "y" .= (fromIntegral y :: Int)]
+  toEncoding (Point x y) = pairs ("x" .= (fromIntegral x :: Int) <> "y" .= (fromIntegral y :: Int))
+
+toCLong :: Int -> CLong
+toCLong = fromIntegral
+
+instance FromJSON Point where
+  parseJSON (Object o) = do
+    x <- toCLong <$> o .: "x"
+    y <- toCLong <$> o .: "y"
+    return $ Point x y
