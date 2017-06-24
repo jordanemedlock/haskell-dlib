@@ -1,4 +1,4 @@
-module Vision.DLib.Types.Rectangle 
+module Vision.DLib.Types.Rectangle
 ( Rectangle(..)
 ) where
 
@@ -7,21 +7,22 @@ import Foreign.Storable
 import Foreign.Ptr
 import Foreign.Marshal.Alloc
 import Vision.DLib.Types.C
+import Vision.DLib.Types.Constants
 import Data.Aeson
 import Data.Monoid
 
-data Rectangle = Rectangle 
+data Rectangle = Rectangle
   { rectLeft :: CLong
   , rectTop :: CLong
   , rectRight :: CLong
   , rectBottom :: CLong
   } deriving (Show)
-                    
+
 type instance C Rectangle = C'Rectangle
-                           
+
 instance Storable Rectangle where
-  sizeOf _ = (sizeOf (0 :: CLong)) * 4
-  alignment _ = (sizeOf (0 :: CLong))
+  sizeOf _ = fromIntegral sizeofRect
+  alignment _ = fromIntegral alignofRect
   peek ptr = do
     let longPtr = castPtr ptr :: Ptr CLong
     l <- peekElemOff longPtr 0
@@ -44,11 +45,11 @@ instance WithPtr Rectangle where
       let cPtr = castPtr rectPtr
       func cPtr
 
-instance FromPtr Rectangle where 
+instance FromPtr Rectangle where
   fromPtr ptr = do
     let rectPtr = castPtr ptr
     peek rectPtr
-    
+
 instance ToJSON Rectangle where
   toJSON (Rectangle left top right bottom) = object [ "left" .= (fromIntegral left :: Int)
                                                     , "right" .= (fromIntegral right :: Int)
@@ -70,8 +71,3 @@ instance FromJSON Rectangle where
     <*> (toCLong <$> o .: "top")
     <*> (toCLong <$> o .: "right")
     <*> (toCLong <$> o .: "bottom")
-
-    
-    
-    
-    

@@ -18,6 +18,7 @@ import           Vision.DLib.Types.Rectangle
 import           Vision.DLib.Types.Vector
 import           Vision.DLib.Types.InlineC
 import           Vision.DLib.Types.C
+import           Vision.DLib.Types.Constants
 import           Data.Monoid
 import           Data.Aeson
 import           Control.Monad
@@ -37,7 +38,11 @@ data Shape = Shape
   , shRect :: Rectangle
   } deriving Show
 
-
+instance Storable Shape where
+  sizeOf _ = fromIntegral sizeofShape
+  alignment _ = fromIntegral alignofShape
+  peek ptr = fromPtr (castPtr ptr)
+  
 instance WithPtr Shape where
   withPtr (Shape ps r) func = do
     withPtr r $ \rectPtr -> do

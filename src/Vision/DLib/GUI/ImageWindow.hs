@@ -19,6 +19,7 @@ import           Data.Monoid
 import           Vision.DLib.Types.InlineC
 import           Vision.DLib.Types.C
 import           Vision.DLib.Types.Array2D
+import           Vision.DLib.Types.Shape
 
 C.context dlibCtx
 
@@ -44,4 +45,3 @@ winSetImage (ImageWindow winPtr) (Image imgPtr) = [C.block| void {
 -- TODO: Continue
 -- winAddFaceDetections :: ImageWindow -> [Shape] -> IO ()
 -- winAddFaceDetections (ImageWindow winPtr) shapes = do
---
