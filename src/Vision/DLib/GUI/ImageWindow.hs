@@ -18,8 +18,7 @@ import           Data.Monoid
 
 import           Vision.DLib.Types.InlineC
 import           Vision.DLib.Types.C
-
-
+import           Vision.DLib.Types.Array2D
 
 C.context dlibCtx
 
@@ -37,5 +36,12 @@ winClearOverlay (ImageWindow ptr) = [C.block| void {
   $( image_window * ptr )->clear_overlay();
 }|]
 
--- winSetImage :: ImageWindow -> Image -> IO ()
--- winSetImage (ImageWindow winPtr) (Image imgPtr)
+winSetImage :: ImageWindow -> Image -> IO ()
+winSetImage (ImageWindow winPtr) (Image imgPtr) = [C.block| void {
+  $( image_window * winPtr )->set_image( $(image * imgPtr) );
+}|]
+
+-- TODO: Continue
+-- winAddFaceDetections :: ImageWindow -> [Shape] -> IO ()
+-- winAddFaceDetections (ImageWindow winPtr) shapes = do
+--
