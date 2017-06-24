@@ -13,26 +13,28 @@ using namespace dlib;
 
 using namespace std;
 
+typedef array2d<rgb_pixel> image;
+
 extern "C" {
-void * inline_c_Vision_DLib_Types_Array2D_0_bfce9d6facfd323e49e0e5bdfb602a8f5d1c78bc() {
+image * inline_c_Vision_DLib_Types_Array2D_0_bb636f286b2b9c31fc83bf0baedfaf91d072770e() {
 return ( new array2d<rgb_pixel>() );
 }
 
 }
 
 extern "C" {
-void inline_c_Vision_DLib_Types_Array2D_1_b1770b451f1da53abdffdb114a698247d53e8c40(void * img_inline_c_0, char * bs_inline_c_1) {
+void inline_c_Vision_DLib_Types_Array2D_1_068251d466471b028af3d96c570b88e1ad45bbc4(image * img_inline_c_0, char * bs_inline_c_1) {
 
-    load_image(*(array2d<rgb_pixel> *)img_inline_c_0, bs_inline_c_1);
+    load_image(*img_inline_c_0, bs_inline_c_1);
   
 }
 
 }
 
 extern "C" {
-void * inline_c_Vision_DLib_Types_Array2D_2_c6c787264a1da6ca89359ccbac69d53b9c4c7ec6(void * img_inline_c_0) {
+image * inline_c_Vision_DLib_Types_Array2D_2_1d59673a9c092972b32a6d110a6ad29d24367d50(image * img_inline_c_0) {
 
-    array2d<rgb_pixel> * img = (array2d<rgb_pixel> *)img_inline_c_0;
+    array2d<rgb_pixel> * img = img_inline_c_0;
     pyramid_up(*img);
     return img;
 

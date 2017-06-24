@@ -34,6 +34,7 @@ library
                      , src/Vision/DLib/Types/Shape.cpp
   extra-libraries:     stdc++, dlib, lapack, blas
   CC-options:          -std=c++11
+  include-dirs:        include
   build-depends:       base >= 4.7 && < 5
                      , inline-c
                      , inline-c-cpp

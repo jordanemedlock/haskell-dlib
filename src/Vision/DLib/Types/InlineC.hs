@@ -20,19 +20,21 @@ import Vision.DLib.Types.C
 dlibCtx :: C.Context
 dlibCtx = C.cppCtx <> C.bsCtx <> C.vecCtx <> ctx
  where ctx = mempty { C.ctxTypesTable = dlibTypesTable }
- 
+
 
 dlibTypesTable :: C.TypesTable
-dlibTypesTable = M.fromList 
+dlibTypesTable = M.fromList
   [ ( C.TypeName "bool", [t| C.CInt |] )
   , ( C.TypeName "rectangle", [t| C'Rectangle |] )
   , ( C.TypeName "point", [t| C'Point |] )
   , ( C.TypeName "full_object_detection", [t| C'Shape |])
+  , ( C.TypeName "image_window", [t| C'ImageWindow |])
+  , ( C.TypeName "image", [t| C'Image |])
   ]
 
 {-
 cppVecCtx :: C.Context
-cppVecCtx = mempty 
+cppVecCtx = mempty
   { C.ctxAntiQuoters = Map.fromList
     [ ( "cpp-vec", SomeAntiQuoter cppVecAntiQuoter)
     ]

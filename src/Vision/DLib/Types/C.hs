@@ -12,7 +12,7 @@ class CSizeOf a where
   -- | Computes the storage requirements (in bytes) of values of
   -- type @a@ in C.
   cSizeOf :: proxy a -> Int
-  
+
 -- | Perform an IO action with a pointer to the C equivalent of a value
 class WithPtr a where
   -- | Perform an action with a temporary pointer to the underlying
@@ -44,3 +44,11 @@ type C'DPoint = C'Vector CDouble 2
 data C'Rectangle
 
 data C'Shape
+
+data C'ImageWindow
+
+data C'Array2D (depth :: *)
+
+data C'RGBPixel
+
+type C'Image = C'Array2D C'RGBPixel

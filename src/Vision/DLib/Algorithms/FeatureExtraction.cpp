@@ -1,6 +1,8 @@
 
 #include <dlib/image_processing.h>
 
+#include "typedefs.h"
+
 using namespace dlib;
 
 extern "C" {
@@ -18,10 +20,10 @@ void inline_c_Vision_DLib_Algorithms_FeatureExtraction_1_a2ee231108ce9bec1075c93
 }
 
 extern "C" {
-full_object_detection * inline_c_Vision_DLib_Algorithms_FeatureExtraction_2_5b8b322825ff9ff6841925b3012a82c6cfb4a1c6(void * sp_inline_c_0, void * img_inline_c_1, void * voidPtr_inline_c_2) {
+full_object_detection * inline_c_Vision_DLib_Algorithms_FeatureExtraction_2_1d37791a0e3894bbb023c6bb18d87941102837db(void * sp_inline_c_0, image * img_inline_c_1, void * voidPtr_inline_c_2) {
 
       full_object_detection * det = new full_object_detection();
-      *det = (*(shape_predictor *)sp_inline_c_0)(*(array2d<rgb_pixel> *)img_inline_c_1, *(rectangle *)voidPtr_inline_c_2);
+      *det = (*(shape_predictor *)sp_inline_c_0)(*img_inline_c_1, *(rectangle *)voidPtr_inline_c_2);
       return det;
     
 }

@@ -12,10 +12,12 @@ import           Foreign.Marshal.Array
 
 import           Vision.DLib.Types.Array2D
 import           Vision.DLib.Types.Rectangle
+import           Vision.DLib.Types.InlineC
 
-C.context C.cppCtx
+C.context dlibCtx
 
 C.include "<dlib/image_processing/frontal_face_detector.h>"
+C.include "typedefs.h"
 
 C.using "namespace dlib"
 
@@ -28,10 +30,9 @@ runFrontalFaceDetector :: FrontalFaceDetector -> Image -> IO [Rectangle]
 runFrontalFaceDetector (FrontalFaceDetector det) (Image img) = do
   (n, voidPtr) <- C.withPtrs_ $ \(intPtr, dblPtr) -> [C.block| void {
     frontal_face_detector * det = (frontal_face_detector *)$(void * det);
-    array2d<rgb_pixel> * img = (array2d<rgb_pixel> *)$(void * img);
+    array2d<rgb_pixel> * img = $(image * img);
     std::vector<rectangle> rects = (* det)(* img);
     (*$(int * intPtr)) = rects.size();
     (*$(void ** dblPtr)) = &rects[0];
   }|]
   peekArray (fromIntegral n) (castPtr voidPtr)
-  

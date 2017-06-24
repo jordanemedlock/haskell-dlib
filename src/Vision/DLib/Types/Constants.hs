@@ -14,8 +14,9 @@ import Vision.DLib.Types.InlineC
 C.context dlibCtx
 
 C.include "<dlib/geometry.h>"
+C.include "<iostream>"
 
-C.emitVerbatim "#define alignof(type) offsetof(struct { char c; type d; }, d)"
+-- C.emitVerbatim "#define alignof(type) offsetof(struct { char c; type d; }, d)"
 
 sizeofPoint :: C.CLong
 sizeofPoint = [C.pure| long { sizeof(dlib::point) }|]

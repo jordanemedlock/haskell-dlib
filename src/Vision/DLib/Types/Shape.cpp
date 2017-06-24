@@ -18,7 +18,7 @@ return ( ptr_inline_c_0->num_parts() );
 }
 
 extern "C" {
-void inline_c_Vision_DLib_Types_Shape_2_9293bf6e92a1c7dea83271fa2999166a2fac6f75(point * elemPtr_inline_c_0, full_object_detection * ptr_inline_c_1, long i_inline_c_2) {
+void inline_c_Vision_DLib_Types_Shape_2_71f54ec90954d8599672150ce859c5b4cb0558aa(point * elemPtr_inline_c_0, full_object_detection * ptr_inline_c_1, long i_inline_c_2) {
 
           *elemPtr_inline_c_0 = ptr_inline_c_1->part(i_inline_c_2);
         
@@ -27,14 +27,14 @@ void inline_c_Vision_DLib_Types_Shape_2_9293bf6e92a1c7dea83271fa2999166a2fac6f75
 }
 
 extern "C" {
-full_object_detection * inline_c_Vision_DLib_Types_Shape_3_bc703d42d186f311619ab02e19c66aba273db2e2(point * arrPtr_inline_c_0, point * arrPtr_inline_c_1, long arrLen_inline_c_2, rectangle * rectPtr_inline_c_3) {
+full_object_detection * inline_c_Vision_DLib_Types_Shape_3_b8ae5b6cff2175929b1cfc9e39b0b923c93b2172(point * arrPtr_inline_c_0, point * arrPtr_inline_c_1, long arrLen_inline_c_2, rectangle * rectPtr_inline_c_3) {
 
-          rectangle rect();
+          rectangle rect;
           std::vector<point> points(arrPtr_inline_c_0, arrPtr_inline_c_1 + arrLen_inline_c_2);
           return new full_object_detection(
             *rectPtr_inline_c_3,
             points
-          ); 
+          );
         
 }
 

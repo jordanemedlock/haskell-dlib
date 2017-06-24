@@ -25,6 +25,7 @@ import           Control.Monad
 C.context dlibCtx
 
 C.include "<dlib/image_processing.h>"
+C.include "typedefs.h"
 
 C.using "namespace dlib"
 
@@ -33,16 +34,16 @@ mkShapePredictor = ShapePredictor <$> [C.exp| void * { new shape_predictor() }|]
 
 deserializeShapePredictor (ShapePredictor sp) value = do
   let bs = BS.pack value
-  [C.block| void { deserialize($bs-ptr:bs) >> *((shape_predictor *)$(void * sp)); } |] 
-  
+  [C.block| void { deserialize($bs-ptr:bs) >> *((shape_predictor *)$(void * sp)); } |]
+
 runShapePredictor :: ShapePredictor -> Image -> Rectangle -> IO Shape
 runShapePredictor (ShapePredictor sp) (Image img) rect = do
   alloca $ \rectPtr -> do
     poke rectPtr rect
     let voidPtr = castPtr rectPtr
-    -- TODO: fix this 
+    -- TODO: fix this
     fromPtr =<< [C.block| full_object_detection * {
       full_object_detection * det = new full_object_detection();
-      *det = (*(shape_predictor *)$(void * sp))(*(array2d<rgb_pixel> *)$(void * img), *(rectangle *)$(void * voidPtr));
+      *det = (*(shape_predictor *)$(void * sp))(*$(image * img), *(rectangle *)$(void * voidPtr));
       return det;
     }|]

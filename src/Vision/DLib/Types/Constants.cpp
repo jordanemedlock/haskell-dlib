@@ -1,7 +1,7 @@
 
 #include <dlib/geometry.h>
 
-#define alignof(type) offsetof(struct { char c; type d; }, d)
+#include <iostream>
 
 extern "C" {
 long inline_c_Vision_DLib_Types_Constants_0_21d0deb62b12fd984a5313034cd73e60f2301dcf() {
