@@ -16,7 +16,10 @@ data Rectangle = Rectangle
   , rectTop :: CLong
   , rectRight :: CLong
   , rectBottom :: CLong
-  } deriving (Show)
+  } deriving (Eq)
+
+instance Show Rectangle where
+  show (Rectangle l t r b) = "[("++(show l)++","++(show t)++") ("++(show r)++","++(show b)++")]"
 
 type instance C Rectangle = C'Rectangle
 
@@ -29,7 +32,7 @@ instance Storable Rectangle where
     t <- peekElemOff longPtr 1
     r <- peekElemOff longPtr 2
     b <- peekElemOff longPtr 3
-    return $ Rectangle l r t b
+    return $ Rectangle l t r b
 
   poke ptr (Rectangle l t r b) = do
     let longPtr = castPtr ptr :: Ptr CLong
