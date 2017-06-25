@@ -7,6 +7,7 @@ import System.Environment
 import Data.Aeson
 import Data.Aeson.Encode.Pretty
 import qualified Data.ByteString.Lazy.Char8 as BS
+import Control.Monad
 
 detectFaces :: FrontalFaceDetector -> ShapePredictor -> String -> IO [Shape]
 detectFaces detector shapePredictor image = do
@@ -15,28 +16,34 @@ detectFaces detector shapePredictor image = do
 
   rects <- runFrontalFaceDetector detector img
 
-  mapM (runShapePredictor shapePredictor img) rects
+  shapes <- mapM (runShapePredictor shapePredictor img) rects
+
+  win <- mkImageWindow
+  winClearOverlay win
+  winSetImage win img
+
+  forM_ shapes $ \shape -> do
+    winAddFaceDetection win shape
+
+  return shapes
 
 
 main :: IO ()
 main = do
-
-  print sizeofShape
-  print alignofShape
-  print sizeofRect
-  print alignofRect
-  print sizeofVector
-  print alignofVector
-
-  -- (spFile:images) <- getArgs
   --
-  -- detector <- mkFrontalFaceDetector
-  -- shapePredictor <- mkShapePredictor
-  -- deserializeShapePredictor shapePredictor spFile
-  --
-  -- shapes <- mapM (detectFaces detector shapePredictor) images
-  -- print $ length shapes
-  -- print $ ((decode "[{\"x\": 10, \"y\": 10}]") :: Maybe [Point])
-  -- print $ ((decode "[{\"left\": 10, \"top\": 10, \"right\": 10, \"bottom\": 10}]") :: Maybe [Rectangle])
-  -- BS.putStrLn $ encode shapes
-  -- print ((decode $ encodePretty shapes) :: Maybe [[Shape]])
+  -- print sizeofShape
+  -- print alignofShape
+  -- print sizeofRect
+  -- print alignofRect
+  -- print sizeofVector
+  -- print alignofVector
+
+  (spFile:images) <- getArgs
+
+  detector <- mkFrontalFaceDetector
+  shapePredictor <- mkShapePredictor
+  deserializeShapePredictor shapePredictor spFile
+
+  shapes <- mapM (detectFaces detector shapePredictor) images
+  char <- getChar
+  return ()

@@ -32,6 +32,7 @@ library
                      , src/Vision/DLib/Types/Constants.cpp
                      , src/Vision/DLib/Types/Vector.cpp
                      , src/Vision/DLib/Types/Shape.cpp
+                     , src/Vision/DLib/GUI/ImageWindow.cpp
   extra-libraries:     stdc++, dlib, lapack, blas
   CC-options:          -std=c++11
   include-dirs:        include

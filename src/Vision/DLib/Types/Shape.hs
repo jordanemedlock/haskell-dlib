@@ -38,11 +38,15 @@ data Shape = Shape
   , shRect :: Rectangle
   } deriving Show
 
-instance Storable Shape where
-  sizeOf _ = fromIntegral sizeofShape
-  alignment _ = fromIntegral alignofShape
-  peek ptr = fromPtr (castPtr ptr)
-  
+-- instance Storable Shape where
+--   sizeOf _ = fromIntegral sizeofShape
+--   alignment _ = fromIntegral alignofShape
+--   peek ptr = fromPtr (castPtr ptr)
+--   poke ptr (Shape ps r) = do
+--     withArrayLen ps $ \len arr -> do
+--       vec <- [C.exp| void * { new std::vector<point>($(point * arr), $(point * arr) + $(long len)) }|]
+--
+
 instance WithPtr Shape where
   withPtr (Shape ps r) func = do
     withPtr r $ \rectPtr -> do

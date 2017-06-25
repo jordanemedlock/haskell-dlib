@@ -24,6 +24,8 @@ import           Vision.DLib.Types.Shape
 C.context dlibCtx
 
 C.include "<dlib/gui_widgets.h>"
+C.include "<dlib/image_processing/render_face_detections.h>"
+C.include "typedefs.h"
 
 C.using "namespace dlib"
 
@@ -39,9 +41,13 @@ winClearOverlay (ImageWindow ptr) = [C.block| void {
 
 winSetImage :: ImageWindow -> Image -> IO ()
 winSetImage (ImageWindow winPtr) (Image imgPtr) = [C.block| void {
-  $( image_window * winPtr )->set_image( $(image * imgPtr) );
+  $( image_window * winPtr )->set_image( *$(image * imgPtr) );
 }|]
 
--- TODO: Continue
--- winAddFaceDetections :: ImageWindow -> [Shape] -> IO ()
--- winAddFaceDetections (ImageWindow winPtr) shapes = do
+
+winAddFaceDetection :: ImageWindow -> Shape -> IO ()
+winAddFaceDetection (ImageWindow winPtr) shape = do
+  withPtr shape $ \shapePtr -> do
+    [C.block| void {
+      $(image_window * winPtr)->add_overlay(render_face_detections(*$(full_object_detection * shapePtr)));
+    }|]

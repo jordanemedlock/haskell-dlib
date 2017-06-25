@@ -1,6 +1,10 @@
 
 #include <dlib/gui_widgets.h>
 
+#include <dlib/image_processing/render_face_detections.h>
+
+#include "typedefs.h"
+
 using namespace dlib;
 
 extern "C" {
@@ -20,10 +24,19 @@ void inline_c_Vision_DLib_GUI_ImageWindow_1_01faa3c038bd4ff0ae310c589adfd3647d7e
 }
 
 extern "C" {
-void inline_c_Vision_DLib_GUI_ImageWindow_2_c16e9e93790a44a88f06d71cf039b416556294b4(image_window * winPtr_inline_c_0, image * imgPtr_inline_c_1) {
+void inline_c_Vision_DLib_GUI_ImageWindow_2_3557962a462639b0f65dc7492212b610d3ea8992(image_window * winPtr_inline_c_0, image * imgPtr_inline_c_1) {
 
-  winPtr_inline_c_0->set_image( imgPtr_inline_c_1 );
+  winPtr_inline_c_0->set_image( *imgPtr_inline_c_1 );
 
+}
+
+}
+
+extern "C" {
+void inline_c_Vision_DLib_GUI_ImageWindow_3_e5ea350b79e7bc6f46d5515bf0a80be2ae56cc8f(image_window * winPtr_inline_c_0, full_object_detection * shapePtr_inline_c_1) {
+
+      winPtr_inline_c_0->add_overlay(render_face_detections(*shapePtr_inline_c_1));
+    
 }
 
 }
