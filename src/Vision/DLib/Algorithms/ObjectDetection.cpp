@@ -13,7 +13,7 @@ return ( new frontal_face_detector(get_frontal_face_detector()) );
 }
 
 extern "C" {
-void inline_c_Vision_DLib_Algorithms_ObjectDetection_1_64661231cbef1e570b5a30af6c109b3034ca90eb(void * det_inline_c_0, image * img_inline_c_1, int * intPtr_inline_c_2, void ** dblPtr_inline_c_3) {
+void inline_c_Vision_DLib_Algorithms_ObjectDetection_1_44a0b88a74c399c8794789bff5d87a8fa319d118(void * det_inline_c_0, image * img_inline_c_1, int * intPtr_inline_c_2, void ** dblPtr_inline_c_3) {
 
     frontal_face_detector * det = (frontal_face_detector *)det_inline_c_0;
     array2d<rgb_pixel> * img = img_inline_c_1;

@@ -14,7 +14,7 @@ import Vision.DLib.Types.InlineC
 C.context dlibCtx
 
 C.include "<dlib/geometry.h>"
-C.include "<dlib/image_processing/render_face_detections.h>"
+C.include "<dlib/image_processing.h>"
 C.include "<iostream>"
 
 -- C.emitVerbatim "#define alignof(type) offsetof(struct { char c; type d; }, d)"

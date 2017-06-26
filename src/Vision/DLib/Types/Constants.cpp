@@ -1,7 +1,7 @@
 
 #include <dlib/geometry.h>
 
-#include <dlib/image_processing/render_face_detections.h>
+#include <dlib/image_processing.h>
 
 #include <iostream>
 

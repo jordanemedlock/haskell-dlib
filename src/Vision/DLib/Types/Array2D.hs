@@ -26,24 +26,15 @@ C.include "<string>"
 C.include "<dlib/image_processing/frontal_face_detector.h>"
 C.include "<dlib/image_processing.h>"
 C.include "<dlib/image_io.h>"
-C.include "<iostream>"
+C.include "typedefs.h"
 
 
 C.using "namespace dlib"
 C.using "namespace std"
 
-C.emitVerbatim "typedef array2d<rgb_pixel> image;"
-
 newtype Image = Image (Ptr C'Image)
 
 mkImage = Image <$> [C.exp| image * { new array2d<rgb_pixel>() }|]
-
-loadImage :: Image -> String -> IO ()
-loadImage (Image img) fname = do
-  let bs = BS.pack fname
-  [C.block| void {
-    load_image(*$(image * img), $bs-ptr:bs);
-  }|]
 
 pyramidUp :: Image -> IO Image
 pyramidUp (Image img) = Image <$> [C.block| image * {
