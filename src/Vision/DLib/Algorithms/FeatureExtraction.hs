@@ -2,7 +2,21 @@
 {-# LANGUAGE TemplateHaskell #-}
 {-# LANGUAGE CPP #-}
 
-module Vision.DLib.Algorithms.FeatureExtraction where
+
+{-|
+Module      : Vision.DLib.Algorithms.FeatureExtraction
+Description : Feature extraction algorithms
+Copyright   : (c) Jordan Medlock, 2017
+Maintainer  : jordanemedlock@gmail.com
+Portability : POSIX
+
+Contains dlib feature extraction algorithms.
+-}
+module Vision.DLib.Algorithms.FeatureExtraction
+( mkShapePredictor
+, deserializeShapePredictor
+, runShapePredictor
+) where
 
 import qualified Language.C.Inline as C
 import qualified Language.C.Inline.Cpp as C
@@ -29,13 +43,15 @@ C.include "typedefs.h"
 
 C.using "namespace dlib"
 
-
+-- | Creates a ShapePredictor
 mkShapePredictor = ShapePredictor <$> [C.exp| void * { new shape_predictor() }|]
 
+-- | Deserializes a ShapePredictor from a file
 deserializeShapePredictor (ShapePredictor sp) value = do
   let bs = BS.pack value
   [C.block| void { deserialize($bs-ptr:bs) >> *((shape_predictor *)$(void * sp)); } |]
 
+-- | Runs a ShapePredictor on an image within a rectangle
 runShapePredictor :: ShapePredictor -> Image -> Rectangle -> IO Shape
 runShapePredictor (ShapePredictor sp) (Image img) rect = do
   alloca $ \rectPtr -> do

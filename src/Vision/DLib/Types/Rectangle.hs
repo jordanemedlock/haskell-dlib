@@ -1,3 +1,12 @@
+{-|
+Module      : Vision.DLib.Types.Rectangle
+Description : C utilities and types
+Copyright   : (c) Jordan Medlock, 2017
+Maintainer  : jordanemedlock@gmail.com
+Portability : POSIX
+
+Contains many C utilities and types.
+-}
 module Vision.DLib.Types.Rectangle
 ( Rectangle(..)
 ) where

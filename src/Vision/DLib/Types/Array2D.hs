@@ -2,6 +2,16 @@
 {-# LANGUAGE TemplateHaskell #-}
 {-# LANGUAGE CPP #-}
 
+
+{-|
+Module      : Vision.DLib.Types.Array2D
+Description : Array2D type
+Copyright   : (c) Jordan Medlock, 2017
+Maintainer  : jordanemedlock@gmail.com
+Portability : POSIX
+
+The Array2D type represents a dlib image.
+-}
 module Vision.DLib.Types.Array2D where
 
 
@@ -20,7 +30,6 @@ import           Vision.DLib.Types.InlineC
 
 C.context dlibCtx
 
-
 C.include "<string>"
 
 C.include "<dlib/image_processing/frontal_face_detector.h>"
@@ -32,10 +41,13 @@ C.include "typedefs.h"
 C.using "namespace dlib"
 C.using "namespace std"
 
+-- | Represents a pointer to the C++ array_2d<rgb_pixel> type.
 newtype Image = Image (Ptr C'Image)
 
+-- | Creates an empty image pointer
 mkImage = Image <$> [C.exp| image * { new array2d<rgb_pixel>() }|]
 
+-- | Upscales an image.  Goto <http://dlib.net/imaging.html#pyramid_up> for documentation.
 pyramidUp :: Image -> IO Image
 pyramidUp (Image img) = Image <$> [C.block| image * {
     array2d<rgb_pixel> * img = $(image * img);

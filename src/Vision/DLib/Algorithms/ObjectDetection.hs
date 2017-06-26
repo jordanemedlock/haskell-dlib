@@ -2,7 +2,21 @@
 {-# LANGUAGE TemplateHaskell #-}
 {-# LANGUAGE CPP #-}
 
-module Vision.DLib.Algorithms.ObjectDetection where
+
+{-|
+Module      : Vision.DLib.Algorithms.ObjectDetection
+Description : Object detection algorithms
+Copyright   : (c) Jordan Medlock, 2017
+Maintainer  : jordanemedlock@gmail.com
+Portability : POSIX
+
+Contains dlib object detection algorithms.
+-}
+module Vision.DLib.Algorithms.ObjectDetection
+( FrontalFaceDetector(..)
+, mkFrontalFaceDetector
+, runFrontalFaceDetector
+) where
 
 import qualified Language.C.Inline as C
 import qualified Language.C.Inline.Cpp as C
@@ -21,11 +35,14 @@ C.include "typedefs.h"
 
 C.using "namespace dlib"
 
+-- | Represents a pointer to the c++ type @frontal_face_detector@
 newtype FrontalFaceDetector = FrontalFaceDetector (Ptr ()) deriving Show
 
+-- | Creates a FrontalFaceDetector
 mkFrontalFaceDetector :: IO FrontalFaceDetector
 mkFrontalFaceDetector = FrontalFaceDetector <$> [C.exp| void * { new frontal_face_detector(get_frontal_face_detector()) }|]
 
+-- | Runs a FrontalFaceDetector
 runFrontalFaceDetector :: FrontalFaceDetector -> Image -> IO [Rectangle]
 runFrontalFaceDetector (FrontalFaceDetector det) (Image img) = do
   (n, voidPtr) <- C.withPtrs_ $ \(intPtr, dblPtr) -> [C.block| void {

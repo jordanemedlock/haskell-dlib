@@ -2,6 +2,16 @@
 {-# LANGUAGE TemplateHaskell #-}
 {-# LANGUAGE CPP #-}
 
+
+{-|
+Module      : Vision.DLib.Types.Constants
+Description : C constants
+Copyright   : (c) Jordan Medlock, 2017
+Maintainer  : jordanemedlock@gmail.com
+Portability : POSIX
+
+Contains many C constants. Mostly sizeof's and alignof's
+-}
 module Vision.DLib.Types.Constants where
 
 

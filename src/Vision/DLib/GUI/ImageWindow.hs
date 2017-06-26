@@ -1,6 +1,17 @@
 {-# LANGUAGE QuasiQuotes #-}
 {-# LANGUAGE TemplateHaskell #-}
 
+
+{-|
+Module      : Vision.DLib.GUI.ImageWindow
+Description : Image Window type
+Copyright   : (c) Jordan Medlock, 2017
+Maintainer  : jordanemedlock@gmail.com
+Portability : POSIX
+
+Displays an image in its own window.  Must have gui support and not have the 
+DLIB_NO_GUI_SUPPORT flag declared.
+-}
 module Vision.DLib.GUI.ImageWindow where
 
 
@@ -32,10 +43,11 @@ C.include "typedefs.h"
 
 C.using "namespace dlib"
 
+-- | Represents a pointer to the C++ type @image_window@
 newtype ImageWindow = ImageWindow (Ptr C'ImageWindow) deriving Show
 
 
-
+-- | Creates an @ImageWindow@
 mkImageWindow :: IO ImageWindow
 mkImageWindow = ImageWindow <$> [C.block| image_window * {
 #ifndef DLIB_NO_GUI_SUPPORT
@@ -44,6 +56,7 @@ mkImageWindow = ImageWindow <$> [C.block| image_window * {
   return 0;
 }|]
 
+-- | Clears the @ImageWindow@
 winClearOverlay :: ImageWindow -> IO ()
 winClearOverlay (ImageWindow ptr) = [C.block| void {
 #ifndef DLIB_NO_GUI_SUPPORT
@@ -51,6 +64,7 @@ winClearOverlay (ImageWindow ptr) = [C.block| void {
 #endif
 }|]
 
+-- | Sets the image to display in the @ImageWindow@
 winSetImage :: ImageWindow -> Image -> IO ()
 winSetImage (ImageWindow winPtr) (Image imgPtr) = [C.block| void {
 #ifndef DLIB_NO_GUI_SUPPORT
@@ -58,7 +72,7 @@ winSetImage (ImageWindow winPtr) (Image imgPtr) = [C.block| void {
 #endif
 }|]
 
-
+-- | Displays a face detection @Shape@ 
 winAddFaceDetection :: ImageWindow -> Shape -> IO ()
 winAddFaceDetection (ImageWindow winPtr) shape = do
   withPtr shape $ \shapePtr -> do
