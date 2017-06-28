@@ -16,14 +16,9 @@ module Vision.DLib.Types.Array2D where
 
 
 import qualified Language.C.Inline as C
-import qualified Language.C.Inline.Internal as C
 import qualified Language.C.Inline.Cpp as C
-import qualified Data.ByteString.Char8 as BS
 import           Foreign.Ptr
-import           Foreign.Marshal.Array
-import           Data.Monoid
 
-import           Vision.DLib.Types.RGBPixel
 import           Vision.DLib.Types.C
 import           Vision.DLib.Types.InlineC
 
@@ -45,6 +40,7 @@ C.using "namespace std"
 newtype Image = Image (Ptr C'Image)
 
 -- | Creates an empty image pointer
+mkImage :: IO Image
 mkImage = Image <$> [C.exp| image * { new array2d<rgb_pixel>() }|]
 
 -- | Upscales an image.  Goto <http://dlib.net/imaging.html#pyramid_up> for documentation.

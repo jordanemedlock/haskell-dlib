@@ -15,7 +15,7 @@ Containes the dlibCtx context value.
 module Vision.DLib.Types.InlineC where
 
 
-import Foreign.Ptr ( FunPtr )
+
 import Data.Monoid ( (<>), mempty )
 import qualified Data.Map as M
 import qualified Language.C.Inline as C

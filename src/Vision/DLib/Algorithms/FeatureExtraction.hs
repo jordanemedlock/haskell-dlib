@@ -23,18 +23,14 @@ import qualified Language.C.Inline.Cpp as C
 
 import           Foreign.Ptr
 import           Foreign.Storable
-import           Foreign.Marshal.Array
 import           Foreign.Marshal.Alloc
 import qualified Data.ByteString.Char8 as BS
 
 import           Vision.DLib.Types.Array2D
 import           Vision.DLib.Types.Rectangle
-import           Vision.DLib.Types.Vector
 import           Vision.DLib.Types.InlineC
 import           Vision.DLib.Types.C
 import           Vision.DLib.Types.Shape
-import           Data.Monoid
-import           Control.Monad
 
 C.context dlibCtx
 
@@ -44,9 +40,11 @@ C.include "typedefs.h"
 C.using "namespace dlib"
 
 -- | Creates a ShapePredictor
+mkShapePredictor :: IO ShapePredictor
 mkShapePredictor = ShapePredictor <$> [C.exp| void * { new shape_predictor() }|]
 
 -- | Deserializes a ShapePredictor from a file
+deserializeShapePredictor :: ShapePredictor -> String -> IO ()
 deserializeShapePredictor (ShapePredictor sp) value = do
   let bs = BS.pack value
   [C.block| void { deserialize($bs-ptr:bs) >> *((shape_predictor *)$(void * sp)); } |]

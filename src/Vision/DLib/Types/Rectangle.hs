@@ -79,9 +79,8 @@ toCLong :: Int -> CLong
 toCLong = fromIntegral
 
 instance FromJSON Rectangle where
-  parseJSON (Object o) = Rectangle
+  parseJSON = withObject "Rectangle" $ \o -> Rectangle
     <$> (toCLong <$> o .: "left")
     <*> (toCLong <$> o .: "top")
     <*> (toCLong <$> o .: "right")
     <*> (toCLong <$> o .: "bottom")
-  parseJSON _ = fail "Failed to parse rectangle"

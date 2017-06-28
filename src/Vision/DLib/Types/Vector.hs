@@ -21,7 +21,6 @@ import qualified Language.C.Inline.Cpp as C
 import Foreign.C.Types
 import Foreign.Storable
 import Foreign.Ptr
-import GHC.TypeLits
 import Vision.DLib.Types.C
 import Vision.DLib.Types.InlineC
 import Vision.DLib.Types.Constants
@@ -42,6 +41,7 @@ data Point = Point
 
 type instance C Point = C'Point
 
+alloca_point :: (Ptr C'Point -> IO a) -> IO a
 alloca_point f = do
   ptr <- [C.exp| point * { new point() }|]
   
@@ -87,7 +87,7 @@ toCLong :: Int -> CLong
 toCLong = fromIntegral
 
 instance FromJSON Point where
-  parseJSON (Object o) = do
+  parseJSON = withObject "Point" $ \o -> do
     x <- toCLong <$> o .: "x"
     y <- toCLong <$> o .: "y"
     return $ Point x y
