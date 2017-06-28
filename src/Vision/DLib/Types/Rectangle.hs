@@ -84,3 +84,4 @@ instance FromJSON Rectangle where
     <*> (toCLong <$> o .: "top")
     <*> (toCLong <$> o .: "right")
     <*> (toCLong <$> o .: "bottom")
+  parseJSON _ = fail "Failed to parse rectangle"

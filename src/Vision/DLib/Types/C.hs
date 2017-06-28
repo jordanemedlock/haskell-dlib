@@ -10,11 +10,10 @@ Contains many C utilities and types.
 -}
 module Vision.DLib.Types.C where
 
-import Foreign.C.Types
-import Foreign.Ptr ( Ptr, nullPtr )
-import Foreign.ForeignPtr ( ForeignPtr )
-import Data.Int ( Int32 )
-import GHC.TypeLits
+
+import Foreign.C.Types ( CLong, CDouble )
+import Foreign.Ptr ( Ptr )
+import GHC.TypeLits ( Nat )
 
 -- | Type family of C representations of Haskell types.
 type family C (a :: *) :: *

@@ -20,12 +20,6 @@ import qualified Language.C.Inline.Cpp as C
 import qualified Language.C.Inline.Internal as C
 
 import           Foreign.Ptr
-import           Foreign.Storable
-import           Foreign.Marshal.Array
-import           Foreign.Marshal.Alloc
-import qualified Data.ByteString.Char8 as BS
-
-import           Data.Monoid
 
 import           Vision.DLib.Types.InlineC
 import           Vision.DLib.Types.C

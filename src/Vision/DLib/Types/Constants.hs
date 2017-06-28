@@ -16,8 +16,6 @@ module Vision.DLib.Types.Constants where
 
 
 import qualified Language.C.Inline as C
-import qualified Language.C.Inline.Internal as C
-import qualified Language.C.Inline.Cpp as C
 
 import Vision.DLib.Types.InlineC
 

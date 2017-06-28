@@ -17,17 +17,12 @@ import qualified Language.C.Inline as C
 import qualified Language.C.Inline.Cpp as C
 
 import           Foreign.Ptr
-import           Foreign.Storable
 import           Foreign.Marshal.Array
-import           Foreign.Marshal.Alloc
-import qualified Data.ByteString.Char8 as BS
 
-import           Vision.DLib.Types.Array2D
 import           Vision.DLib.Types.Rectangle
 import           Vision.DLib.Types.Vector
 import           Vision.DLib.Types.InlineC
 import           Vision.DLib.Types.C
-import           Vision.DLib.Types.Constants
 import           Data.Monoid
 import           Data.Aeson
 import           Control.Monad
