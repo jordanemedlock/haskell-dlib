@@ -2,6 +2,15 @@
 {-# LANGUAGE TemplateHaskell #-}
 {-# LANGUAGE CPP #-}
 
+{-|
+Module      : Vision.DLib.Types.Vector
+Description : DLib Point type
+Copyright   : (c) Jordan Medlock, 2017
+Maintainer  : jordanemedlock@gmail.com
+Portability : POSIX
+
+Represents an x,y coordinate.
+-}
 module Vision.DLib.Types.Vector 
 ( Point(..)
 ) where
@@ -25,6 +34,7 @@ C.include "<dlib/geometry.h>"
 
 C.using "namespace dlib"
 
+-- | Represents a coordinate on the xy-plane
 data Point = Point 
   { ptX :: CLong
   , ptY :: CLong

@@ -2,6 +2,16 @@
 {-# LANGUAGE TemplateHaskell #-}
 {-# LANGUAGE CPP #-}
 
+
+{-|
+Module      : Vision.DLib.IO
+Description : Input output functions
+Copyright   : (c) Jordan Medlock, 2017
+Maintainer  : jordanemedlock@gmail.com
+Portability : POSIX
+
+load* functions and save* functions.
+-}
 module Vision.DLib.IO where
 
 import qualified Language.C.Inline as C
@@ -29,7 +39,7 @@ C.include "<dlib/image_io.h>"
 C.include "<iostream>"
 C.include "typedefs.h"
 
-
+-- | Loads an image without specifying the image format.
 loadImage :: Image -> String -> IO ()
 loadImage (Image img) fname = do
   let bs = BS.pack fname
@@ -37,6 +47,7 @@ loadImage (Image img) fname = do
     load_image(*$(image * img), $bs-ptr:bs);
   }|]
 
+-- | Load a bitmap image
 loadBMP :: Image -> String -> IO ()
 loadBMP (Image img) fname = do
   let bs = BS.pack fname
@@ -44,6 +55,7 @@ loadBMP (Image img) fname = do
     load_bmp(*$(image * img), $bs-ptr:bs);
   }|]
 
+-- | Load a DNG file
 loadDNG :: Image -> String -> IO ()
 loadDNG (Image img) fname = do
   let bs = BS.pack fname
@@ -51,6 +63,7 @@ loadDNG (Image img) fname = do
     load_dng(*$(image * img), $bs-ptr:bs);
   }|]
 
+-- | Load a JPEG file
 loadJPEG :: Image -> String -> IO ()
 loadJPEG (Image img) fname = do
   let bs = BS.pack fname
@@ -58,6 +71,7 @@ loadJPEG (Image img) fname = do
     load_jpeg(*$(image * img), $bs-ptr:bs);
   }|]
 
+-- | Load a PNG file
 loadPNG :: Image -> String -> IO ()
 loadPNG (Image img) fname = do
   let bs = BS.pack fname
@@ -65,6 +79,7 @@ loadPNG (Image img) fname = do
     load_png(*$(image * img), $bs-ptr:bs);
   }|]
 
+-- | Save to a bitmap file
 saveBMP :: Image -> String -> IO ()
 saveBMP (Image img) fname = do
   let bs = BS.pack fname
@@ -72,6 +87,7 @@ saveBMP (Image img) fname = do
     save_bmp(*$(image * img), $bs-ptr:bs); 
   }|]
   
+-- | Save to a DNG file
 saveDNG :: Image -> String -> IO ()
 saveDNG (Image img) fname = do
   let bs = BS.pack fname
@@ -79,6 +95,7 @@ saveDNG (Image img) fname = do
     save_dng(*$(image * img), $bs-ptr:bs); 
   }|]
   
+-- | Save to a JPEG file
 saveJPEG :: Image -> String -> IO ()
 saveJPEG (Image img) fname = do
   let bs = BS.pack fname
@@ -86,6 +103,7 @@ saveJPEG (Image img) fname = do
     save_jpeg(*$(image * img), $bs-ptr:bs); 
   }|]
   
+-- | Save to a PNG file
 savePNG :: Image -> String -> IO ()
 savePNG (Image img) fname = do
   let bs = BS.pack fname

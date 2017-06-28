@@ -2,6 +2,15 @@
 {-# LANGUAGE TemplateHaskell #-}
 {-# LANGUAGE CPP #-}
 
+{-|
+Module      : Vision.DLib.Types.Shape
+Description : DLib Shape type
+Copyright   : (c) Jordan Medlock, 2017
+Maintainer  : jordanemedlock@gmail.com
+Portability : POSIX
+
+DLib Shape type.  Equivalent to the C++ type @full_object_detection@
+-}
 module Vision.DLib.Types.Shape where
 
 import qualified Language.C.Inline as C
@@ -29,10 +38,12 @@ C.include "<dlib/image_processing.h>"
 
 C.using "namespace dlib"
 
+-- | Represents a pointer to the C++ type @shape_predictor@
 newtype ShapePredictor = ShapePredictor (Ptr ())
 
 type instance C Shape = C'Shape
 
+-- | Represents a @full_object_detection@
 data Shape = Shape
   { shParts :: [Point]
   , shRect :: Rectangle

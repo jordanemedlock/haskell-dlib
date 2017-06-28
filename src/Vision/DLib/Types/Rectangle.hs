@@ -1,11 +1,11 @@
 {-|
 Module      : Vision.DLib.Types.Rectangle
-Description : C utilities and types
+Description : DLib Rectangle type
 Copyright   : (c) Jordan Medlock, 2017
 Maintainer  : jordanemedlock@gmail.com
 Portability : POSIX
 
-Contains many C utilities and types.
+DLib Rectangle type
 -}
 module Vision.DLib.Types.Rectangle
 ( Rectangle(..)
@@ -20,6 +20,7 @@ import Vision.DLib.Types.Constants
 import Data.Aeson
 import Data.Monoid
 
+-- | Rectangle data type
 data Rectangle = Rectangle
   { rectLeft :: CLong
   , rectTop :: CLong
