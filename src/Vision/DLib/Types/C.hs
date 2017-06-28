@@ -13,7 +13,7 @@ module Vision.DLib.Types.C where
 
 import Foreign.C.Types ( CLong, CDouble )
 import Foreign.Ptr ( Ptr )
-import GHC.TypeLits ( Nat )
+import GHC.TypeLits ( Nat ) 
 
 -- | Type family of C representations of Haskell types.
 type family C (a :: *) :: *
@@ -21,7 +21,8 @@ type family C (a :: *) :: *
 class CSizeOf a where
   -- | Computes the storage requirements (in bytes) of values of
   -- type @a@ in C.
-  cSizeOf :: proxy a -> Int
+  cSizeOf :: a -> Int
+  cAlignOf :: a -> Int
 
 -- | Perform an IO action with a pointer to the C equivalent of a value
 class WithPtr a where

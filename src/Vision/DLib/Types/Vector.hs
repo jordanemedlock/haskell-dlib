@@ -23,13 +23,14 @@ import Foreign.Storable
 import Foreign.Ptr
 import Vision.DLib.Types.C
 import Vision.DLib.Types.InlineC
-import Vision.DLib.Types.Constants
+
 import Data.Aeson
 import Data.Monoid
 
 C.context dlibCtx
 
 C.include "<dlib/geometry.h>"
+C.include "<iostream>"
 
 C.using "namespace dlib"
 
@@ -40,6 +41,11 @@ data Point = Point
   } deriving Show
 
 type instance C Point = C'Point
+
+
+instance CSizeOf Point where
+  cSizeOf _ = fromIntegral [C.pure| long { sizeof(dlib::point) }|]
+  cAlignOf _ = fromIntegral [C.pure| long { alignof(dlib::point) }|]
 
 alloca_point :: (Ptr C'Point -> IO a) -> IO a
 alloca_point f = do
@@ -52,8 +58,8 @@ alloca_point f = do
   return ret
 
 instance Storable Point where
-  sizeOf _ = fromIntegral sizeofPoint
-  alignment _ = fromIntegral alignofPoint
+  sizeOf = cSizeOf
+  alignment = cAlignOf
   peek ptr = do
     let longPtr = castPtr ptr :: Ptr CLong
     x <- peekElemOff longPtr 0

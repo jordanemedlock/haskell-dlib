@@ -7,6 +7,8 @@
 
 #include <dlib/image_io.h>
 
+#include <iostream>
+
 #include "typedefs.h"
 
 using namespace dlib;

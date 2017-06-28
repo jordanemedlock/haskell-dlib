@@ -24,21 +24,20 @@ library
                      , Vision.DLib.Types.C
                      , Vision.DLib.Types.InlineC
                      , Vision.DLib.Types.Vector
-                     , Vision.DLib.Types.Constants
                      , Vision.DLib.Types.Shape
                      , Vision.DLib.GUI.ImageWindow
                      , Vision.DLib.IO
   c-sources:           src/Vision/DLib/Algorithms/ObjectDetection.cpp
                      , src/Vision/DLib/Algorithms/FeatureExtraction.cpp
                      , src/Vision/DLib/Types/Array2D.cpp
-                     , src/Vision/DLib/Types/Constants.cpp
                      , src/Vision/DLib/Types/Vector.cpp
                      , src/Vision/DLib/Types/Shape.cpp
+                     , src/Vision/DLib/Types/Rectangle.cpp
                      , src/Vision/DLib/GUI/ImageWindow.cpp
                      , src/Vision/DLib/IO.cpp
   extra-libraries:     stdc++, dlib, lapack, blas
   CC-options:          -std=c++11
-  include-dirs:        include
+  include-dirs:        include/
   ghc-options:         -Wall
   build-depends:       base >= 4.7 && < 5
                      , inline-c

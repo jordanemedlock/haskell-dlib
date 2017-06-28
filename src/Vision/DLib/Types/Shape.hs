@@ -30,7 +30,7 @@ import           Control.Monad
 C.context dlibCtx
 
 C.include "<dlib/image_processing.h>"
-
+C.include "<iostream>"
 C.using "namespace dlib"
 
 -- | Represents a pointer to the C++ type @shape_predictor@
@@ -43,6 +43,11 @@ data Shape = Shape
   { shParts :: [Point]
   , shRect :: Rectangle
   } deriving Show
+
+instance CSizeOf Shape where
+  cSizeOf _ = fromIntegral [C.pure| long { sizeof(dlib::full_object_detection) }|]
+  cAlignOf _ = fromIntegral [C.pure| long { alignof(dlib::full_object_detection) }|]
+
 
 -- instance Storable Shape where
 --   sizeOf _ = fromIntegral sizeofShape

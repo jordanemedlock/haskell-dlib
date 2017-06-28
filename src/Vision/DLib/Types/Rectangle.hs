@@ -1,3 +1,7 @@
+{-# LANGUAGE QuasiQuotes #-}
+{-# LANGUAGE TemplateHaskell #-}
+{-# LANGUAGE CPP #-}
+
 {-|
 Module      : Vision.DLib.Types.Rectangle
 Description : DLib Rectangle type
@@ -11,14 +15,19 @@ module Vision.DLib.Types.Rectangle
 ( Rectangle(..)
 ) where
 
+import qualified Language.C.Inline as C
 import Foreign.C.Types
 import Foreign.Storable
 import Foreign.Ptr
 import Foreign.Marshal.Alloc
 import Vision.DLib.Types.C
-import Vision.DLib.Types.Constants
+import Vision.DLib.Types.InlineC
 import Data.Aeson
 import Data.Monoid
+
+C.context dlibCtx
+C.include "<dlib/geometry.h>"
+C.include "<iostream>"
 
 -- | Rectangle data type
 data Rectangle = Rectangle
@@ -33,9 +42,13 @@ instance Show Rectangle where
 
 type instance C Rectangle = C'Rectangle
 
+instance CSizeOf Rectangle where 
+  cSizeOf _ = fromIntegral [C.pure| long { sizeof(dlib::rectangle) }|]
+  cAlignOf _ = fromIntegral [C.pure| long { alignof(dlib::rectangle) }|]
+
 instance Storable Rectangle where
-  sizeOf _ = fromIntegral sizeofRect
-  alignment _ = fromIntegral alignofRect
+  sizeOf = cSizeOf
+  alignment = cSizeOf
   peek ptr = do
     let longPtr = castPtr ptr :: Ptr CLong
     l <- peekElemOff longPtr 0

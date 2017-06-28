@@ -30,6 +30,7 @@ C.include "<string>"
 C.include "<dlib/image_processing/frontal_face_detector.h>"
 C.include "<dlib/image_processing.h>"
 C.include "<dlib/image_io.h>"
+C.include "<iostream>"
 C.include "typedefs.h"
 
 

@@ -1,6 +1,8 @@
 
 #include <dlib/geometry.h>
 
+#include <iostream>
+
 using namespace dlib;
 
 extern "C" {
@@ -37,6 +39,20 @@ void inline_c_Vision_DLib_Types_Vector_4_e8a89df3373df7490be70fa3382d98519b027eb
         ptr_inline_c_0->x() = x_inline_c_1;         
         ptr_inline_c_2->y() = y_inline_c_3;
       
+}
+
+}
+
+extern "C" {
+long inline_c_Vision_DLib_Types_Vector_5_21d0deb62b12fd984a5313034cd73e60f2301dcf() {
+return ( sizeof(dlib::point) );
+}
+
+}
+
+extern "C" {
+long inline_c_Vision_DLib_Types_Vector_6_e446a29f3d2c8cddd1314c48b9f487536e3844f6() {
+return ( alignof(dlib::point) );
 }
 
 }

@@ -1,6 +1,8 @@
 
 #include <dlib/image_processing.h>
 
+#include <iostream>
+
 using namespace dlib;
 
 extern "C" {
@@ -43,6 +45,20 @@ full_object_detection * inline_c_Vision_DLib_Types_Shape_3_bf38ba6cad3360b00f10b
 extern "C" {
 void inline_c_Vision_DLib_Types_Shape_4_c1dbde5bf8e9b8a2397c588ad78a3b14fb8f7631(full_object_detection * ptr_inline_c_0) {
  delete ptr_inline_c_0; 
+}
+
+}
+
+extern "C" {
+long inline_c_Vision_DLib_Types_Shape_5_c869e60429d1294e88dee44596bcf70925b12637() {
+return ( sizeof(dlib::full_object_detection) );
+}
+
+}
+
+extern "C" {
+long inline_c_Vision_DLib_Types_Shape_6_df377a0566320ac2c5cb8cb1a6447e8e7e205c81() {
+return ( alignof(dlib::full_object_detection) );
 }
 
 }
