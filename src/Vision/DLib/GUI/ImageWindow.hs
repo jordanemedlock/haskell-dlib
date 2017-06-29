@@ -25,6 +25,7 @@ import           Vision.DLib.Types.InlineC
 import           Vision.DLib.Types.C
 import           Vision.DLib.Types.Array2D
 import           Vision.DLib.Types.Shape
+import           Control.Processor
 
 C.context dlibCtx
 
@@ -48,6 +49,15 @@ mkImageWindow = ImageWindow <$> [C.block| image_window * {
   return new image_window();
 #endif
   return 0;
+}|]
+
+
+-- | Destroys an @ImageWindow@
+destroyImageWindow :: ImageWindow -> IO ()
+destroyImageWindow (ImageWindow win) = [C.block| void {
+#ifndef DLIB_NO_GUI_SUPPORT
+  delete $(image_window * win);
+#endif
 }|]
 
 -- | Clears the @ImageWindow@
@@ -75,3 +85,14 @@ winAddFaceDetection (ImageWindow winPtr) shape = do
       $(image_window * winPtr)->add_overlay(render_face_detections(*$(full_object_detection * shapePtr)));
     #endif
     }|]
+
+imageWindow :: IOSink Image
+imageWindow = processor proc alloc run dest
+  where proc img (win, _) = return (win, img)
+        alloc img = do
+          win <- mkImageWindow
+          return (win, img)
+        run (win, img) = do
+          winClearOverlay win
+          winSetImage win img
+        dest (win, _) = destroyImageWindow win

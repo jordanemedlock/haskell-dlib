@@ -3,5 +3,4 @@
 # TODO
 
 - Add IOProcessors
-  + ImageWindow
   + IO
