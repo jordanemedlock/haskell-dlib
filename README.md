@@ -2,7 +2,6 @@
 
 # TODO
 
-- Documentation
-  + Continue from Rectangle
-- Refactor
-  + Start somewhere
+- Add IOProcessors
+  + ImageWindow
+  + IO

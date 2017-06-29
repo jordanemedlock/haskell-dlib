@@ -46,6 +46,7 @@ library
                      , bytestring
                      , containers
                      , aeson
+                     , allocated-processor
   default-language:    Haskell2010
   default-extensions:  BangPatterns
                      , DataKinds

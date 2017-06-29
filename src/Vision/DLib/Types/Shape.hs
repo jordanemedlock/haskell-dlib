@@ -33,8 +33,6 @@ C.include "<dlib/image_processing.h>"
 C.include "<iostream>"
 C.using "namespace dlib"
 
--- | Represents a pointer to the C++ type @shape_predictor@
-newtype ShapePredictor = ShapePredictor (Ptr ())
 
 type instance C Shape = C'Shape
 

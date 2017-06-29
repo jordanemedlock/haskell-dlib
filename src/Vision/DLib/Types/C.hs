@@ -72,3 +72,9 @@ data C'RGBPixel
 
 -- | Represents the dlib type @array_2d<rgb_pixel>@
 type C'Image = C'Array2D C'RGBPixel
+
+-- | Represents the dlib type @shape_preditor@
+data C'ShapePredictor
+
+-- | Represents the dlib type @frontal_face_detector@
+data C'FrontalFaceDetector

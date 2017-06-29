@@ -14,8 +14,6 @@ Containes the dlibCtx context value.
 -}
 module Vision.DLib.Types.InlineC where
 
-
-
 import Data.Monoid ( (<>), mempty )
 import qualified Data.Map as M
 import qualified Language.C.Inline as C
@@ -38,6 +36,8 @@ dlibTypesTable = M.fromList
   , ( C.TypeName "full_object_detection", [t| C'Shape |])
   , ( C.TypeName "image_window", [t| C'ImageWindow |])
   , ( C.TypeName "image", [t| C'Image |])
+  , ( C.TypeName "shape_predictor", [t| C'ShapePredictor |])
+  , ( C.TypeName "frontal_face_detector", [t| C'FrontalFaceDetector |])
   ]
 
 {-
