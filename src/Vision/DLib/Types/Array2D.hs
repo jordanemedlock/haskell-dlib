@@ -2,24 +2,28 @@
 {-# LANGUAGE TemplateHaskell #-}
 {-# LANGUAGE CPP #-}
 
+
+{-|
+Module      : Vision.DLib.Types.Array2D
+Description : Array2D type
+Copyright   : (c) Jordan Medlock, 2017
+Maintainer  : jordanemedlock@gmail.com
+Portability : POSIX
+
+The Array2D type represents a dlib image.
+-}
 module Vision.DLib.Types.Array2D where
 
 
 import qualified Language.C.Inline as C
-import qualified Language.C.Inline.Internal as C
 import qualified Language.C.Inline.Cpp as C
-import qualified Data.ByteString.Char8 as BS
 import           Foreign.Ptr
-import           Foreign.Marshal.Array
-import           Data.Monoid
 
-import           Vision.DLib.Types.RGBPixel
 import           Vision.DLib.Types.C
 import           Vision.DLib.Types.InlineC
 
 
 C.context dlibCtx
-
 
 C.include "<string>"
 
@@ -27,24 +31,20 @@ C.include "<dlib/image_processing/frontal_face_detector.h>"
 C.include "<dlib/image_processing.h>"
 C.include "<dlib/image_io.h>"
 C.include "<iostream>"
+C.include "typedefs.h"
 
 
 C.using "namespace dlib"
 C.using "namespace std"
 
-C.emitVerbatim "typedef array2d<rgb_pixel> image;"
-
+-- | Represents a pointer to the C++ array_2d<rgb_pixel> type.
 newtype Image = Image (Ptr C'Image)
 
+-- | Creates an empty image pointer
+mkImage :: IO Image
 mkImage = Image <$> [C.exp| image * { new array2d<rgb_pixel>() }|]
 
-loadImage :: Image -> String -> IO ()
-loadImage (Image img) fname = do
-  let bs = BS.pack fname
-  [C.block| void {
-    load_image(*$(image * img), $bs-ptr:bs);
-  }|]
-
+-- | Upscales an image.  Goto <http://dlib.net/imaging.html#pyramid_up> for documentation.
 pyramidUp :: Image -> IO Image
 pyramidUp (Image img) = Image <$> [C.block| image * {
     array2d<rgb_pixel> * img = $(image * img);

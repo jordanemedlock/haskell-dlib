@@ -9,7 +9,7 @@ import Vision.DLib.Types.Shape as Exports
 import Vision.DLib.Types.Vector as Exports
 import Vision.DLib.Algorithms.ObjectDetection as Exports
 import Vision.DLib.Algorithms.FeatureExtraction as Exports
-import Vision.DLib.Types.Constants as Exports
 import Vision.DLib.GUI.ImageWindow as Exports
 import Vision.DLib.Types.C as Exports
 import Vision.DLib.Types.InlineC as Exports
+import Vision.DLib.IO as Exports

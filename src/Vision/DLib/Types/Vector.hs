@@ -2,6 +2,15 @@
 {-# LANGUAGE TemplateHaskell #-}
 {-# LANGUAGE CPP #-}
 
+{-|
+Module      : Vision.DLib.Types.Vector
+Description : DLib Point type
+Copyright   : (c) Jordan Medlock, 2017
+Maintainer  : jordanemedlock@gmail.com
+Portability : POSIX
+
+Represents an x,y coordinate.
+-}
 module Vision.DLib.Types.Vector 
 ( Point(..)
 ) where
@@ -12,19 +21,20 @@ import qualified Language.C.Inline.Cpp as C
 import Foreign.C.Types
 import Foreign.Storable
 import Foreign.Ptr
-import GHC.TypeLits
 import Vision.DLib.Types.C
 import Vision.DLib.Types.InlineC
-import Vision.DLib.Types.Constants
+
 import Data.Aeson
 import Data.Monoid
 
 C.context dlibCtx
 
 C.include "<dlib/geometry.h>"
+C.include "<iostream>"
 
 C.using "namespace dlib"
 
+-- | Represents a coordinate on the xy-plane
 data Point = Point 
   { ptX :: CLong
   , ptY :: CLong
@@ -32,6 +42,12 @@ data Point = Point
 
 type instance C Point = C'Point
 
+
+instance CSizeOf Point where
+  cSizeOf _ = fromIntegral [C.pure| long { sizeof(dlib::point) }|]
+  cAlignOf _ = fromIntegral [C.pure| long { alignof(dlib::point) }|]
+
+alloca_point :: (Ptr C'Point -> IO a) -> IO a
 alloca_point f = do
   ptr <- [C.exp| point * { new point() }|]
   
@@ -42,8 +58,8 @@ alloca_point f = do
   return ret
 
 instance Storable Point where
-  sizeOf _ = fromIntegral sizeofPoint
-  alignment _ = fromIntegral alignofPoint
+  sizeOf = cSizeOf
+  alignment = cAlignOf
   peek ptr = do
     let longPtr = castPtr ptr :: Ptr CLong
     x <- peekElemOff longPtr 0
@@ -77,7 +93,7 @@ toCLong :: Int -> CLong
 toCLong = fromIntegral
 
 instance FromJSON Point where
-  parseJSON (Object o) = do
+  parseJSON = withObject "Point" $ \o -> do
     x <- toCLong <$> o .: "x"
     y <- toCLong <$> o .: "y"
     return $ Point x y

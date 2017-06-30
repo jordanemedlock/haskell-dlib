@@ -2,3 +2,4 @@ src/**/*.cpp
 .stack-work
 data/
 core.*
+src/**/*.cpp

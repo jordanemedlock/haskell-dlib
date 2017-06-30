@@ -2,23 +2,27 @@
 {-# LANGUAGE TemplateHaskell #-}
 {-# LANGUAGE CPP #-}
 
+{-|
+Module      : Vision.DLib.Types.Shape
+Description : DLib Shape type
+Copyright   : (c) Jordan Medlock, 2017
+Maintainer  : jordanemedlock@gmail.com
+Portability : POSIX
+
+DLib Shape type.  Equivalent to the C++ type @full_object_detection@
+-}
 module Vision.DLib.Types.Shape where
 
 import qualified Language.C.Inline as C
 import qualified Language.C.Inline.Cpp as C
 
 import           Foreign.Ptr
-import           Foreign.Storable
 import           Foreign.Marshal.Array
-import           Foreign.Marshal.Alloc
-import qualified Data.ByteString.Char8 as BS
 
-import           Vision.DLib.Types.Array2D
 import           Vision.DLib.Types.Rectangle
 import           Vision.DLib.Types.Vector
 import           Vision.DLib.Types.InlineC
 import           Vision.DLib.Types.C
-import           Vision.DLib.Types.Constants
 import           Data.Monoid
 import           Data.Aeson
 import           Control.Monad
@@ -26,17 +30,22 @@ import           Control.Monad
 C.context dlibCtx
 
 C.include "<dlib/image_processing.h>"
-
+C.include "<iostream>"
 C.using "namespace dlib"
 
-newtype ShapePredictor = ShapePredictor (Ptr ())
 
 type instance C Shape = C'Shape
 
+-- | Represents a @full_object_detection@
 data Shape = Shape
   { shParts :: [Point]
   , shRect :: Rectangle
   } deriving Show
+
+instance CSizeOf Shape where
+  cSizeOf _ = fromIntegral [C.pure| long { sizeof(dlib::full_object_detection) }|]
+  cAlignOf _ = fromIntegral [C.pure| long { alignof(dlib::full_object_detection) }|]
+
 
 -- instance Storable Shape where
 --   sizeOf _ = fromIntegral sizeofShape
