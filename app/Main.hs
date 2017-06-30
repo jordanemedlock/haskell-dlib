@@ -8,8 +8,9 @@ import Data.Aeson
 import Data.Aeson.Encode.Pretty
 import qualified Data.ByteString.Lazy.Char8 as BS
 import Control.Monad
+import Control.Processor
 
-
+marr f = processor (return . const) return f (const $ return ())
 
 detectFaces :: FrontalFaceDetector -> ShapePredictor -> String -> IO [Shape]
 detectFaces detector shapePredictor image = do
@@ -41,6 +42,8 @@ main = do
   -- print alignofVector
 
   (spFile:images) <- getArgs
+  
+  let processor = load >>> arr pyramidUp
 
   detector <- mkFrontalFaceDetector
   shapePredictor <- mkShapePredictor

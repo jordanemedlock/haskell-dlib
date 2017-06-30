@@ -46,6 +46,7 @@ library
                      , bytestring
                      , containers
                      , aeson
+                     , filepath
                      , allocated-processor
   default-language:    Haskell2010
   default-extensions:  BangPatterns
@@ -68,6 +69,7 @@ executable haskell-dlib-exe
                      , aeson
                      , aeson-pretty
                      , bytestring
+                     , allocated-processor
                      , haskell-dlib
   default-language:    Haskell2010
 

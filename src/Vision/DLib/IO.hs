@@ -20,6 +20,8 @@ import qualified Data.ByteString.Char8 as BS
 import           Vision.DLib.Types.Array2D
 import           Vision.DLib.Types.InlineC
 import           Control.Processor
+import           System.FilePath.Posix ( takeExtension )
+import           Data.Char
 
 C.context dlibCtx
 
@@ -34,16 +36,27 @@ C.include "typedefs.h"
 
 data FileType = BMP | DNG | JPEG | PNG deriving Show
 
+
+-- | Saves an image using its file extension
+saveImage img filename = case (toLower <$> takeExtension filename) of
+  ".bmp" -> savePNG img filename
+  ".dng" -> saveDNG img filename
+  ".jpg" -> saveJPEG img filename
+  ".jpeg" -> saveJPEG img filename
+  ".png" -> savePNG img filename
+  otherwise -> error "unknown filetype"
+
+-- | IOProcessor that loads an image from file  
 open :: IOProcessor String Image
-open = processor iter alloc run dest
-  where iter fName (img, _) = return (img, fName)
-        alloc fName = do
-          img <- mkImage
-          return (img, fName)
-        run (img, fName) = do
-          loadImage img fName
-          return img
-        dest (img, _) = destroyImage img
+open = arr 
+
+-- | IOProcessor which saves an image to a filename
+save :: IOProcessor (String, Image) ()
+save = processor iter alloc run dest
+  where iter (fname, img) _ = return (fname, img)
+        alloc (fname, img) = return (fname, img)
+        run (fname, img) = saveImage img fname
+        dest _ = return ()
 
 -- | Loads an image without specifying the image format.
 loadImage :: Image -> String -> IO ()
