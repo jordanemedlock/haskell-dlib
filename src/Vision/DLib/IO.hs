@@ -19,7 +19,7 @@ import qualified Data.ByteString.Char8 as BS
 
 import           Vision.DLib.Types.Array2D
 import           Vision.DLib.Types.InlineC
-
+import           Control.Processor
 
 C.context dlibCtx
 
@@ -31,6 +31,19 @@ C.include "<dlib/image_processing.h>"
 C.include "<dlib/image_io.h>"
 C.include "<iostream>"
 C.include "typedefs.h"
+
+data FileType = BMP | DNG | JPEG | PNG deriving Show
+
+open :: IOProcessor String Image
+open = processor iter alloc run dest
+  where iter fName (img, _) = return (img, fName)
+        alloc fName = do
+          img <- mkImage
+          return (img, fName)
+        run (img, fName) = do
+          loadImage img fName
+          return img
+        dest (img, _) = destroyImage img
 
 -- | Loads an image without specifying the image format.
 loadImage :: Image -> String -> IO ()
@@ -77,30 +90,29 @@ saveBMP :: Image -> String -> IO ()
 saveBMP (Image img) fname = do
   let bs = BS.pack fname
   [C.block| void {
-    save_bmp(*$(image * img), $bs-ptr:bs); 
+    save_bmp(*$(image * img), $bs-ptr:bs);
   }|]
-  
+
 -- | Save to a DNG file
 saveDNG :: Image -> String -> IO ()
 saveDNG (Image img) fname = do
   let bs = BS.pack fname
   [C.block| void {
-    save_dng(*$(image * img), $bs-ptr:bs); 
+    save_dng(*$(image * img), $bs-ptr:bs);
   }|]
-  
+
 -- | Save to a JPEG file
 saveJPEG :: Image -> String -> IO ()
 saveJPEG (Image img) fname = do
   let bs = BS.pack fname
   [C.block| void {
-    save_jpeg(*$(image * img), $bs-ptr:bs); 
+    save_jpeg(*$(image * img), $bs-ptr:bs);
   }|]
-  
+
 -- | Save to a PNG file
 savePNG :: Image -> String -> IO ()
 savePNG (Image img) fname = do
   let bs = BS.pack fname
   [C.block| void {
-    save_png(*$(image * img), $bs-ptr:bs); 
+    save_png(*$(image * img), $bs-ptr:bs);
   }|]
-  

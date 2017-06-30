@@ -9,7 +9,7 @@ Copyright   : (c) Jordan Medlock, 2017
 Maintainer  : jordanemedlock@gmail.com
 Portability : POSIX
 
-Displays an image in its own window.  Must have gui support and not have the 
+Displays an image in its own window.  Must have gui support and not have the
 DLIB_NO_GUI_SUPPORT flag declared.
 -}
 module Vision.DLib.GUI.ImageWindow where
@@ -76,7 +76,7 @@ winSetImage (ImageWindow winPtr) (Image imgPtr) = [C.block| void {
 #endif
 }|]
 
--- | Displays a face detection @Shape@ 
+-- | Displays a face detection @Shape@
 winAddFaceDetection :: ImageWindow -> Shape -> IO ()
 winAddFaceDetection (ImageWindow winPtr) shape = do
   withPtr shape $ \shapePtr -> do
@@ -87,8 +87,8 @@ winAddFaceDetection (ImageWindow winPtr) shape = do
     }|]
 
 imageWindow :: IOSink Image
-imageWindow = processor proc alloc run dest
-  where proc img (win, _) = return (win, img)
+imageWindow = processor iter alloc run dest
+  where iter img (win, _) = return (win, img)
         alloc img = do
           win <- mkImageWindow
           return (win, img)

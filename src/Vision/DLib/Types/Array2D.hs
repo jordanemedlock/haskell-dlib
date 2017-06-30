@@ -22,7 +22,6 @@ import           Foreign.Ptr
 import           Vision.DLib.Types.C
 import           Vision.DLib.Types.InlineC
 
-
 C.context dlibCtx
 
 C.include "<string>"
@@ -43,6 +42,9 @@ newtype Image = Image (Ptr C'Image)
 -- | Creates an empty image pointer
 mkImage :: IO Image
 mkImage = Image <$> [C.exp| image * { new array2d<rgb_pixel>() }|]
+
+destroyImage :: Image -> IO ()
+destroyImage (Image img) = [C.block| void { delete $( image * img ); }|]
 
 -- | Upscales an image.  Goto <http://dlib.net/imaging.html#pyramid_up> for documentation.
 pyramidUp :: Image -> IO Image

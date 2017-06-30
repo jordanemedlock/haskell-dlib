@@ -9,6 +9,8 @@ import Data.Aeson.Encode.Pretty
 import qualified Data.ByteString.Lazy.Char8 as BS
 import Control.Monad
 
+
+
 detectFaces :: FrontalFaceDetector -> ShapePredictor -> String -> IO [Shape]
 detectFaces detector shapePredictor image = do
   img <- mkImage
