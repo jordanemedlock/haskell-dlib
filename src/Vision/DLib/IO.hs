@@ -48,7 +48,15 @@ saveImage img filename = case (toLower <$> takeExtension filename) of
 
 -- | IOProcessor that loads an image from file  
 open :: IOProcessor String Image
-open = arr 
+open = processor iter alloc run dest
+  where iter fName (img, _) = return (img, fName)
+        alloc fName = do
+          img <- mkImage
+          return (img, fName)
+        run (img, fName) = do
+          loadImage img fName
+          return img
+        dest (img, _) = destroyImage img
 
 -- | IOProcessor which saves an image to a filename
 save :: IOProcessor (String, Image) ()

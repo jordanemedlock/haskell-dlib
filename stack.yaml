@@ -37,10 +37,12 @@ resolver: lts-8.18
 # will not be run. This is useful for tweaking upstream packages.
 packages:
 - '.'
+- '../processor-utils'
 # Dependency packages to be pulled from upstream that are not in the resolver
 # (e.g., acme-missiles-0.3)
 extra-deps: 
 - allocated-processor-0.0.2
+- processor-utils-0.1.0.0
 
 # Override default flag values for local packages and extra-deps
 flags: {}

@@ -69,6 +69,7 @@ executable haskell-dlib-exe
                      , aeson
                      , aeson-pretty
                      , bytestring
+                     , processor-utils
                      , allocated-processor
                      , haskell-dlib
   default-language:    Haskell2010

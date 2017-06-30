@@ -38,6 +38,16 @@ C.include "typedefs.h"
 
 C.using "namespace dlib"
 
+-- | Checks if DLIB_NO_FUI_SUPPORT is defined
+hasGUISupport :: Bool
+hasGUISupport = (==1) [C.pure| int {
+#ifdef DLIB_NO_GUI_SUPPORT
+  1 + 
+#endif
+  0
+}|]
+
+
 -- | Represents a pointer to the C++ type @image_window@
 newtype ImageWindow = ImageWindow (Ptr C'ImageWindow) deriving Show
 

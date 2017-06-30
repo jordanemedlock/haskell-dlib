@@ -1,4 +1,5 @@
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE Arrows #-}
 
 module Main where
 
@@ -9,26 +10,19 @@ import Data.Aeson.Encode.Pretty
 import qualified Data.ByteString.Lazy.Char8 as BS
 import Control.Monad
 import Control.Processor
+import Control.Processor.Utils
+import Control.Arrow
 
-marr f = processor (return . const) return f (const $ return ())
 
-detectFaces :: FrontalFaceDetector -> ShapePredictor -> String -> IO [Shape]
-detectFaces detector shapePredictor image = do
-  img <- mkImage
-  loadImage img image
+detect :: String -> IOProcessor Image [Shape]
+detect sp = (arepeat &&& faceDetector) >>> azip >>> pmap (shapePredictor sp)
 
-  rects <- runFrontalFaceDetector detector img
 
-  shapes <- mapM (runShapePredictor shapePredictor img) rects
+arepeat :: IOProcessor a [a]
+arepeat = arr repeat
 
-  win <- mkImageWindow
-  winClearOverlay win
-  winSetImage win img
-
-  forM_ shapes $ \shape -> do
-    winAddFaceDetection win shape
-
-  return shapes
+azip :: (Monad m) => Processor m ([a],[b]) [(a,b)] 
+azip = arr (uncurry zip)
 
 
 main :: IO ()
@@ -42,13 +36,9 @@ main = do
   -- print alignofVector
 
   (spFile:images) <- getArgs
-  
-  let processor = load >>> arr pyramidUp
 
-  detector <- mkFrontalFaceDetector
-  shapePredictor <- mkShapePredictor
-  deserializeShapePredictor shapePredictor spFile
+  shapes <- concat <$> run (pmap $ open >>> marr pyramidUp >>> detect spFile) images
+  print shapes
 
-  shapes <- mapM (detectFaces detector shapePredictor) images
   char <- getChar
   return ()
