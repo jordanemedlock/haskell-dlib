@@ -4,6 +4,8 @@ module Vision.DLib.Types.RGBPixel where
 import Foreign.C.Types
 import Foreign.Storable
 import Foreign.Ptr
+import Foreign.Marshal.Alloc
+import Vision.DLib.Types.C
 
 
 data RGBPixel = RGBPixel
@@ -26,3 +28,17 @@ instance Storable RGBPixel where
     pokeElemOff charPtr 0 r
     pokeElemOff charPtr 1 g
     pokeElemOff charPtr 2 b
+
+type instance C RGBPixel = C'RGBPixel
+
+instance WithPtr RGBPixel where
+  withPtr pix func = do
+    alloca $ \pixPtr -> do
+      poke pixPtr pix
+      let cPtr = castPtr pixPtr
+      func cPtr
+
+instance FromPtr RGBPixel where
+  fromPtr ptr = do
+    let pixPtr = castPtr ptr
+    peek pixPtr

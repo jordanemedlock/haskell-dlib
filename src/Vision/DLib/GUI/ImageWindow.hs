@@ -18,6 +18,7 @@ module Vision.DLib.GUI.ImageWindow where
 import qualified Language.C.Inline as C
 import qualified Language.C.Inline.Cpp as C
 import qualified Language.C.Inline.Internal as C
+import qualified Data.ByteString.Char8 as BS
 
 import           Foreign.Ptr
 
@@ -25,6 +26,9 @@ import           Vision.DLib.Types.InlineC
 import           Vision.DLib.Types.C
 import           Vision.DLib.Types.Array2D
 import           Vision.DLib.Types.Shape
+import           Vision.DLib.Types.RGBPixel
+import           Vision.DLib.Types.Vector
+import           Vision.DLib.Types.Rectangle
 import           Control.Processor
 
 C.context dlibCtx
@@ -35,10 +39,12 @@ C.include "<dlib/gui_widgets.h>"
 C.emitVerbatim "#endif"
 C.include "<dlib/image_processing/render_face_detections.h>"
 C.include "typedefs.h"
+C.include "<string>"
 
 C.emitVerbatim "#ifndef DLIB_NO_GUI_SUPPORT \n#define GUI(X,Y) X \n#else \n#define GUI(X,Y) Y \n#endif"
 
 C.using "namespace dlib"
+C.using "namespace std"
 
 -- | Checks if DLIB_NO_FUI_SUPPORT is defined
 hasGUISupport :: Bool
@@ -94,11 +100,18 @@ imageWindow = processor iter alloc run dest
           winSetImage win img
         dest (win, _) = destroyImageWindow win
 
-{-
-winAddOverlay :: ImageWindow -> Overlay -> IO ()
-winAddOverlay (ImageWindow win) (OverlayRect (rect, color, (Just label))) = 
-  [C.block| ] 
 
+winAddOverlay :: ImageWindow -> Overlay -> IO ()
+winAddOverlay (ImageWindow win) (OverlayRect (rect, color, (Just label))) = let bs = BS.pack label in 
+  withPtr rect $ \rPtr -> withPtr color $ \cPtr -> 
+    [C.block| void { GUI($(image_window * win)->add_overlay(*$(rectangle * rPtr), *$(rgb_pixel * cPtr), string($bs-ptr:bs, $bs-len:bs));,) }|] 
+winAddOverlay (ImageWindow win) (OverlayRect (rect, color, Nothing)) = 
+  withPtr rect $ \rPtr -> withPtr color $ \cPtr -> 
+    [C.block| void { GUI($(image_window * win)->add_overlay(*$(rectangle * rPtr), *$(rgb_pixel * cPtr));,) }|] 
+winAddOverlay (ImageWindow win) (OverlayLine (p1, p2, color)) = 
+  withPtr p1 $ \p1Ptr -> withPtr p2 $ \p2Ptr -> withPtr color $ \cPtr -> 
+    [C.block| void { GUI($(image_window * win)->add_overlay(*$(point * p1Ptr), *$(point * p2Ptr), *$(rgb_pixel * cPtr));,) }|] 
+-- TODO: Continue here
 
 -- | Overlay configuration data type         
 data Overlay = OverlayRect    OverlayRect
@@ -113,15 +126,13 @@ data Overlay = OverlayRect    OverlayRect
              deriving Show
 
 -- | Rectangle overlay with a color and an optional label
-type OverlayRect = (Rectangle, Color, Maybe String)
+type OverlayRect = (Rectangle, RGBPixel, Maybe String)
 
 -- | Shape overlay with a color and an optional list of labels
-type OverlayObject = (Shape, Color, Maybe [String])
+type OverlayShape = (Shape, Maybe [String])
 
 -- | Line overlay with a color
-type OverlayLine = (Point, Point, Color)
+type OverlayLine = (Point, Point, RGBPixel)
 
 -- | Circle overlay with a center, radius, color and optional label string
-type OverlayCircle = (Point, Int, Color, Maybe String)
-
--}
+type OverlayCircle = (Point, Int, RGBPixel, Maybe String)

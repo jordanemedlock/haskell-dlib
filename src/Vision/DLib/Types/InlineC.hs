@@ -38,6 +38,7 @@ dlibTypesTable = M.fromList
   , ( C.TypeName "image", [t| C'Image |])
   , ( C.TypeName "shape_predictor", [t| C'ShapePredictor |])
   , ( C.TypeName "frontal_face_detector", [t| C'FrontalFaceDetector |])
+  , ( C.TypeName "rgb_pixel", [t| C'RGBPixel |])
   ]
 
 {-
