@@ -112,7 +112,21 @@ winAddOverlay (ImageWindow win) (OverlayRect (rect, color, Nothing)) =
 winAddOverlay (ImageWindow win) (OverlayLine (p1, p2, color)) = 
   withPtr p1 $ \p1Ptr -> withPtr p2 $ \p2Ptr -> withPtr color $ \cPtr -> 
     [C.block| void { GUI($(image_window * win)->add_overlay(*$(point * p1Ptr), *$(point * p2Ptr), *$(rgb_pixel * cPtr));,) }|] 
--- TODO: Continue here
+winAddOverlay (ImageWindow win) (OverlayCircle (c, r, color, (Just label))) = let bs = BS.pack label in let cr = fromIntegral r in 
+  withPtr c $ \cePtr -> withPtr color $ \cPtr -> 
+    [C.block| void { GUI($(image_window * win)->add_overlay(*$(point * cePtr), *$(int cr), *$(rgb_pixel * cPtr), string($bs-ptr:bs, $bs-len:bs));,) }|] 
+winAddOverlay (ImageWindow win) (OverlayCircle (c, r, color, Nothing)) = let cr = fromIntegral r in 
+  withPtr c $ \cePtr -> withPtr color $ \cPtr -> 
+    [C.block| void { GUI($(image_window * win)->add_overlay(*$(point * cePtr), *$(int cr), *$(rgb_pixel * cPtr));,) }|] 
+winAddOverlay (ImageWindow win) (OverlayShape shape) = 
+  withPtr shape $ \shPtr -> 
+    [C.block| void { GUI($(image_window * win)->add_overlay(*$(full_object_detection * shPtr));,) }|] 
+winAddOverlay win (OverlayRects rects)      = mapM_ (winAddOverlay win . OverlayRect)   rects 
+winAddOverlay win (OverlayShapes shapes)    = mapM_ (winAddOverlay win . OverlayShape)  shapes 
+winAddOverlay win (OverlayLines lines)      = mapM_ (winAddOverlay win . OverlayLine)   lines
+winAddOverlay win (OverlayCircles circles)  = mapM_ (winAddOverlay win . OverlayCircle) circles
+
+
 
 -- | Overlay configuration data type         
 data Overlay = OverlayRect    OverlayRect
@@ -130,7 +144,7 @@ data Overlay = OverlayRect    OverlayRect
 type OverlayRect = (Rectangle, RGBPixel, Maybe String)
 
 -- | Shape overlay with a color and an optional list of labels
-type OverlayShape = (Shape, Maybe [String])
+type OverlayShape = Shape -- TODO: add labels 
 
 -- | Line overlay with a color
 type OverlayLine = (Point, Point, RGBPixel)
