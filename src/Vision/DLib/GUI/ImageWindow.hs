@@ -101,6 +101,7 @@ imageWindow = processor iter alloc run dest
         dest (win, _) = destroyImageWindow win
 
 
+-- | Adds an overlay to the window.  Uses the Overlay type to overload the C++ add_overlay function.
 winAddOverlay :: ImageWindow -> Overlay -> IO ()
 winAddOverlay (ImageWindow win) (OverlayRect (rect, color, (Just label))) = let bs = BS.pack label in 
   withPtr rect $ \rPtr -> withPtr color $ \cPtr -> 
