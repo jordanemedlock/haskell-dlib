@@ -80,13 +80,25 @@ winSetImage (ImageWindow winPtr) (Image imgPtr) = [C.block| void {
   GUI($( image_window * winPtr )->set_image( *$(image * imgPtr) ),);
 }|]
 
--- | Displays a face detection @Shape@
-winAddFaceDetection :: ImageWindow -> Shape -> IO ()
-winAddFaceDetection (ImageWindow winPtr) shape = do
-  withPtr shape $ \shapePtr -> do
-    [C.block| void {
-      GUI($(image_window * winPtr)->add_overlay(render_face_detections(*$(full_object_detection * shapePtr))),);
-    }|]
+-- | Display Image in the given ImageWindow
+displayImage :: ImageWindow -> IOProcessor Image Image
+displayImage win = processor proc allocator run destroy
+  where proc img _ = return img
+        allocator img = return img
+        run img = do
+          winSetImage win img
+          return img
+        destroy _ = return ()
+
+
+-- | Adds an overlay to the ImageWindow
+displayOverlay :: ImageWindow -> IOProcessor Overlay Overlay
+displayOverlay win = processor proc allocator run destroy
+  where proc overlay _ = return overlay
+        allocator overlay = return overlay
+        run overlay = winAddOverlay win overlay >> return overlay
+        destroy _ = return ()
+
 
 -- | IOSink which displays an image
 imageWindow :: IOSink Image
@@ -125,7 +137,6 @@ winAddOverlay win (OverlayRects rects)      = mapM_ (winAddOverlay win . Overlay
 winAddOverlay win (OverlayShapes shapes)    = mapM_ (winAddOverlay win . OverlayShape)  shapes 
 winAddOverlay win (OverlayLines lines)      = mapM_ (winAddOverlay win . OverlayLine)   lines
 winAddOverlay win (OverlayCircles circles)  = mapM_ (winAddOverlay win . OverlayCircle) circles
-
 
 
 -- | Overlay configuration data type         

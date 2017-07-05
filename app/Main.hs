@@ -36,8 +36,10 @@ main = do
   -- print alignofVector
 
   (spFile:images) <- getArgs
+  
+  win <- mkImageWindow
 
-  shapes <- concat <$> run (pmap $ open >>> marr pyramidUp >>> detect spFile) images
+  shapes <- concat <$> run (pmap $ open >>> displayImage win >>> marr pyramidUp >>> detect spFile) images
   print shapes
 
   char <- getChar
