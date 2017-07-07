@@ -99,3 +99,28 @@ instance FromJSON Shape where
     parts <- o .: "parts"
     rect <- o.: "rect"
     return $ Shape parts rect
+    
+facePoints      = (17, 67)
+mouthPoints     = (48, 60)
+rightBrowPoints = (17, 21)
+leftBrowPoints  = (22, 26)
+rightEyePoints  = (36, 41)
+leftEyePoints   = (42, 47)
+nosePoints      = (27, 34)
+jawPoints       = ( 0, 16)
+chinPoints      = ( 6, 10)
+
+getGroup :: (Int, Int) -> Shape -> [Point]
+getGroup (start, end) = take (end - start + 1) . drop start . shParts
+
+getFace = getGroup facePoints
+getMouth = getGroup mouthPoints
+getRightBrow = getGroup rightBrowPoints
+getLeftBrow = getGroup leftBrowPoints
+getRightEye = getGroup rightEyePoints
+getLeftEye = getGroup leftEyePoints
+getNose = getGroup nosePoints
+getJaw = getGroup jawPoints
+getChin = getGroup chinPoints
+
+

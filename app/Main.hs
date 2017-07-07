@@ -15,7 +15,11 @@ import Control.Arrow
 
 
 detect :: String -> IOProcessor Image [Shape]
-detect sp = (arepeat &&& faceDetector) >>> azip >>> pmap (shapePredictor sp)
+detect sp = (arepeat &&& faceDetector) 
+        >>> azip 
+        >>> pmap (
+          shapePredictor sp
+        )
 
 
 arepeat :: IOProcessor a [a]
@@ -35,7 +39,7 @@ main = do
   -- print sizeofVector
   -- print alignofVector
 
-  (spFile:images) <- getArgs
+  (spFile:images) <- getArgs -- Needs a shape prodictor you can find one at: http://dlib.net/files/shape_predictor_68_face_landmarks.dat.bz2
   
   win <- mkImageWindow
 

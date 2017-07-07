@@ -12,7 +12,8 @@ Portability : POSIX
 DLib Rectangle type
 -}
 module Vision.DLib.Types.Rectangle
-( Rectangle(..)
+( Rectangle(..), rectWidth, rectHeight
+, getBoundingRect
 ) where
 
 import qualified Language.C.Inline as C
@@ -21,6 +22,7 @@ import Foreign.Storable
 import Foreign.Ptr
 import Foreign.Marshal.Alloc
 import Vision.DLib.Types.C
+import Vision.DLib.Types.Vector
 import Vision.DLib.Types.InlineC
 import Data.Aeson
 import Data.Monoid
@@ -37,6 +39,18 @@ data Rectangle = Rectangle
   , rectBottom :: CLong
   } deriving (Eq)
 
+
+rectWidth rect = abs $ rectLeft rect - rectRight rect
+rectHeight rect = abs $ rectBottom rect - rectTop rect
+
+getBoundingRect :: [Point] -> Rectangle
+getBoundingRect ps = Rectangle { rectLeft = minimum $ ptX <$> ps
+                               , rectTop = minimum $ ptY <$> ps
+                               , rectRight = maximum $ ptX <$> ps
+                               , rectBottom = maximum $ ptY <$> ps
+                               }
+                    
+                               
 instance Show Rectangle where
   show (Rectangle l t r b) = "[("++(show l)++","++(show t)++") ("++(show r)++","++(show b)++")]"
 
@@ -97,3 +111,5 @@ instance FromJSON Rectangle where
     <*> (toCLong <$> o .: "top")
     <*> (toCLong <$> o .: "right")
     <*> (toCLong <$> o .: "bottom")
+    
+
