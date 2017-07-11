@@ -27,6 +27,7 @@ library
                      , Vision.DLib.Types.Shape
                      , Vision.DLib.GUI.ImageWindow
                      , Vision.DLib.IO
+                     , Vision.DLib.OpenCV
   c-sources:           src/Vision/DLib/Algorithms/ObjectDetection.cpp
                      , src/Vision/DLib/Algorithms/FeatureExtraction.cpp
                      , src/Vision/DLib/Types/Array2D.cpp
@@ -35,6 +36,7 @@ library
                      , src/Vision/DLib/Types/Rectangle.cpp
                      , src/Vision/DLib/GUI/ImageWindow.cpp
                      , src/Vision/DLib/IO.cpp
+                     , src/Vision/DLib/OpenCV.cpp
   extra-libraries:     stdc++, dlib, lapack, blas
   CC-options:          -std=c++11
   include-dirs:        include/
