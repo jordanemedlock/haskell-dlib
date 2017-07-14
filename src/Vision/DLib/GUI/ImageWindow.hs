@@ -133,8 +133,15 @@ winAddOverlay (ImageWindow win) (OverlayCircle (c, r, color, Nothing)) = let cr 
 winAddOverlay (ImageWindow win) (OverlayShape shape) = 
   withPtr shape $ \shPtr -> 
     [C.block| void { GUI($(image_window * win)->add_overlay(*$(full_object_detection * shPtr));,) }|] 
+winAddOverlay (ImageWindow win) (OverlayFace (shape, Nothing)) = 
+  withPtr shape $ \shPtr -> 
+    [C.block| void { GUI($(image_window * win)->add_overlay(render_face_detection(*$(full_object_detection * shPtr)));,) }|]
+winAddOverlay (ImageWindow win) (OverlayFace (shape, Just color)) = 
+  withPtr shape $ \shPtr -> withPtr color $ \cPtr ->
+    [C.block| void { GUI($(image_window * win)->add_overlay(render_face_detection(*$(full_object_detection * shPtr), *$(rgb_pixel * cPtr)));,) }|] 
 winAddOverlay win (OverlayRects rects)      = mapM_ (winAddOverlay win . OverlayRect)   rects 
 winAddOverlay win (OverlayShapes shapes)    = mapM_ (winAddOverlay win . OverlayShape)  shapes 
+winAddOverlay win (OverlayFaces shapes)     = mapM_ (winAddOverlay win . OverlayFace)   shapes 
 winAddOverlay win (OverlayLines lines)      = mapM_ (winAddOverlay win . OverlayLine)   lines
 winAddOverlay win (OverlayCircles circles)  = mapM_ (winAddOverlay win . OverlayCircle) circles
 
@@ -142,11 +149,13 @@ winAddOverlay win (OverlayCircles circles)  = mapM_ (winAddOverlay win . Overlay
 -- | Overlay configuration data type         
 data Overlay = OverlayRect    OverlayRect
              | OverlayShape   OverlayShape
+             | OverlayFace    OverlayFace
              | OverlayLine    OverlayLine
              | OverlayCircle  OverlayCircle
              
              | OverlayRects   [OverlayRect]
              | OverlayShapes  [OverlayShape]
+             | OverlayFaces   [OverlayFace]
              | OverlayLines   [OverlayLine]
              | OverlayCircles [OverlayCircle]
              deriving Show
@@ -156,6 +165,9 @@ type OverlayRect = (Rectangle, RGBPixel, Maybe String)
 
 -- | Shape overlay with a color and an optional list of labels
 type OverlayShape = Shape -- TODO: add labels 
+
+-- | Shape overlay with a color and an optional list of labels
+type OverlayFace = (Shape, Maybe RGBPixel) -- TODO: add labels 
 
 -- | Line overlay with a color
 type OverlayLine = (Point, Point, RGBPixel)

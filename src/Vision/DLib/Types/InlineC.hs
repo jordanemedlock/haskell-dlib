@@ -14,13 +14,21 @@ Containes the dlibCtx context value.
 -}
 module Vision.DLib.Types.InlineC where
 
-import Data.Monoid ( (<>), mempty )
+import           Data.Monoid ( (<>), mempty )
 import qualified Data.Map as M
 import qualified Language.C.Inline as C
 import qualified Language.C.Types  as C
 import qualified Language.C.Inline.Context as C
 import qualified Language.C.Inline.Cpp as C
-import Vision.DLib.Types.C
+import qualified Language.C.Inline.HaskellIdentifier as C
+import           Vision.DLib.Types.C
+import           Foreign.Ptr
+import           Foreign.C.Types
+import qualified Data.ByteString as BS
+import qualified Data.ByteString.Unsafe as BS
+import qualified Language.Haskell.TH as TH
+
+
 
 -- | Custom dlib inline-c context containing dlib types
 dlibCtx :: C.Context
@@ -40,6 +48,32 @@ dlibTypesTable = M.fromList
   , ( C.TypeName "frontal_face_detector", [t| C'FrontalFaceDetector |])
   , ( C.TypeName "rgb_pixel", [t| C'RGBPixel |])
   ]
+
+
+getHsVariable :: String -> C.HaskellIdentifier -> TH.ExpQ
+getHsVariable err s = do
+  mbHsName <- TH.lookupValueName $ C.unHaskellIdentifier s
+  case mbHsName of
+    Nothing -> fail $ "Cannot capture Haskell variable " ++ C.unHaskellIdentifier s ++
+                      ", because it's not in scope. (" ++ err ++ ")"
+    Just hsName -> TH.varE hsName
+
+
+strAntiQuoter :: C.AntiQuoter C.HaskellIdentifier
+strAntiQuoter = C.AntiQuoter
+  { C.aqParser = do
+      hId <- C.parseIdentifier
+      let cId = C.mangleHaskellIdentifier hId
+      return (cId, C.Ptr [] (C.TypeSpecifier mempty (C.Char Nothing)), hId)
+  , C.aqMarshaller = \_purity _cTypes cTy cId -> do
+      case cTy of 
+        C.Ptr _ (C.TypeSpecifier _ (C.Char Nothing)) -> do
+          hsTy <- [t| Ptr CChar |]
+          hsExp <- getHsVariable "strCtx" cId
+          hsExp' <- [| \cont -> BS.unsafeUseAsCString $(return hsExp) $ \ptr -> cont ptr |]
+          return (hsTy, hsExp')
+        _ -> fail "impossible: got type different from `char *` (strCtx)"
+  }
 
 {-
 cppVecCtx :: C.Context

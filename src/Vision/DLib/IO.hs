@@ -15,6 +15,7 @@ load* functions and save* functions.
 module Vision.DLib.IO where
 
 import qualified Language.C.Inline as C
+import qualified Language.C.Inline.Cpp as C
 import qualified Data.ByteString.Char8 as BS
 
 import           Vision.DLib.Types.Array2D
@@ -33,6 +34,9 @@ C.include "<dlib/image_processing.h>"
 C.include "<dlib/image_io.h>"
 C.include "<iostream>"
 C.include "typedefs.h"
+
+C.using "namespace std"
+C.using "namespace dlib"
 
 data FileType = BMP | DNG | JPEG | PNG deriving Show
 
@@ -71,7 +75,7 @@ loadImage :: Image -> String -> IO ()
 loadImage (Image img) fname = do
   let bs = BS.pack fname
   [C.block| void {
-    load_image(*$(image * img), $bs-ptr:bs);
+    load_image(*$(image * img), string($bs-ptr:bs, $bs-len:bs));
   }|]
 
 -- | Load a bitmap image
@@ -79,7 +83,7 @@ loadBMP :: Image -> String -> IO ()
 loadBMP (Image img) fname = do
   let bs = BS.pack fname
   [C.block| void {
-    load_bmp(*$(image * img), $bs-ptr:bs);
+    load_bmp(*$(image * img), string($bs-ptr:bs, $bs-len:bs));
   }|]
 
 -- | Load a DNG file
@@ -87,7 +91,7 @@ loadDNG :: Image -> String -> IO ()
 loadDNG (Image img) fname = do
   let bs = BS.pack fname
   [C.block| void {
-    load_dng(*$(image * img), $bs-ptr:bs);
+    load_dng(*$(image * img), string($bs-ptr:bs, $bs-len:bs));
   }|]
 
 -- | Load a JPEG file
@@ -95,7 +99,7 @@ loadJPEG :: Image -> String -> IO ()
 loadJPEG (Image img) fname = do
   let bs = BS.pack fname
   [C.block| void {
-    load_jpeg(*$(image * img), $bs-ptr:bs);
+    load_jpeg(*$(image * img), string($bs-ptr:bs, $bs-len:bs));
   }|]
 
 -- | Load a PNG file
@@ -103,7 +107,7 @@ loadPNG :: Image -> String -> IO ()
 loadPNG (Image img) fname = do
   let bs = BS.pack fname
   [C.block| void {
-    load_png(*$(image * img), $bs-ptr:bs);
+    load_png(*$(image * img), string($bs-ptr:bs, $bs-len:bs));
   }|]
 
 -- | Save to a bitmap file
@@ -111,7 +115,7 @@ saveBMP :: Image -> String -> IO ()
 saveBMP (Image img) fname = do
   let bs = BS.pack fname
   [C.block| void {
-    save_bmp(*$(image * img), $bs-ptr:bs);
+    save_bmp(*$(image * img), string($bs-ptr:bs, $bs-len:bs));
   }|]
 
 -- | Save to a DNG file
@@ -119,7 +123,7 @@ saveDNG :: Image -> String -> IO ()
 saveDNG (Image img) fname = do
   let bs = BS.pack fname
   [C.block| void {
-    save_dng(*$(image * img), $bs-ptr:bs);
+    save_dng(*$(image * img), string($bs-ptr:bs, $bs-len:bs));
   }|]
 
 -- | Save to a JPEG file
@@ -127,7 +131,7 @@ saveJPEG :: Image -> String -> IO ()
 saveJPEG (Image img) fname = do
   let bs = BS.pack fname
   [C.block| void {
-    save_jpeg(*$(image * img), $bs-ptr:bs);
+    save_jpeg(*$(image * img), string($bs-ptr:bs, $bs-len:bs));
   }|]
 
 -- | Save to a PNG file
@@ -135,5 +139,5 @@ savePNG :: Image -> String -> IO ()
 savePNG (Image img) fname = do
   let bs = BS.pack fname
   [C.block| void {
-    save_png(*$(image * img), $bs-ptr:bs);
+    save_png(*$(image * img), string($bs-ptr:bs, $bs-len:bs));
   }|]

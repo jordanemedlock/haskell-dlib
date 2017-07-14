@@ -50,6 +50,7 @@ library
                      , aeson
                      , filepath
                      , allocated-processor
+                     , template-haskell
   default-language:    Haskell2010
   default-extensions:  BangPatterns
                      , DataKinds
