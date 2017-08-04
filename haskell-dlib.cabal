@@ -59,7 +59,7 @@ library
                      , ScopedTypeVariables
                      , TupleSections
                      , TypeFamilies
-TypeOperators
+                     , TypeOperators
 
 executable haskell-dlib-exe
   hs-source-dirs:      app
