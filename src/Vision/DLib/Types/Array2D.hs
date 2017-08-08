@@ -37,7 +37,7 @@ C.using "namespace dlib"
 C.using "namespace std"
 
 -- | Represents a pointer to the C++ array_2d<rgb_pixel> type.
-newtype Image = Image (Ptr C'Image)
+newtype Image = Image (Ptr C'Image) deriving Show
 
 -- | Creates an empty image pointer
 mkImage :: IO Image

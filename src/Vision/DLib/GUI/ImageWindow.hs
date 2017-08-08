@@ -169,9 +169,6 @@ type OverlayShape = Shape -- TODO: add labels
 -- | Shape overlay with a color and an optional list of labels
 type OverlayFace = (Shape, Maybe RGBPixel) -- TODO: add labels
 
--- | Shape overlay with a color and an optional list of labels
-type OverlayFace = (Shape, Maybe RGBPixel) -- TODO: add labels
-
 -- | Line overlay with a color
 type OverlayLine = (Point, Point, RGBPixel)
 

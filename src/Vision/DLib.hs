@@ -13,3 +13,4 @@ import Vision.DLib.GUI.ImageWindow as Exports
 import Vision.DLib.Types.C as Exports
 import Vision.DLib.Types.InlineC as Exports
 import Vision.DLib.IO as Exports
+import Vision.DLib.OpenCV as Exports
