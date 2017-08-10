@@ -16,6 +16,7 @@ module Vision.DLib.Algorithms.ObjectDetection
 ( FrontalFaceDetector(..)
 , mkFrontalFaceDetector
 , runFrontalFaceDetector
+, destroyFrontalFaceDetector
 , faceDetector
 ) where
 
@@ -62,7 +63,7 @@ runFrontalFaceDetector (FrontalFaceDetector det) (Image img) = do
     (*$(void ** dblPtr)) = &rects[0];
   }|]
   peekArray (fromIntegral n) (castPtr voidPtr)
-  
+
 
 -- | Face Detector IOProcessor
 faceDetector :: IOProcessor Image [Rectangle]

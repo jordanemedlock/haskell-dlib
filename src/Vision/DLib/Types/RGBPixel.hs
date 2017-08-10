@@ -7,6 +7,13 @@ import Foreign.Ptr
 import Foreign.Marshal.Alloc
 import Vision.DLib.Types.C
 
+red = RGBPixel 255 0 0
+orange = RGBPixel 255 100 0
+yellow = RGBPixel 255 255 0
+green = RGBPixel 0 255 0
+cyan = RGBPixel 0 255 255
+blue = RGBPixel 0 0 255
+purple = RGBPixel 255 0 255
 
 data RGBPixel = RGBPixel
   { rgbRed :: CChar
