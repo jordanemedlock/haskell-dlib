@@ -14,9 +14,11 @@ DLib Rectangle type
 module Vision.DLib.Types.Rectangle
 ( Rectangle(..), rectWidth, rectHeight
 , getBoundingRect
+, cPrintRect
 ) where
 
 import qualified Language.C.Inline as C
+import qualified Language.C.Inline.Cpp as C
 import Foreign.C.Types
 import Foreign.Storable
 import Foreign.Ptr
@@ -30,6 +32,8 @@ import Data.Monoid
 C.context dlibCtx
 C.include "<dlib/geometry.h>"
 C.include "<iostream>"
+
+C.using "namespace dlib"
 
 -- | Rectangle data type
 data Rectangle = Rectangle
@@ -49,16 +53,23 @@ getBoundingRect ps = Rectangle { rectLeft = minimum $ ptX <$> ps
                                , rectRight = maximum $ ptX <$> ps
                                , rectBottom = maximum $ ptY <$> ps
                                }
-                    
-                               
+
+
 instance Show Rectangle where
   show (Rectangle l t r b) = "[("++(show l)++","++(show t)++") ("++(show r)++","++(show b)++")]"
 
+cPrintRect rPtr = [C.block| void {
+  std::cout << $(rectangle * rPtr)->left() << " "
+            << $(rectangle * rPtr)->top() << " "
+            << $(rectangle * rPtr)->right() << " "
+            << $(rectangle * rPtr)->bottom() << "\n";
+}|]
+
 type instance C Rectangle = C'Rectangle
 
-instance CSizeOf Rectangle where 
-  cSizeOf _ = fromIntegral [C.pure| long { sizeof(dlib::rectangle) }|]
-  cAlignOf _ = fromIntegral [C.pure| long { alignof(dlib::rectangle) }|]
+instance CSizeOf Rectangle where
+  cSizeOf _ = fromIntegral [C.pure| long { sizeof(rectangle) }|]
+  cAlignOf _ = fromIntegral [C.pure| long { alignof(rectangle) }|]
 
 instance Storable Rectangle where
   sizeOf = cSizeOf
@@ -111,5 +122,3 @@ instance FromJSON Rectangle where
     <*> (toCLong <$> o .: "top")
     <*> (toCLong <$> o .: "right")
     <*> (toCLong <$> o .: "bottom")
-    
-
