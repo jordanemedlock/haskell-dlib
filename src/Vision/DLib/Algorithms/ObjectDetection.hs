@@ -25,6 +25,7 @@ import qualified Language.C.Inline.Cpp as C
 
 import           Foreign.Ptr
 import           Foreign.Marshal.Array
+import           Foreign.Storable
 
 import           Vision.DLib.Types.Array2D
 import           Vision.DLib.Types.Rectangle
@@ -55,14 +56,19 @@ destroyFrontalFaceDetector (FrontalFaceDetector det) = [C.block| void { delete $
 -- | Runs a FrontalFaceDetector
 runFrontalFaceDetector :: FrontalFaceDetector -> Image -> IO [Rectangle]
 runFrontalFaceDetector (FrontalFaceDetector det) (Image img) = do
-  (n, voidPtr) <- C.withPtrs_ $ \(intPtr, dblPtr) -> [C.block| void {
+  (n, rPtr) <- C.withPtr $ \intPtr -> [C.block| rectangle * {
     frontal_face_detector * det = $(frontal_face_detector * det);
     array2d<rgb_pixel> * img = $(image * img);
     std::vector<rectangle> rects = (* det)(* img);
     (*$(int * intPtr)) = rects.size();
-    (*$(void ** dblPtr)) = &rects[0];
+    std::cout << rects[0] << "\n";
+    return &rects[0];
   }|]
-  peekArray (fromIntegral n) (castPtr voidPtr)
+  if n > 0 then print =<< peek (castPtr rPtr :: Ptr C.CLong) else return ()
+  putStrLn $ "peeking array " ++ (show rPtr)
+  rects <- peekArray (fromIntegral n) (castPtr rPtr)
+  print rects
+  return rects
 
 
 -- | Face Detector IOProcessor
@@ -74,3 +80,7 @@ faceDetector = processor proc alloc run dest
           return (det, img)
         run (det, img) = runFrontalFaceDetector det img
         dest (det, _) = destroyFrontalFaceDetector det
+
+
+
+

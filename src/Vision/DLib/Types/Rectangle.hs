@@ -73,13 +73,18 @@ instance CSizeOf Rectangle where
 
 instance Storable Rectangle where
   sizeOf = cSizeOf
-  alignment = cSizeOf
+  alignment = cAlignOf
   peek ptr = do
     let longPtr = castPtr ptr :: Ptr CLong
-    l <- peekElemOff longPtr 0
-    t <- peekElemOff longPtr 1
-    r <- peekElemOff longPtr 2
-    b <- peekElemOff longPtr 3
+    let rPtr = castPtr ptr
+    
+    putStrLn $ "peek " ++ (show ptr)
+    [C.block| long { std::cout << $(rectangle * rPtr)->left() << "*\n"; }|]
+    l <- [C.exp| long { $(rectangle * rPtr)->left() }|]
+    t <- [C.exp| long { $(rectangle * rPtr)->top() }|]    
+    r <- [C.exp| long { $(rectangle * rPtr)->right() }|]    
+    b <- [C.exp| long { $(rectangle * rPtr)->bottom() }|]    
+    putStrLn $ "peek REct "++(show l)++" "++(show t)++" "++(show r)++" "++(show b)
     return $ Rectangle l t r b
 
   poke ptr (Rectangle l t r b) = do
@@ -88,6 +93,7 @@ instance Storable Rectangle where
     pokeElemOff longPtr 1 t
     pokeElemOff longPtr 2 r
     pokeElemOff longPtr 3 b
+    putStrLn $ "poke REct "++(show l)++" "++(show t)++" "++(show r)++" "++(show b)
 
 instance WithPtr Rectangle where
   withPtr rect func = do
