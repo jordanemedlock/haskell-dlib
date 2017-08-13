@@ -1,7 +1,7 @@
 
-{-# language CPP #-}
-{-# language QuasiQuotes #-}
-{-# language TemplateHaskell #-}
+{-# LANGUAGE CPP             #-}
+{-# LANGUAGE QuasiQuotes     #-}
+{-# LANGUAGE TemplateHaskell #-}
 
 {-|
 Module      : Vision.DLib.Types.InlineC
@@ -14,25 +14,25 @@ Containes the dlibCtx context value.
 -}
 module Vision.DLib.Types.InlineC where
 
-import           Data.Monoid ( (<>), mempty )
-import qualified Data.Map as M
-import qualified Language.C.Inline as C
-import qualified Language.C.Types  as C
-import qualified Language.C.Inline.Context as C
-import qualified Language.C.Inline.Cpp as C
-import qualified Language.C.Inline.HaskellIdentifier as C
-import           Vision.DLib.Types.C
-import           Foreign.Ptr
+import qualified Data.ByteString                     as BS
+import qualified Data.ByteString.Unsafe              as BS
+import qualified Data.Map                            as M
+import           Data.Monoid                         (mempty, (<>))
 import           Foreign.C.Types
-import qualified Data.ByteString as BS
-import qualified Data.ByteString.Unsafe as BS
-import qualified Language.Haskell.TH as TH
+import           Foreign.Ptr
+import qualified Language.C.Inline                   as C
+import qualified Language.C.Inline.Context           as C
+import qualified Language.C.Inline.Cpp               as C
+import qualified Language.C.Inline.HaskellIdentifier as C
+import qualified Language.C.Types                    as C
+import qualified Language.Haskell.TH                 as TH
+import           Vision.DLib.Types.C
 
 
 
 -- | Custom dlib inline-c context containing dlib types
 dlibCtx :: C.Context
-dlibCtx = C.cppCtx <> C.bsCtx <> C.vecCtx <> ctx
+dlibCtx = C.cppCtx <> C.bsCtx <> C.vecCtx <> C.funCtx <> ctx
  where ctx = mempty { C.ctxTypesTable = dlibTypesTable }
 
 -- | DLib types table between C++ type and Haskell-C type
@@ -66,7 +66,7 @@ strAntiQuoter = C.AntiQuoter
       let cId = C.mangleHaskellIdentifier hId
       return (cId, C.Ptr [] (C.TypeSpecifier mempty (C.Char Nothing)), hId)
   , C.aqMarshaller = \_purity _cTypes cTy cId -> do
-      case cTy of 
+      case cTy of
         C.Ptr _ (C.TypeSpecifier _ (C.Char Nothing)) -> do
           hsTy <- [t| Ptr CChar |]
           hsExp <- getHsVariable "strCtx" cId

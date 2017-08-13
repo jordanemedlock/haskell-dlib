@@ -1,6 +1,6 @@
-{-# LANGUAGE QuasiQuotes #-}
+{-# LANGUAGE CPP             #-}
+{-# LANGUAGE QuasiQuotes     #-}
 {-# LANGUAGE TemplateHaskell #-}
-{-# LANGUAGE CPP #-}
 
 
 {-|
@@ -20,18 +20,19 @@ module Vision.DLib.Algorithms.ObjectDetection
 , faceDetector
 ) where
 
-import qualified Language.C.Inline as C
-import qualified Language.C.Inline.Cpp as C
+import qualified Language.C.Inline           as C
+import qualified Language.C.Inline.Cpp       as C
 
-import           Foreign.Ptr
 import           Foreign.Marshal.Array
+import           Foreign.Ptr
 import           Foreign.Storable
 
-import           Vision.DLib.Types.Array2D
-import           Vision.DLib.Types.Rectangle
-import           Vision.DLib.Types.InlineC
-import           Vision.DLib.Types.C
 import           Control.Processor
+import           Data.IORef
+import           Vision.DLib.Types.Array2D
+import           Vision.DLib.Types.C
+import           Vision.DLib.Types.InlineC
+import           Vision.DLib.Types.Rectangle
 
 C.context dlibCtx
 
@@ -56,19 +57,30 @@ destroyFrontalFaceDetector (FrontalFaceDetector det) = [C.block| void { delete $
 -- | Runs a FrontalFaceDetector
 runFrontalFaceDetector :: FrontalFaceDetector -> Image -> IO [Rectangle]
 runFrontalFaceDetector (FrontalFaceDetector det) (Image img) = do
-  (n, rPtr) <- C.withPtr $ \intPtr -> [C.block| rectangle * {
+
+  rects <- newIORef ([] :: [Rectangle])
+
+  let addRect l t r b = do
+        let rect = Rectangle l t r b
+        modifyIORef rects (rect:)
+
+  [C.block| void {
     frontal_face_detector * det = $(frontal_face_detector * det);
     array2d<rgb_pixel> * img = $(image * img);
     std::vector<rectangle> rects = (* det)(* img);
-    (*$(int * intPtr)) = rects.size();
-    std::cout << rects[0] << "\n";
-    return &rects[0];
+
+    for (int i = 0; i < rects.size(); i++) {
+      $fun:(void (*addRect)(long,long,long,long))(
+        rects[i].left(),
+        rects[i].top(),
+        rects[i].right(),
+        rects[i].bottom()
+      );
+    }
   }|]
-  if n > 0 then print =<< peek (castPtr rPtr :: Ptr C.CLong) else return ()
-  putStrLn $ "peeking array " ++ (show rPtr)
-  rects <- peekArray (fromIntegral n) (castPtr rPtr)
-  print rects
-  return rects
+
+  readIORef rects
+
 
 
 -- | Face Detector IOProcessor
@@ -80,7 +92,3 @@ faceDetector = processor proc alloc run dest
           return (det, img)
         run (det, img) = runFrontalFaceDetector det img
         dest (det, _) = destroyFrontalFaceDetector det
-
-
-
-
