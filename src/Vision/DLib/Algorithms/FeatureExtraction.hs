@@ -1,6 +1,6 @@
-{-# LANGUAGE QuasiQuotes #-}
+{-# LANGUAGE CPP             #-}
+{-# LANGUAGE QuasiQuotes     #-}
 {-# LANGUAGE TemplateHaskell #-}
-{-# LANGUAGE CPP #-}
 
 
 {-|
@@ -21,23 +21,24 @@ module Vision.DLib.Algorithms.FeatureExtraction
 , shapePredictor
 ) where
 
-import qualified Language.C.Inline as C
-import qualified Language.C.Inline.Cpp as C
+import qualified Language.C.Inline           as C
+import qualified Language.C.Inline.Cpp       as C
 
+import qualified Data.ByteString.Char8       as BS
+import           Foreign.Marshal.Alloc
 import           Foreign.Ptr
 import           Foreign.Storable
-import           Foreign.Marshal.Alloc
-import qualified Data.ByteString.Char8 as BS
 
-import           Vision.DLib.Types.Array2D
-import           Vision.DLib.Types.Rectangle
-import           Vision.DLib.Types.InlineC
-import           Vision.DLib.Types.C
-import           Vision.DLib.Types.Shape
 import           Control.Processor
+import           Vision.DLib.Types.Array2D
+import           Vision.DLib.Types.C
+import           Vision.DLib.Types.InlineC
+import           Vision.DLib.Types.Rectangle
+import           Vision.DLib.Types.Shape
 
 C.context dlibCtx
 
+C.include "<dlib/image_processing/frontal_face_detector.h>"
 C.include "<dlib/image_processing.h>"
 C.include "typedefs.h"
 
@@ -63,8 +64,7 @@ deserializeShapePredictor (ShapePredictor sp) filename = do
 
 -- | Runs a ShapePredictor on an image within a rectangle
 runShapePredictor :: ShapePredictor -> Image -> Rectangle -> IO Shape
-runShapePredictor (ShapePredictor sp) (Image img) rect = do
-  alloca $ \rectPtr -> do
+runShapePredictor (ShapePredictor sp) (Image img) rect = alloca $ \rectPtr -> do
     poke rectPtr rect
     let voidPtr = castPtr rectPtr
     -- TODO: fix this
@@ -74,14 +74,13 @@ runShapePredictor (ShapePredictor sp) (Image img) rect = do
       return det;
     }|]
 
-
 -- | Shape Predictor IOProcessor
 shapePredictor :: String -> IOProcessor (Image, Rectangle) Shape
-shapePredictor filename = processor proc allocator run destroy
+shapePredictor filename = processor proc allocator run' destroy
   where proc (img, rect) (sp, _, _) = return (sp, img, rect) -- <$> runShapePredictor sp img rect
         allocator (img, rect) = do
           sp <- mkShapePredictor
           deserializeShapePredictor sp filename
           return (sp, img, rect)
-        run (sp, img, rect) = runShapePredictor sp img rect
+        run' (sp, img, rect) = runShapePredictor sp img rect
         destroy (sp, _, _) = destroyShapePredictor sp

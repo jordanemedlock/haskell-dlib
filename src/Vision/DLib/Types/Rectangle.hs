@@ -14,11 +14,9 @@ DLib Rectangle type
 module Vision.DLib.Types.Rectangle
 ( Rectangle(..), rectWidth, rectHeight
 , getBoundingRect
-, cPrintRect
 ) where
 
 import qualified Language.C.Inline as C
-import qualified Language.C.Inline.Cpp as C
 import Foreign.C.Types
 import Foreign.Storable
 import Foreign.Ptr
@@ -33,8 +31,6 @@ C.context dlibCtx
 C.include "<dlib/geometry.h>"
 C.include "<iostream>"
 
-C.using "namespace dlib"
-
 -- | Rectangle data type
 data Rectangle = Rectangle
   { rectLeft :: CLong
@@ -43,8 +39,10 @@ data Rectangle = Rectangle
   , rectBottom :: CLong
   } deriving (Eq)
 
-
+rectWidth :: Rectangle -> CLong
 rectWidth rect = abs $ rectLeft rect - rectRight rect
+
+rectHeight :: Rectangle -> CLong
 rectHeight rect = abs $ rectBottom rect - rectTop rect
 
 getBoundingRect :: [Point] -> Rectangle
@@ -56,35 +54,23 @@ getBoundingRect ps = Rectangle { rectLeft = minimum $ ptX <$> ps
 
 
 instance Show Rectangle where
-  show (Rectangle l t r b) = "[("++(show l)++","++(show t)++") ("++(show r)++","++(show b)++")]"
-
-cPrintRect rPtr = [C.block| void {
-  std::cout << $(rectangle * rPtr)->left() << " "
-            << $(rectangle * rPtr)->top() << " "
-            << $(rectangle * rPtr)->right() << " "
-            << $(rectangle * rPtr)->bottom() << "\n";
-}|]
+  show (Rectangle l t r b) = "(Rectangle "++show l++" "++show t++" "++show r++" "++show b++")"
 
 type instance C Rectangle = C'Rectangle
 
 instance CSizeOf Rectangle where
-  cSizeOf _ = fromIntegral [C.pure| long { sizeof(rectangle) }|]
-  cAlignOf _ = fromIntegral [C.pure| long { alignof(rectangle) }|]
+  cSizeOf _ = fromIntegral [C.pure| long { sizeof(dlib::rectangle) }|]
+  cAlignOf _ = fromIntegral [C.pure| long { alignof(dlib::rectangle) }|]
 
 instance Storable Rectangle where
   sizeOf = cSizeOf
-  alignment = cAlignOf
+  alignment = cSizeOf
   peek ptr = do
     let longPtr = castPtr ptr :: Ptr CLong
-    let rPtr = castPtr ptr
-    
-    putStrLn $ "peek " ++ (show ptr)
-    [C.block| long { std::cout << $(rectangle * rPtr)->left() << "*\n"; }|]
-    l <- [C.exp| long { $(rectangle * rPtr)->left() }|]
-    t <- [C.exp| long { $(rectangle * rPtr)->top() }|]    
-    r <- [C.exp| long { $(rectangle * rPtr)->right() }|]    
-    b <- [C.exp| long { $(rectangle * rPtr)->bottom() }|]    
-    putStrLn $ "peek REct "++(show l)++" "++(show t)++" "++(show r)++" "++(show b)
+    l <- peekElemOff longPtr 0
+    t <- peekElemOff longPtr 1
+    r <- peekElemOff longPtr 2
+    b <- peekElemOff longPtr 3
     return $ Rectangle l t r b
 
   poke ptr (Rectangle l t r b) = do
@@ -93,11 +79,10 @@ instance Storable Rectangle where
     pokeElemOff longPtr 1 t
     pokeElemOff longPtr 2 r
     pokeElemOff longPtr 3 b
-    putStrLn $ "poke REct "++(show l)++" "++(show t)++" "++(show r)++" "++(show b)
 
 instance WithPtr Rectangle where
-  withPtr rect func = do
-    alloca $ \rectPtr -> do
+  withPtr rect func = alloca $
+    \rectPtr -> do
       poke rectPtr rect
       let cPtr = castPtr rectPtr
       func cPtr

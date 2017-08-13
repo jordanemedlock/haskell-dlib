@@ -1,6 +1,6 @@
-{-# LANGUAGE QuasiQuotes #-}
+{-# LANGUAGE CPP             #-}
+{-# LANGUAGE QuasiQuotes     #-}
 {-# LANGUAGE TemplateHaskell #-}
-{-# LANGUAGE CPP #-}
 
 
 {-|
@@ -15,9 +15,9 @@ The Array2D type represents a dlib image.
 module Vision.DLib.Types.Array2D where
 
 
-import qualified Language.C.Inline as C
-import qualified Language.C.Inline.Cpp as C
 import           Foreign.Ptr
+import qualified Language.C.Inline         as C
+import qualified Language.C.Inline.Cpp     as C
 
 import           Vision.DLib.Types.C
 import           Vision.DLib.Types.InlineC
@@ -47,6 +47,7 @@ destroyImage :: Image -> IO ()
 destroyImage (Image img) = [C.block| void { delete $( image * img ); }|]
 
 -- | Upscales an image.  Goto <http://dlib.net/imaging.html#pyramid_up> for documentation.
+-- | Approximately doubles the image size
 pyramidUp :: Image -> IO Image
 pyramidUp (Image img) = Image <$> [C.block| image * {
     array2d<rgb_pixel> * img = $(image * img);
@@ -54,6 +55,12 @@ pyramidUp (Image img) = Image <$> [C.block| image * {
     return img;
 }|]
 
+
+imgWidth :: Image -> C.CULong
+imgWidth (Image img) = [C.pure| unsigned long { $(image * img)->nc() }|]
+
+imgHeight :: Image -> C.CULong
+imgHeight (Image img) = [C.pure| unsigned long { $(image * img)->nr() }|]
 
 {-
 data Array2D a = Array2D

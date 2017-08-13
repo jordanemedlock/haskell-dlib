@@ -84,6 +84,7 @@ test-suite haskell-dlib-test
   build-depends:       base
                      , inline-c
                      , inline-c-cpp
+                     , directory
                      , haskell-dlib
   c-sources:           test/Spec.cpp
   CC-options:          -std=c++11
