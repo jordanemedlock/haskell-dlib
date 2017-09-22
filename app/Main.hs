@@ -3,7 +3,7 @@
 
 module Main where
 
-import Vision.DLib
+import Vision.DLib.Monad
 import System.Environment
 import Data.Aeson
 import Data.Aeson.Encode.Pretty
@@ -12,22 +12,13 @@ import Control.Monad
 import Control.Processor
 import Control.Processor.Utils
 import Control.Arrow
+import Control.Monad.IO.Class
 
 
-detect :: String -> IOProcessor Image [Shape]
-detect sp = (arepeat &&& faceDetector)
-        >>> azip
-        >>> pmap (
-          shapePredictor sp
-        )
-
-
-arepeat :: IOProcessor a [a]
-arepeat = arr repeat
-
-azip :: (Monad m) => Processor m ([a],[b]) [(a,b)]
-azip = arr (uncurry zip)
-
+detect :: FrontalFaceDetector -> ShapePredictor -> Image -> DLib [Shape]
+detect det sp img = do
+  rects <- runFrontalFaceDetector det img
+  mapM (runShapePredictor sp img) rects
 
 main :: IO ()
 main = do
@@ -41,14 +32,12 @@ main = do
 
   (spFile:images) <- getArgs -- Needs a shape prodictor you can find one at: http://dlib.net/files/shape_predictor_68_face_landmarks.dat.bz2
 
-  win <- mkImageWindow
+  runDLib $ do
+    det <- mkFrontalFaceDetector
+    sp <- mkShapePredictor spFile
+    forM_ images $ \str -> do
+      img <- loadImage str
+      img <- pyramidUp img
+      shapes <- detect det sp img
+      liftIO $ print shapes
 
-  shapes <- concat <$> run (pmap $ open >>> displayImage win >>> marr pyramidUp >>> detect spFile) images
-  print shapes
-
-  let overlays = OverlayShapes shapes
-
-  run (displayOverlay win) overlays
-
-  char <- getChar
-  return ()

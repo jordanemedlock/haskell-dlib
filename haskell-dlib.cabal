@@ -16,6 +16,7 @@ cabal-version:       >=1.10
 library
   hs-source-dirs:      src
   exposed-modules:     Vision.DLib
+                     , Vision.DLib.Monad
   other-modules:       Vision.DLib.Types.Rectangle
                      , Vision.DLib.Types.Array2D
                      , Vision.DLib.Types.RGBPixel
@@ -28,7 +29,6 @@ library
                      , Vision.DLib.GUI.ImageWindow
                      , Vision.DLib.IO
                      , Vision.DLib.OpenCV
-                     , Vision.DLib.Monad
   c-sources:           src/Vision/DLib/Algorithms/ObjectDetection.cpp
                      , src/Vision/DLib/Algorithms/FeatureExtraction.cpp
                      , src/Vision/DLib/Types/Array2D.cpp

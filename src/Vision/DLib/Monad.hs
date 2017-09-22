@@ -1,6 +1,7 @@
 
 module Vision.DLib.Monad 
 ( DLib
+
 , saveImage
 , loadImage
 , fromIplImage
@@ -14,6 +15,14 @@ module Vision.DLib.Monad
 , setImage
 , mkImage
 , pyramidUp
+
+, Image
+, Shape
+, Rectangle
+, ShapePredictor
+, FrontalFaceDetector
+, ImageWindow
+, Overlay
 
 , runDLib
 ) where
