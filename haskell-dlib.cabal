@@ -28,6 +28,7 @@ library
                      , Vision.DLib.GUI.ImageWindow
                      , Vision.DLib.IO
                      , Vision.DLib.OpenCV
+                     , Vision.DLib.Monad
   c-sources:           src/Vision/DLib/Algorithms/ObjectDetection.cpp
                      , src/Vision/DLib/Algorithms/FeatureExtraction.cpp
                      , src/Vision/DLib/Types/Array2D.cpp
@@ -51,6 +52,7 @@ library
                      , filepath
                      , allocated-processor
                      , template-haskell
+                     , free
   default-language:    Haskell2010
   default-extensions:  BangPatterns
                      , DataKinds
