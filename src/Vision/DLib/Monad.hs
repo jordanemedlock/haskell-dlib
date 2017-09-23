@@ -19,6 +19,7 @@ module Vision.DLib.Monad
 , Image
 , Shape
 , Rectangle
+, Point(..)
 , ShapePredictor
 , FrontalFaceDetector
 , ImageWindow
@@ -31,6 +32,7 @@ import           Vision.DLib.Types.Array2D (Image)
 import qualified Vision.DLib.Types.Array2D as D
 import           Vision.DLib.Types.Shape (Shape)
 import           Vision.DLib.Types.Rectangle (Rectangle)
+import           Vision.DLib.Types.Vector (Point(..))
 import           Vision.DLib.Algorithms.FeatureExtraction (ShapePredictor)
 import qualified Vision.DLib.Algorithms.FeatureExtraction as D
 import           Vision.DLib.Algorithms.ObjectDetection (FrontalFaceDetector)
