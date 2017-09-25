@@ -1,5 +1,5 @@
 
-module Vision.DLib.Monad 
+module Vision.DLib.Monad
 ( DLib
 
 , saveImage
@@ -17,8 +17,6 @@ module Vision.DLib.Monad
 , pyramidUp
 
 , Image
-, Shape
-, Rectangle
 , Point(..)
 , ShapePredictor
 , FrontalFaceDetector
@@ -26,24 +24,27 @@ module Vision.DLib.Monad
 , Overlay
 
 , runDLib
+
+, module E
 ) where
 
-import           Vision.DLib.Types.Array2D (Image)
-import qualified Vision.DLib.Types.Array2D as D
-import           Vision.DLib.Types.Shape (Shape)
-import           Vision.DLib.Types.Rectangle (Rectangle)
-import           Vision.DLib.Types.Vector (Point(..))
+import           Control.Monad.Free
+import           Control.Monad.IO.Class
+import           Foreign.Ptr
 import           Vision.DLib.Algorithms.FeatureExtraction (ShapePredictor)
 import qualified Vision.DLib.Algorithms.FeatureExtraction as D
-import           Vision.DLib.Algorithms.ObjectDetection (FrontalFaceDetector)
-import qualified Vision.DLib.Algorithms.ObjectDetection as D
-import           Vision.DLib.GUI.ImageWindow (ImageWindow, Overlay)
-import qualified Vision.DLib.GUI.ImageWindow as D
-import qualified Vision.DLib.IO as D
-import qualified Vision.DLib.OpenCV as D
-import Foreign.Ptr
-import Control.Monad.Free
-import Control.Monad.IO.Class
+import           Vision.DLib.Algorithms.ObjectDetection   (FrontalFaceDetector)
+import qualified Vision.DLib.Algorithms.ObjectDetection   as D
+import           Vision.DLib.GUI.ImageWindow              (ImageWindow, Overlay)
+import qualified Vision.DLib.GUI.ImageWindow              as D
+import qualified Vision.DLib.IO                           as D
+import qualified Vision.DLib.OpenCV                       as D
+import           Vision.DLib.Types.Array2D                (Image)
+import qualified Vision.DLib.Types.Array2D                as D
+import           Vision.DLib.Types.Rectangle              as E
+import           Vision.DLib.Types.RGBPixel               as E
+import           Vision.DLib.Types.Shape                  as E
+import           Vision.DLib.Types.Vector                 as E
 
 data DLibF x = SaveImage String Image x
              | LoadImage String (Image -> x)
@@ -123,44 +124,31 @@ pyramidUp img = liftF $ PyramidUp img id
 runDLib :: DLib x -> IO x
 runDLib (Pure x)                            = return x
 runDLib (Free (SaveImage str img x))        = D.saveImage img str   >> runDLib x
-runDLib (Free (LoadImage str f))            = do
-    img <- D.mkImage
-    D.loadImage img str       
-    x <- runDLib (f img)
-    D.destroyImage img
-    return x
+runDLib (Free (LoadImage str f))            = manage mk (runDLib . f) D.destroyImage
+  where mk = do
+          img <- D.mkImage
+          D.loadImage img str
+          return img
 runDLib (Free (FromIplImage ptr f))         = D.fromIplImage ptr    >>= runDLib . f
-runDLib (Free (MakeShapePredictor str f))   = do
-    sp <- D.mkShapePredictor 
-    D.deserializeShapePredictor sp str
-    x <- runDLib (f sp)
-    D.destroyShapePredictor sp
-    return x
+runDLib (Free (MakeShapePredictor str f))   = manage mk (runDLib . f) D.destroyShapePredictor
+  where mk = do
+          sp <- D.mkShapePredictor
+          D.deserializeShapePredictor sp str
+          return sp
 runDLib (Free (RunShapePredictor sp img rect f)) = D.runShapePredictor sp img rect >>= runDLib . f
-runDLib (Free (MakeFrontalFaceDetector f)) = do
-    det <- D.mkFrontalFaceDetector
-    x <- runDLib (f det)
-    D.destroyFrontalFaceDetector det
-    return x
+runDLib (Free (MakeFrontalFaceDetector f)) = manage D.mkFrontalFaceDetector (runDLib . f) D.destroyFrontalFaceDetector
 runDLib (Free (RunFrontalFaceDetector det img f)) = D.runFrontalFaceDetector det img >>= runDLib . f
-runDLib (Free (MakeImageWindow f)) = do
-    win <- D.mkImageWindow 
-    x <- runDLib (f win)
-    D.destroyImageWindow win
-    return x
+runDLib (Free (MakeImageWindow f)) = manage D.mkImageWindow (runDLib . f) D.destroyImageWindow
 runDLib (Free (ClearOverlay win f)) = D.winClearOverlay win >> runDLib (f win)
 runDLib (Free (SetImage win img f)) = D.winSetImage win img >> runDLib (f win)
 runDLib (Free (AddOverlay win ovr f)) = D.winAddOverlay win ovr >> runDLib (f win)
-runDLib (Free (MakeImage f)) = do
-    img <- D.mkImage 
-    x <- runDLib (f img)
-    D.destroyImage img
-    return x
+runDLib (Free (MakeImage f)) = manage D.mkImage (runDLib . f) D.destroyImage
 runDLib (Free (PyramidUp img f)) = D.pyramidUp img >>= runDLib . f
 runDLib (Free (LiftIO f)) = f >>= runDLib
 
-
-
-
-
-
+manage :: Monad m => m x -> (x -> m y) -> (x -> m a) -> m y
+manage i u d = do
+  x <- i
+  y <- u x
+  _ <- d x
+  return y
