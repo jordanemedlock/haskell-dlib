@@ -21,7 +21,7 @@ module Vision.DLib.Monad
 , ShapePredictor
 , FrontalFaceDetector
 , ImageWindow
-, Overlay
+, Overlay(..)
 
 , runDLib
 
@@ -35,7 +35,7 @@ import           Vision.DLib.Algorithms.FeatureExtraction (ShapePredictor)
 import qualified Vision.DLib.Algorithms.FeatureExtraction as D
 import           Vision.DLib.Algorithms.ObjectDetection   (FrontalFaceDetector)
 import qualified Vision.DLib.Algorithms.ObjectDetection   as D
-import           Vision.DLib.GUI.ImageWindow              (ImageWindow, Overlay)
+import           Vision.DLib.GUI.ImageWindow              (ImageWindow, Overlay(..))
 import qualified Vision.DLib.GUI.ImageWindow              as D
 import qualified Vision.DLib.IO                           as D
 import qualified Vision.DLib.OpenCV                       as D
