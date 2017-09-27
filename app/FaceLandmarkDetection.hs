@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE Arrows #-}
+{-# LANGUAGE TupleSections #-}
 
 module Main where
 
@@ -35,9 +36,15 @@ main = do
   runDLib $ do
     det <- mkFrontalFaceDetector
     sp <- mkShapePredictor spFile
+    win <- mkImageWindow
     forM_ images $ \str -> do
       img <- loadImage str
       img <- pyramidUp img
       shapes <- detect det sp img
+
+      clearOverlay win
+      setImage win img
+      addOverlay win (OverlayFaces $ (,Just blue) <$> shapes)
+
       liftIO $ print shapes
 
