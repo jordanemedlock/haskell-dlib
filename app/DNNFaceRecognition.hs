@@ -10,18 +10,18 @@ import Data.Void
 -- TODO: Add to lib
 data Tag1 subnet
 data Tag2 subnet
-data AddPrev1 (block :: *)
-data AddPrev2 (block :: *)
-data AvgPool (a :: Nat) (b :: Nat) (c :: Nat) (d :: Nat) subnet -- subnet ????
+data AddPrev1 (block :: *) -- dnn/layers_abstract.h
+data AddPrev2 (block :: *) -- dnn/layers_abstract.h
+data AvgPool (nr :: Nat) (nc :: Nat) (strideX :: Nat) (strideY :: Nat) subnet -- dnn/layers.h
 data Skip1 subnet
-data Con (n :: Nat) (a :: Nat) (b :: Nat) (c :: Nat) (d :: Nat) subnet
-data Relu subnet
-data Affine subnet
-data LossMetric net
-data FCNoBias (n :: Nat) subnet
-data AvgPoolEverything subnet
-data MaxPool (a :: Nat) (b :: Nat) (c :: Nat) (d :: Nat) subnet
-data InputRGBImageSized (n :: Nat)
+data Con (numFilters :: Nat) (nr :: Nat) (nc :: Nat) (strideX :: Nat) (strideY :: Nat) subnet -- dnn/layers.h
+data Relu subnet -- dnn/layers_abstract.h
+data Affine subnet -- dnn/layers_abstract.h
+data LossMetric net -- dnn/loss.h
+data FCNoBias (n :: Nat) subnet -- dnn/layers_abstract.h
+data AvgPoolEverything subnet -- dnn/layers_abstract.h
+data MaxPool (nr :: Nat) (nc :: Nat) (strideX :: Nat) (strideY :: Nat) subnet -- dnn/layers.h
+data InputRGBImageSized (n :: Nat) -- dnn/layers_abstract.h
 
 
 -- Types needed for this module
