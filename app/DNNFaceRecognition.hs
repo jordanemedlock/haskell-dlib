@@ -8,12 +8,12 @@ import Data.Void
 
 
 -- TODO: Add to lib
-data Tag1 subnet
-data Tag2 subnet
+data Tag1 subnet -- dnn/core.h
+data Tag2 subnet -- dnn/core.h
 data AddPrev1 (block :: *) -- dnn/layers_abstract.h
 data AddPrev2 (block :: *) -- dnn/layers_abstract.h
 data AvgPool (nr :: Nat) (nc :: Nat) (strideX :: Nat) (strideY :: Nat) subnet -- dnn/layers.h
-data Skip1 subnet
+data Skip1 subnet -- dnn/core.h
 data Con (numFilters :: Nat) (nr :: Nat) (nc :: Nat) (strideX :: Nat) (strideY :: Nat) subnet -- dnn/layers.h
 data Relu subnet -- dnn/layers_abstract.h
 data Affine subnet -- dnn/layers_abstract.h
