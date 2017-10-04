@@ -14,7 +14,6 @@ Containes the dlibCtx context value.
 -}
 module Vision.DLib.Types.InlineC where
 
-import qualified Data.ByteString                     as BS
 import qualified Data.ByteString.Unsafe              as BS
 import qualified Data.Map                            as M
 import           Data.Monoid                         (mempty, (<>))

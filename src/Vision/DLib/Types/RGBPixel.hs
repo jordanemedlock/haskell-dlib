@@ -7,12 +7,25 @@ import Foreign.Ptr
 import Foreign.Marshal.Alloc
 import Vision.DLib.Types.C
 
+red :: RGBPixel
 red = RGBPixel 255 0 0
+
+orange :: RGBPixel
 orange = RGBPixel 255 100 0
+
+yellow :: RGBPixel
 yellow = RGBPixel 255 255 0
+
+green :: RGBPixel
 green = RGBPixel 0 255 0
+
+cyan :: RGBPixel
 cyan = RGBPixel 0 255 255
+
+blue :: RGBPixel
 blue = RGBPixel 0 0 255
+
+purple :: RGBPixel
 purple = RGBPixel 255 0 255
 
 data RGBPixel = RGBPixel
@@ -26,10 +39,10 @@ instance Storable RGBPixel where
   alignment = sizeOf
   peek ptr = do
     let charPtr = castPtr ptr
-    red <- peekElemOff charPtr 0
-    green <- peekElemOff charPtr 0
-    blue <- peekElemOff charPtr 0
-    return $ RGBPixel red green blue
+    r <- peekElemOff charPtr 0
+    g <- peekElemOff charPtr 0
+    b <- peekElemOff charPtr 0
+    return $ RGBPixel r g b
   poke ptr (RGBPixel r g b) = do
     let charPtr = castPtr ptr
     pokeElemOff charPtr 0 r

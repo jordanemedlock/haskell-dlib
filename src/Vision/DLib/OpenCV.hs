@@ -15,13 +15,9 @@ module Vision.DLib.OpenCV where
 
 
 import qualified Language.C.Inline as C
-import qualified Data.ByteString.Char8 as BS
 
 import           Vision.DLib.Types.Array2D
 import           Vision.DLib.Types.InlineC
-import           Control.Processor
-import           System.FilePath.Posix ( takeExtension )
-import           Data.Char
 import           Foreign.Ptr
 
 C.context dlibCtx

@@ -23,9 +23,7 @@ module Vision.DLib.Algorithms.ObjectDetection
 import qualified Language.C.Inline           as C
 import qualified Language.C.Inline.Cpp       as C
 
-import           Foreign.Marshal.Array
 import           Foreign.Ptr
-import           Foreign.Storable
 
 import           Control.Processor
 import           Data.IORef

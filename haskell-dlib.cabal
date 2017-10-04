@@ -41,7 +41,7 @@ library
   extra-libraries:     stdc++, dlib, lapack, blas
   CC-options:          -std=c++11
   include-dirs:        include/
-  ghc-options:         -Wall
+  ghc-options:         -Wunused-imports
   build-depends:       base >= 4.7 && < 5
                      , inline-c
                      , inline-c-cpp

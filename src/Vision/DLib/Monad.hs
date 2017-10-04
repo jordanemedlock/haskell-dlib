@@ -146,6 +146,7 @@ runDLib (Free (MakeImage f)) = manage D.mkImage (runDLib . f) D.destroyImage
 runDLib (Free (PyramidUp img f)) = D.pyramidUp img >>= runDLib . f
 runDLib (Free (LiftIO f)) = f >>= runDLib
 
+{-# INLINE manage #-}
 manage :: Monad m => m x -> (x -> m y) -> (x -> m a) -> m y
 manage i u d = do
   x <- i
