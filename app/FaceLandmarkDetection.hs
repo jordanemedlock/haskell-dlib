@@ -10,8 +10,6 @@ import Data.Aeson
 import Data.Aeson.Encode.Pretty
 import qualified Data.ByteString.Lazy.Char8 as BS
 import Control.Monad
-import Control.Processor
-import Control.Processor.Utils
 import Control.Arrow
 import Control.Monad.IO.Class
 
