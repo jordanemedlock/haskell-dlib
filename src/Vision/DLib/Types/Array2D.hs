@@ -20,6 +20,7 @@ import qualified Language.C.Inline         as C
 import qualified Language.C.Inline.Cpp     as C
 
 import           Vision.DLib.Types.C
+import           Vision.DLib.Types.Rectangle
 import           Vision.DLib.Types.InlineC
 
 C.context dlibCtx
@@ -61,6 +62,10 @@ imgWidth (Image img) = [C.pure| unsigned long { $(image * img)->nc() }|]
 
 imgHeight :: Image -> C.CULong
 imgHeight (Image img) = [C.pure| unsigned long { $(image * img)->nr() }|]
+
+-- subImage :: Rectangle -> Image -> IO Image
+-- subImage rect (Image img) = Image <$> withPtr rect $ \rPtr -> [C.exp| image * { sub_image($(image * img), $(rectangle * rPtr)) } |]
+
 
 {-
 data Array2D a = Array2D
