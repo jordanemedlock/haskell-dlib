@@ -17,6 +17,8 @@ library
   hs-source-dirs:      src
   exposed-modules:     Vision.DLib
                      , Vision.DLib.Monad
+                     , Vision.DLib.DNN.Types
+                     , Vision.DLib.DNN.TH
   other-modules:       Vision.DLib.Types.Rectangle
                      , Vision.DLib.Types.Array2D
                      , Vision.DLib.Types.RGBPixel
