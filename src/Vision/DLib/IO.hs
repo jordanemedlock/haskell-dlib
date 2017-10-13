@@ -42,13 +42,14 @@ data FileType = BMP | DNG | JPEG | PNG deriving Show
 
 
 -- | Saves an image using its file extension
+saveImage :: Image -> FilePath -> IO ()
 saveImage img filename = case (toLower <$> takeExtension filename) of
   ".bmp" -> savePNG img filename
   ".dng" -> saveDNG img filename
   ".jpg" -> saveJPEG img filename
   ".jpeg" -> saveJPEG img filename
   ".png" -> savePNG img filename
-  otherwise -> error "unknown filetype"
+  _ -> error "unknown filetype"
 
 -- | IOProcessor that loads an image from file
 open :: IOProcessor String Image
